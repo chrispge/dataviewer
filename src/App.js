@@ -1,4 +1,5 @@
 import React from "react";
+import DemoChart from "./chart";
 const request = require("request");
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   return (
     <div>
       <p>Hello World</p>
+      <DemoChart />
     </div>
   );
 }
