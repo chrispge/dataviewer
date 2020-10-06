@@ -1,5 +1,6 @@
 import React from "react";
 import DemoChart from "./chart";
+import { VictoryChart, VictoryBar, VictoryTooltip } from "victory";
 const request = require("request");
 
 function App() {
@@ -11,12 +12,7 @@ function App() {
       console.log(body);
     }
   });
-  return (
-    <div>
-      <p>Hello World</p>
-      <DemoChart />
-    </div>
-  );
+  return <DemoChart />;
 }
 
 export default App;
