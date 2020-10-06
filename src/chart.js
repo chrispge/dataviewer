@@ -81,7 +81,9 @@ const DemoChart = () => (
     <h1>Line Chart</h1>
     <VictoryChart
       theme={() => VictoryTheme.material}
-      containerComponent={<VictoryVoronoiContainer labels={ttLabels} />}
+      containerComponent={
+        <VictoryVoronoiContainer mouseFollowToolTips labels={ttLabels} />
+      }
     >
       <VictoryAxis
         tickValues={xTickValues}
@@ -98,9 +100,22 @@ const DemoChart = () => (
         }}
       />
       <VictoryLine
-        labelComponent={<VictoryTooltip />}
+        labelComponent={
+          <VictoryTooltip
+            cornerRadius={5}
+            flyoutStyle={{ fill: "white" }}
+            pointerLength={20}
+            style={{
+              // fill: "white",
+              fontSize: 10,
+              textAnchor: "middle",
+              padding: 3,
+              offset: 10,
+            }}
+          />
+        }
         labels={({ datum }) =>
-          `date: ${new Date(datum.start_time).toLocaleDateString()} mw: ${
+          `${new Date(datum.start_time).toLocaleDateString()}\nmw: ${
             datum.mw_value
           }`
         }
