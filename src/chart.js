@@ -89,10 +89,10 @@ function DemoChart() {
         <VictoryAxis
           dependentAxis
           label="MW"
-          tickValues={[0, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]}
+          tickValues={[850, 860, 870, 880, 890, 900]}
           style={{
             tickLabels: { fontSize: 5, padding: 3 },
-            axisLabel: { fontSize: 5, padding: 13 },
+            axisLabel: { fontSize: 5, padding: 20 },
           }}
         />
         <VictoryLine
@@ -115,7 +115,7 @@ function DemoChart() {
             ).toLocaleTimeString([], {
               hour: "2-digit",
               minute: "2-digit",
-            })}\n${datum.mw_value}MW`
+            })}\n${datum.mw_value} MW`
           }
           style={{
             data: { stroke: "blue" },
