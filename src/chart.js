@@ -110,14 +110,16 @@ const DemoChart = () => (
               fontSize: 10,
               textAnchor: "middle",
               padding: 3,
-              offset: 10,
             }}
           />
         }
         labels={({ datum }) =>
-          `${new Date(datum.start_time).toLocaleDateString()}\nmw: ${
-            datum.mw_value
-          }`
+          `${new Date(datum.start_time).toLocaleDateString()}\n${new Date(
+            datum.start_time
+          ).toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}\n${datum.mw_value}MW`
         }
         style={{
           data: { stroke: "blue" },
