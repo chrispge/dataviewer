@@ -1,6 +1,5 @@
 import React from "react";
 import DemoChart from "./chart";
-import { VictoryChart, VictoryBar, VictoryTooltip } from "victory";
 const request = require("request");
 
 function App() {
