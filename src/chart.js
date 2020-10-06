@@ -12,78 +12,68 @@ import {
 
 const data = [
   {
-    x: "2020-10-03T20:00:00.000Z",
+    start_time: "2020-10-03T20:00:00.000Z",
     generation_name: "TRICASTIN 1",
     fuel: "NUCLEAR",
-    y: 889,
-    label: "test",
+    mw_value: 889,
   },
   {
-    x: "2020-10-03T17:00:00.000Z",
+    start_time: "2020-10-03T17:00:00.000Z",
     generation_name: "TRICASTIN 1",
     fuel: "NUCLEAR",
-    y: 895,
-    label: "test",
+    mw_value: 895,
   },
   {
-    x: "2020-10-03T16:00:00.000Z",
+    start_time: "2020-10-03T16:00:00.000Z",
     generation_name: "TRICASTIN 1",
     fuel: "NUCLEAR",
-    y: 894,
-    label: "test",
+    mw_value: 894,
   },
   {
-    x: "2020-10-03T15:00:00.000Z",
+    start_time: "2020-10-03T15:00:00.000Z",
     generation_name: "TRICASTIN 1",
     fuel: "NUCLEAR",
-    y: 894,
-    label: "test",
+    mw_value: 894,
   },
   {
-    x: "2020-10-03T18:00:00.000Z",
+    start_time: "2020-10-03T18:00:00.000Z",
     generation_name: "TRICASTIN 1",
     fuel: "NUCLEAR",
-    y: 890,
-    label: "test",
+    mw_value: 890,
   },
   {
-    x: "2020-10-03T14:00:00.000Z",
+    start_time: "2020-10-03T14:00:00.000Z",
     generation_name: "TRICASTIN 1",
     fuel: "NUCLEAR",
-    y: 894,
-    label: "test",
+    mw_value: 894,
   },
   {
-    x: "2020-10-03T12:00:00.000Z",
+    start_time: "2020-10-03T12:00:00.000Z",
     generation_name: "TRICASTIN 1",
     fuel: "NUCLEAR",
-    y: 894,
-    label: "test",
+    mw_value: 894,
   },
   {
-    x: "2020-10-03T19:00:00.000Z",
+    start_time: "2020-10-03T19:00:00.000Z",
     generation_name: "TRICASTIN 1",
     fuel: "NUCLEAR",
-    y: 889,
-    label: "test",
+    mw_value: 889,
   },
   {
-    x: "2020-10-03T11:00:00.000Z",
+    start_time: "2020-10-03T11:00:00.000Z",
     generation_name: "TRICASTIN 1",
     fuel: "NUCLEAR",
-    y: 894,
-    label: "test",
+    mw_value: 894,
   },
   {
-    x: "2020-10-03T10:00:00.000Z",
+    start_time: "2020-10-03T10:00:00.000Z",
     generation_name: "TRICASTIN 1",
     fuel: "NUCLEAR",
-    y: 894,
-    label: "test",
+    mw_value: 894,
   },
 ];
 
-const xaxis = data.map((datum) => datum.x);
+const xTickValues = data.map((datum) => datum.start_time);
 const ttLabels = data.map((datum) => datum.y);
 
 const DemoChart = () => (
@@ -91,10 +81,10 @@ const DemoChart = () => (
     <h1>Line Chart</h1>
     <VictoryChart
       theme={() => VictoryTheme.material}
-      // containerComponent={<VictoryVoronoiContainer labels={ttLabels} />}
+      containerComponent={<VictoryVoronoiContainer labels={ttLabels} />}
     >
       <VictoryAxis
-        tickValues={xaxis}
+        tickValues={xTickValues}
         tickFormat={(x) => new Date(x).toLocaleDateString()}
         style={{ tickLabels: { fontSize: 5, padding: 3 } }}
       />
@@ -107,13 +97,19 @@ const DemoChart = () => (
           axisLabel: { fontSize: 5, padding: 13 },
         }}
       />
-      <VictoryBar
+      <VictoryLine
         labelComponent={<VictoryTooltip />}
+        labels={({ datum }) =>
+          `date: ${new Date(datum.start_time).toLocaleDateString()} mw: ${
+            datum.mw_value
+          }`
+        }
         style={{
           data: { stroke: "blue" },
           parent: { border: "1px solid #ccc" },
         }}
         data={data}
+        y={"mw_value"}
         tickdata
       />
     </VictoryChart>

@@ -3,7 +3,6 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import DemoChart from "./chart";
-import TTDemo from "./tt-demo";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
