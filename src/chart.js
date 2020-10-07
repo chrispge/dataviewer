@@ -12,70 +12,70 @@ import {
   VictoryTooltip,
 } from "victory";
 
-class DemoChart extends Component {
-  state = { data: [] };
+function DemoChart() {
+  const [data, setData] = useState([]);
 
-  async componentDidMount() {
-    const data = await getDataSimple();
-    this.setState({ data });
-  }
+  useEffect(() => {
+    (async () => {
+      const fetchedData = await getDataSimple();
+      setData(fetchedData);
+    })();
+  }, []);
 
-  render() {
-    return (
-      <div>
-        <h1>Line Chart</h1>
-        <VictoryChart
-          theme={VictoryTheme.material}
-          containerComponent={<VictoryVoronoiContainer mouseFollowToolTips />}
-        >
-          <VictoryAxis
-            tickValues={this.state.data.map((datum) => datum.start_time)}
-            tickFormat={(x) => new Date(x).toLocaleDateString()}
-            style={{ tickLabels: { fontSize: 5, padding: 3 } }}
-          />
-          <VictoryAxis
-            dependentAxis
-            label="MW"
-            tickValues={[850, 860, 870, 880, 890, 900]}
-            style={{
-              tickLabels: { fontSize: 5, padding: 3 },
-              axisLabel: { fontSize: 5, padding: 20 },
-            }}
-          />
-          <VictoryLine
-            labelComponent={
-              <VictoryTooltip
-                cornerRadius={5}
-                flyoutStyle={{ fill: "white" }}
-                pointerLength={20}
-                style={{
-                  // fill: "white",
-                  fontSize: 10,
-                  textAnchor: "middle",
-                  padding: 3,
-                }}
-              />
-            }
-            labels={({ datum }) =>
-              `${new Date(datum.start_time).toLocaleDateString()}\n${new Date(
-                datum.start_time
-              ).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}\n${datum.mw_value}MW`
-            }
-            style={{
-              data: { stroke: "blue" },
-              parent: { border: "1px solid #ccc" },
-            }}
-            data={this.state.data}
-            y={"mw_value"}
-            tickdata
-          />
-        </VictoryChart>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h1>Line Chart</h1>
+      <VictoryChart
+        theme={VictoryTheme.material}
+        containerComponent={<VictoryVoronoiContainer mouseFollowToolTips />}
+      >
+        <VictoryAxis
+          tickValues={data.map((datum) => datum.start_time)}
+          tickFormat={(x) => new Date(x).toLocaleDateString()}
+          style={{ tickLabels: { fontSize: 5, padding: 3 } }}
+        />
+        <VictoryAxis
+          dependentAxis
+          label="MW"
+          tickValues={[850, 860, 870, 880, 890, 900]}
+          style={{
+            tickLabels: { fontSize: 5, padding: 3 },
+            axisLabel: { fontSize: 5, padding: 20 },
+          }}
+        />
+        <VictoryLine
+          labelComponent={
+            <VictoryTooltip
+              cornerRadius={5}
+              flyoutStyle={{ fill: "white" }}
+              pointerLength={20}
+              style={{
+                // fill: "white",
+                fontSize: 10,
+                textAnchor: "middle",
+                padding: 3,
+              }}
+            />
+          }
+          labels={({ datum }) =>
+            `${new Date(datum.start_time).toLocaleDateString()}\n${new Date(
+              datum.start_time
+            ).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}\n${datum.mw_value}MW`
+          }
+          style={{
+            data: { stroke: "blue" },
+            parent: { border: "1px solid #ccc" },
+          }}
+          data={data}
+          y={"mw_value"}
+          tickdata
+        />
+      </VictoryChart>
+    </div>
+  );
 }
 
 async function getDataSimple() {
