@@ -30,11 +30,12 @@ function renderChart(data) {
       <h1>Line Chart</h1>
       <VictoryChart
         theme={VictoryTheme.material}
-        containerComponent={<VictoryVoronoiContainer mouseFollowToolTips />}
+        containerComponent={<VictoryVoronoiContainer />}
       >
         <VictoryAxis
-          tickValues={data.map((datum) => datum.start_time)}
-          tickFormat={(x) => new Date(x).toLocaleDateString()}
+          tickCount={5}
+          // tickValues={data.map((datum) => datum.start_time)}
+          tickFormat={(x) => new Date(x).toLocaleTimeString("fr-FR")}
           style={{ tickLabels: { fontSize: 5, padding: 3 } }}
         />
         <VictoryAxis
@@ -61,18 +62,19 @@ function renderChart(data) {
             />
           }
           labels={({ datum }) =>
-            `${new Date(datum.start_time).toLocaleDateString()}\n${new Date(
-              datum.start_time
-            ).toLocaleTimeString([], {
+            `${new Date(datum.start_time).toLocaleDateString(
+              "fr-FR"
+            )}\n${new Date(datum.start_time).toLocaleTimeString("fr-FR", {
               hour: "2-digit",
               minute: "2-digit",
-            })}\n${datum.mw_value}MW`
+            })}\n${datum.mw_value} MW`
           }
           style={{
             data: { stroke: "blue" },
             parent: { border: "1px solid #ccc" },
           }}
           data={data}
+          x={"start_time"}
           y={"mw_value"}
           tickdata
         />
