@@ -4,7 +4,15 @@ import DemoChart from "./chart";
 function App() {
   const powerChartParams = { x: "start_time", y: "mw_value" };
   const nuclearProps = {
-    urlParams: { apiQueryName: "GenByFuel", searchParams: { fuel: "nuclear" } },
+    urlParams: {
+      apiQueryName: "GenByFuel",
+      searchParams: {
+        fuel: "nuclear",
+        from: "2020-10-05",
+        to: "2020-10-06",
+      },
+      // searchParams: { fuel: "nuclear", startTime: "2020-10-05" },
+    },
     chartParams: powerChartParams,
   };
   return (
