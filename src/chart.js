@@ -84,19 +84,23 @@ function renderChart(data) {
 }
 
 async function getData(params) {
-  const { apiQueryName, fuel, unit } = params;
   console.log("in getData");
-  const url = "http://localhost:3001/".concat(
-    apiQueryName,
-    "?fuel=",
-    fuel,
-    "&unit=",
-    unit
-  );
+  const url = await makeUrl(params);
   const response = await fetch(url);
   const data = await response.json();
   console.log(data);
   return data;
+}
+
+async function makeUrl(params) {
+  const { apiQueryName, ...searchParams } = params;
+  console.log(apiQueryName);
+  const queryString = Object.keys(searchParams)
+    .map((key) => key + "=" + searchParams[key])
+    .join("&");
+  const url = new URL(apiQueryName, "http://localhost:3001/GenByUnit?");
+  url.search = queryString;
+  return url;
 }
 
 function streamData() {
