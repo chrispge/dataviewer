@@ -25,9 +25,7 @@ function DemoChart(props) {
 }
 
 function renderChart(data) {
-  const y_values = data.map((datum) => datum.mw_value);
-  const yMax = Math.max(...y_values);
-  const yUpperLim = 100 * Math.ceil(yMax / 100);
+  const yUpperLim = getYUpperLim(data);
   return (
     <div>
       <h1>Line Chart</h1>
@@ -44,7 +42,7 @@ function renderChart(data) {
         <VictoryAxis
           dependentAxis
           domain={[0, yUpperLim]}
-          label="MW"
+          // label="MW"
           style={{
             tickLabels: { fontSize: 5, padding: 3 },
             axisLabel: { fontSize: 5, padding: 20 },
@@ -84,6 +82,17 @@ function renderChart(data) {
       </VictoryChart>
     </div>
   );
+}
+
+function getYUpperLim(data) {
+  const y_values = data.map((datum) => datum.mw_value);
+  const yMax = Math.max(...y_values);
+  const orderMag = Math.ceil(Math.log10(yMax)) - 1;
+  console.log(orderMag);
+  const multiplier = Math.pow(10, orderMag);
+  console.log(multiplier);
+  const yUpperLim = multiplier * Math.ceil(yMax / multiplier);
+  return yUpperLim;
 }
 
 async function getData(params) {
