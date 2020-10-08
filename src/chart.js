@@ -25,6 +25,9 @@ function DemoChart(props) {
 }
 
 function renderChart(data) {
+  const y_values = data.map((datum) => datum.mw_value);
+  const yMax = Math.max(...y_values);
+  const yUpperLim = 100 * Math.ceil(yMax / 100);
   return (
     <div>
       <h1>Line Chart</h1>
@@ -40,8 +43,8 @@ function renderChart(data) {
         />
         <VictoryAxis
           dependentAxis
+          domain={[0, yUpperLim]}
           label="MW"
-          tickValues={[850, 860, 870, 880, 890, 900]}
           style={{
             tickLabels: { fontSize: 5, padding: 3 },
             axisLabel: { fontSize: 5, padding: 20 },
