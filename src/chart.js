@@ -76,8 +76,8 @@ function renderChart(data, chartParams) {
           }
           labels={({ datum }) =>
             `${new Date(datum.start_time).toLocaleDateString(
-              "fr-FR"
-            )}\n${new Date(datum.start_time).toLocaleTimeString("fr-FR", {
+              "default"
+            )}\n${new Date(datum.start_time).toLocaleTimeString("default", {
               hour: "2-digit",
               minute: "2-digit",
             })}\n${datum.mw_value} MW`
