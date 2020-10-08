@@ -16,10 +16,13 @@ code {
   display: grid;
   align-items: center;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  grid-gap: 1rem
+  grid-gap: 0.5rem
 }
 
-/* .grid-item1 {
-  grid-column: 2;
-  grid-row: 1;
-} */
+.main-title {
+  text-align: center;
+}
+.chart-title {
+  text-align: center;
+  font-size: 14px;
+}
