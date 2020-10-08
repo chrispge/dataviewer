@@ -28,7 +28,6 @@ function renderChart(data) {
   const yUpperLim = getYUpperLim(data);
   return (
     <div>
-      <h1>Line Chart</h1>
       <VictoryChart
         theme={VictoryTheme.material}
         containerComponent={<VictoryVoronoiContainer />}
