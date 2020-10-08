@@ -37,7 +37,18 @@ function renderChart(data, chartParams) {
         <VictoryAxis
           tickCount={5}
           // tickValues={data.map((datum) => datum.start_time)}
-          tickFormat={(x) => new Date(x).toLocaleTimeString("fr-FR")}
+          // tickFormat={(x) => new Date(x).toLocaleTimeString("fr-FR")}
+          tickFormat={(x) => {
+            const lineOne = new Date(x).toLocaleString("default", {
+              day: "2-digit",
+              month: "short",
+            });
+            const lineTwo = new Date(x).toLocaleString("default", {
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+            return lineOne.concat("\n", lineTwo);
+          }}
           style={{ tickLabels: { fontSize: 5, padding: 3 } }}
         />
         <VictoryAxis
