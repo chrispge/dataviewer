@@ -49,15 +49,15 @@ function renderChart(data, chartParams) {
             });
             return lineOne.concat("\n", lineTwo);
           }}
-          style={{ tickLabels: { fontSize: 5, padding: 3 } }}
+          style={{ tickLabels: { fontSize: 10, padding: 3 } }}
         />
         <VictoryAxis
           dependentAxis
           domain={[0, yUpperLim]}
           // label="MW"
           style={{
-            tickLabels: { fontSize: 5, padding: 3 },
-            axisLabel: { fontSize: 5, padding: 20 },
+            tickLabels: { fontSize: 10, padding: 3 },
+            axisLabel: { fontSize: 10, padding: 20 },
           }}
         />
         <VictoryLine
