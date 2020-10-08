@@ -12,20 +12,22 @@ import {
 } from "victory";
 
 function DemoChart(props) {
+  const { urlParams, chartParams } = props;
   const [data, setData] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const fetchedData = await getData(props);
+      const fetchedData = await getData(urlParams);
       setData(fetchedData);
     })();
-  }, [props]);
+  }, [urlParams]);
 
-  return renderChart(data);
+  return renderChart(data, chartParams);
 }
 
-function renderChart(data) {
+function renderChart(data, chartParams) {
   const yUpperLim = getYUpperLim(data);
+  console.log(chartParams);
   return (
     <div>
       <VictoryChart
@@ -74,8 +76,8 @@ function renderChart(data) {
             parent: { border: "1px solid #ccc" },
           }}
           data={data}
-          x={"start_time"}
-          y={"mw_value"}
+          x={chartParams.x}
+          y={chartParams.y}
           tickdata
         />
       </VictoryChart>
@@ -94,17 +96,17 @@ function getYUpperLim(data) {
   return yUpperLim;
 }
 
-async function getData(params) {
+async function getData(urlParams) {
   console.log("in getData");
-  const url = await makeUrl(params);
+  const url = makeUrl(urlParams);
   const response = await fetch(url);
   const data = await response.json();
   console.log(data);
   return data;
 }
 
-async function makeUrl(params) {
-  const { apiQueryName, ...searchParams } = params;
+function makeUrl(params) {
+  const { apiQueryName, searchParams } = params;
   console.log(apiQueryName);
   const queryString = Object.keys(searchParams)
     .map((key) => key + "=" + searchParams[key])
