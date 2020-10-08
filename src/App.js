@@ -1,6 +1,10 @@
 import React from "react";
 import DemoChart from "./chart";
 
+const powerChartParams = { x: "start_time", y: "mw_value" };
+const fromDate = "2020-10-06";
+const apiQueryName = "GenByFuel";
+
 function App() {
   return (
     <div>
@@ -24,10 +28,6 @@ function App() {
 }
 
 function getProps(fuel) {
-  const powerChartParams = { x: "start_time", y: "mw_value" };
-  const fromDate = "2020-10-06";
-  const apiQueryName = "GenByFuel";
-
   return {
     urlParams: {
       apiQueryName: apiQueryName,
