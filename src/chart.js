@@ -11,15 +11,15 @@ import {
   VictoryTooltip,
 } from "victory";
 
-function DemoChart() {
+function DemoChart(props) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const fetchedData = await getData();
+      const fetchedData = await getData(props);
       setData(fetchedData);
     })();
-  }, []);
+  }, [props]);
 
   return renderChart(data);
 }
@@ -83,9 +83,16 @@ function renderChart(data) {
   );
 }
 
-async function getData() {
+async function getData(params) {
+  const { apiQueryName, fuel, unit } = params;
   console.log("in getData");
-  const url = "http://localhost:3001/GenByUnit?fuel=nuclear&unit=tricastin%201";
+  const url = "http://localhost:3001/".concat(
+    apiQueryName,
+    "?fuel=",
+    fuel,
+    "&unit=",
+    unit
+  );
   const response = await fetch(url);
   const data = await response.json();
   console.log(data);
