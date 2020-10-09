@@ -13,8 +13,6 @@ const eexChartParams = {
   yUnits: "",
   xFormat: "dd-mmm",
 };
-const fromDate = "2020-10-06";
-const apiQueryName = "GenByFuel";
 
 function App() {
   return (
@@ -23,62 +21,62 @@ function App() {
       <div class="grid-container">
         <div class="grid-item">
           <h2 class="chart-title">French cal</h2>
-          <DemoChart {...getEEXProps()} />
+          <DemoChart {...getEEXPricesProps()} />
+        </div>
+        <div class="grid-item">
+          <h2 class="chart-title">Tricastin 1</h2>
+          <DemoChart {...getGenByUnitProps("tricastin 1")} />
         </div>
         {/* <div class="grid-item">
-          <h2 class="chart-title">Tricastin 1</h2>
-          <DemoChart {...getUnitProps("tricastin 1")} />
-        </div> */}
-        {/* <div class="grid-item">
           <h2 class="chart-title">Nuclear</h2>
-          <DemoChart {...getProps("nuclear")} />
+          <DemoChart {...getGenByFuelProps("nuclear")} />
         </div>
         <div class="grid-item">
           <h2 class="chart-title">Gas</h2>
-          <DemoChart {...getProps("fossil_gas")} />
+          <DemoChart {...getGenByFuelProps("fossil_gas")} />
         </div>
         <div class="grid-item">
           <h2 class="chart-title">Coal</h2>
-          <DemoChart {...getProps("fossil_hard_coal")} />
+          <DemoChart {...getGenByFuelProps("fossil_hard_coal")} />
         </div>
         <div class="grid-item">
           <h2 class="chart-title">Hydro Reservoir</h2>
-          <DemoChart {...getProps("hydro_water_reservoir")} />
+          <DemoChart {...getGenByFuelProps("hydro_water_reservoir")} />
         </div>
         <div class="grid-item">
           <h2 class="chart-title">Hydro Run-of-river</h2>
-          <DemoChart {...getProps("hydro_run_of_river_and_poundage")} />
+          <DemoChart {...getGenByFuelProps("hydro_run_of_river_and_poundage")} />
         </div>
         <div class="grid-item">
           <h2 class="chart-title">Hydro Pumped Storage</h2>
-          <DemoChart {...getProps("hydro_pumped_storage")} />
+          <DemoChart {...getGenByFuelProps("hydro_pumped_storage")} />
         </div>
         <div class="grid-item">
           <h2 class="chart-title">Wind</h2>
-          <DemoChart {...getProps("wind_onshore")} />
+          <DemoChart {...getGenByFuelProps("wind_onshore")} />
         </div>
         <div class="grid-item">
           <h2 class="chart-title">Solar</h2>
-          <DemoChart {...getProps("solar")} />
+          <DemoChart {...getGenByFuelProps("solar")} />
         </div>
         <div class="grid-item">
           <h2 class="chart-title">Oil</h2>
-          <DemoChart {...getProps("fossil_oil")} />
+          <DemoChart {...getGenByFuelProps("fossil_oil")} />
         </div>
         <div class="grid-item">
           <h2 class="chart-title">Biomass</h2>
-          <DemoChart {...getProps("biomass")} />
+          <DemoChart {...getGenByFuelProps("biomass")} />
         </div>
         <div class="grid-item">
           <h2 class="chart-title">Waste</h2>
-          <DemoChart {...getProps("waste")} />
+          <DemoChart {...getGenByFuelProps("waste")} />
         </div> */}
       </div>
     </div>
   );
 }
 
-function getEEXProps() {
+function getEEXPricesProps() {
   return {
     urlParams: {
       apiQueryName: "EEXPrices",
@@ -94,26 +92,26 @@ function getEEXProps() {
   };
 }
 
-function getUnitProps(fuel) {
+function getGenByUnitProps() {
   return {
     urlParams: {
       apiQueryName: "GenByUnit",
       searchParams: {
         generation_name: "tricastin 1",
-        from: fromDate,
+        from: "2020-10-06",
       },
     },
     chartParams: powerChartParams,
   };
 }
 
-function getProps(fuel) {
+function getGenByFuelProps(fuel) {
   return {
     urlParams: {
-      apiQueryName: apiQueryName,
+      apiQueryName: "GenByFuel",
       searchParams: {
         fuel: fuel,
-        from: fromDate,
+        from: "2020-10-06",
       },
     },
     chartParams: powerChartParams,
