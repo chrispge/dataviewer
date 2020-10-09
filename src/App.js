@@ -17,16 +17,156 @@ const eexChartParams = {
 function App() {
   return (
     <div>
-      <h1 class="main-title">French power generation</h1>
+      <h1 class="main-title">French and German power prices</h1>
       <div class="grid-container">
         <div class="grid-item">
-          <h2 class="chart-title">French cal</h2>
-          <DemoChart {...getEEXPricesProps()} />
+          <h2 class="chart-title">French Oct</h2>
+          <DemoChart
+            {...getEEXPricesProps({
+              from: "2020-07-01",
+              region: "fr",
+              maturity_type: "month",
+              shape: "base",
+              start_date: "2020-10-01",
+            })}
+          />
         </div>
         <div class="grid-item">
+          <h2 class="chart-title">German Oct</h2>
+          <DemoChart
+            {...getEEXPricesProps({
+              from: "2020-07-01",
+              region: "de",
+              maturity_type: "month",
+              shape: "base",
+              start_date: "2020-10-01",
+            })}
+          />
+        </div>
+        <div class="grid-item">
+          <h2 class="chart-title">French Nov</h2>
+          <DemoChart
+            {...getEEXPricesProps({
+              from: "2020-07-01",
+              region: "fr",
+              maturity_type: "month",
+              shape: "base",
+              start_date: "2020-11-01",
+            })}
+          />
+        </div>
+        <div class="grid-item">
+          <h2 class="chart-title">German Nov</h2>
+          <DemoChart
+            {...getEEXPricesProps({
+              from: "2020-07-01",
+              region: "de",
+              maturity_type: "month",
+              shape: "base",
+              start_date: "2020-11-01",
+            })}
+          />
+        </div>
+        <div class="grid-item">
+          <h2 class="chart-title">French Dec</h2>
+          <DemoChart
+            {...getEEXPricesProps({
+              from: "2020-07-01",
+              region: "fr",
+              maturity_type: "month",
+              shape: "base",
+              start_date: "2020-12-01",
+            })}
+          />
+        </div>
+        <div class="grid-item">
+          <h2 class="chart-title">German Dec</h2>
+          <DemoChart
+            {...getEEXPricesProps({
+              from: "2020-07-01",
+              region: "de",
+              maturity_type: "month",
+              shape: "base",
+              start_date: "2020-12-01",
+            })}
+          />
+        </div>
+        <div class="grid-item">
+          <h2 class="chart-title">French Q4</h2>
+          <DemoChart
+            {...getEEXPricesProps({
+              from: "2020-07-01",
+              region: "fr",
+              maturity_type: "quarter",
+              shape: "base",
+              start_date: "2020-10-01",
+            })}
+          />
+        </div>
+        <div class="grid-item">
+          <h2 class="chart-title">German Q4</h2>
+          <DemoChart
+            {...getEEXPricesProps({
+              from: "2020-07-01",
+              region: "de",
+              maturity_type: "quarter",
+              shape: "base",
+              start_date: "2020-10-01",
+            })}
+          />
+        </div>
+        <div class="grid-item">
+          <h2 class="chart-title">French Q1</h2>
+          <DemoChart
+            {...getEEXPricesProps({
+              from: "2020-07-01",
+              region: "fr",
+              maturity_type: "quarter",
+              shape: "base",
+              start_date: "2021-01-01",
+            })}
+          />
+        </div>
+        <div class="grid-item">
+          <h2 class="chart-title">German Q1</h2>
+          <DemoChart
+            {...getEEXPricesProps({
+              from: "2020-07-01",
+              region: "de",
+              maturity_type: "quarter",
+              shape: "base",
+              start_date: "2021-01-01",
+            })}
+          />
+        </div>
+        <div class="grid-item">
+          <h2 class="chart-title">French cal</h2>
+          <DemoChart
+            {...getEEXPricesProps({
+              from: "2020-07-01",
+              region: "fr",
+              maturity_type: "year",
+              shape: "base",
+              start_date: "2021-01-01",
+            })}
+          />
+        </div>
+        <div class="grid-item">
+          <h2 class="chart-title">German cal</h2>
+          <DemoChart
+            {...getEEXPricesProps({
+              from: "2020-07-01",
+              region: "de",
+              maturity_type: "year",
+              shape: "base",
+              start_date: "2021-01-01",
+            })}
+          />
+        </div>
+        {/* <div class="grid-item">
           <h2 class="chart-title">Tricastin 1</h2>
           <DemoChart {...getGenByUnitProps("tricastin 1")} />
-        </div>
+        </div> */}
         {/* <div class="grid-item">
           <h2 class="chart-title">Nuclear</h2>
           <DemoChart {...getGenByFuelProps("nuclear")} />
@@ -76,17 +216,11 @@ function App() {
   );
 }
 
-function getEEXPricesProps() {
+function getEEXPricesProps(searchParams) {
   return {
     urlParams: {
       apiQueryName: "EEXPrices",
-      searchParams: {
-        from: "2020-10-01",
-        region: "fr",
-        maturity_type: "year",
-        shape: "base",
-        start_date: "2021-01-01",
-      },
+      searchParams: searchParams,
     },
     chartParams: eexChartParams,
   };
