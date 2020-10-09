@@ -1,8 +1,18 @@
 import React from "react";
 import DemoChart from "./chart";
 
-const powerChartParams = { x: "start_time", y: "mw_value" };
-const eexChartParams = { x: "trade_date", y: "settlement_price" };
+const powerChartParams = {
+  x: "start_time",
+  y: "mw_value",
+  yUnits: "MW",
+  xFormat: "two-line",
+};
+const eexChartParams = {
+  x: "trade_date",
+  y: "settlement_price",
+  yUnits: "",
+  xFormat: "dd-mmm",
+};
 const fromDate = "2020-10-06";
 const apiQueryName = "GenByFuel";
 

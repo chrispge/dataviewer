@@ -10,6 +10,7 @@ import {
   VictoryVoronoiContainer,
   VictoryTooltip,
 } from "victory";
+import getXFormatter from "./xformatters";
 
 function DemoChart(props) {
   const { urlParams, chartParams } = props;
@@ -26,8 +27,9 @@ function DemoChart(props) {
 }
 
 function renderChart(data, chartParams) {
-  const yUpperLim = getYUpperLim(data);
-  console.log(chartParams);
+  const { x: xName, y: yName, yUnits } = chartParams;
+  const yUpperLim = getYUpperLim(data, yName);
+  const xFormatter = getXFormatter(chartParams.xFormat);
   return (
     <div>
       <VictoryChart
@@ -36,19 +38,9 @@ function renderChart(data, chartParams) {
       >
         <VictoryAxis
           tickCount={5}
-          // tickValues={data.map((datum) => datum.start_time)}
+          // tickValues={data.map((datum) => datum[xName])}
           // tickFormat={(x) => new Date(x).toLocaleTimeString("fr-FR")}
-          tickFormat={(x) => {
-            const lineOne = new Date(x).toLocaleString("default", {
-              day: "2-digit",
-              month: "short",
-            });
-            const lineTwo = new Date(x).toLocaleString("default", {
-              hour: "2-digit",
-              minute: "2-digit",
-            });
-            return lineOne.concat("\n", lineTwo);
-          }}
+          tickFormat={xFormatter}
           style={{ tickLabels: { fontSize: 10, padding: 3 } }}
         />
         <VictoryAxis
@@ -75,12 +67,12 @@ function renderChart(data, chartParams) {
             />
           }
           labels={({ datum }) =>
-            `${new Date(datum.start_time).toLocaleDateString(
+            `${new Date(datum[xName]).toLocaleDateString(
               "default"
-            )}\n${new Date(datum.start_time).toLocaleTimeString("default", {
+            )}\n${new Date(datum[xName]).toLocaleTimeString("default", {
               hour: "2-digit",
               minute: "2-digit",
-            })}\n${datum.mw_value} MW`
+            })}\n${datum[yName]} ${yUnits}`
           }
           style={{
             data: { stroke: "blue" },
@@ -96,9 +88,10 @@ function renderChart(data, chartParams) {
   );
 }
 
-function getYUpperLim(data) {
-  const y_values = data.map((datum) => datum.mw_value);
-  const yMax = Math.max(...y_values);
+function getYUpperLim(data, yName) {
+  const yValues = data.map((datum) => datum[yName]);
+  console.log(yValues);
+  const yMax = Math.max(...yValues);
   const orderMag = Math.ceil(Math.log10(yMax)) - 1;
   console.log(orderMag);
   const multiplier = Math.pow(10, orderMag);
