@@ -1,5 +1,6 @@
 import React from "react";
 import DemoChart from "./chart";
+import MultiLineChart from "./multi-line-chart";
 
 const powerChartParams = {
   x: "start_time",
@@ -20,6 +21,33 @@ function App() {
       <h1 class="main-title">French and German power prices</h1>
       <div class="grid-container">
         <div class="grid-item">
+          <h2 class="chart-title">Two line experiment</h2>
+          <MultiLineChart
+            {...getEEXTwoLineProps([
+              {
+                apiQueryName: "EEXPrices",
+                searchParams: {
+                  from: "2020-07-01",
+                  region: "fr",
+                  maturity_type: "month",
+                  shape: "base",
+                  start_date: "2020-10-01",
+                },
+              },
+              {
+                apiQueryName: "EEXPrices",
+                searchParams: {
+                  from: "2020-07-01",
+                  region: "de",
+                  maturity_type: "month",
+                  shape: "base",
+                  start_date: "2020-10-01",
+                },
+              },
+            ])}
+          />
+        </div>
+        {/* <div class="grid-item">
           <h2 class="chart-title">French Oct</h2>
           <DemoChart
             {...getEEXPricesProps({
@@ -162,7 +190,7 @@ function App() {
               start_date: "2021-01-01",
             })}
           />
-        </div>
+        </div> */}
         {/* <div class="grid-item">
           <h2 class="chart-title">Tricastin 1</h2>
           <DemoChart {...getGenByUnitProps("tricastin 1")} />
@@ -214,6 +242,17 @@ function App() {
       </div>
     </div>
   );
+}
+
+function getEEXTwoLineProps(urlParams) {
+  // In this instance urlParams are an array of objects
+  // Also - it would really make more sense just to take a whole new set of
+  // props - not just replicate the urlParams
+  // y units etc may also need to change
+  return {
+    urlParams: urlParams,
+    chartParams: eexChartParams,
+  };
 }
 
 function getEEXPricesProps(searchParams) {
