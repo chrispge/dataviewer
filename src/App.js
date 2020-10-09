@@ -2,6 +2,7 @@ import React from "react";
 import DemoChart from "./chart";
 
 const powerChartParams = { x: "start_time", y: "mw_value" };
+const eexChartParams = { x: "trade_date", y: "settlement_price" };
 const fromDate = "2020-10-06";
 const apiQueryName = "GenByFuel";
 
@@ -11,9 +12,13 @@ function App() {
       <h1 class="main-title">French power generation</h1>
       <div class="grid-container">
         <div class="grid-item">
+          <h2 class="chart-title">French cal</h2>
+          <DemoChart {...getEEXProps()} />
+        </div>
+        {/* <div class="grid-item">
           <h2 class="chart-title">Tricastin 1</h2>
           <DemoChart {...getUnitProps("tricastin 1")} />
-        </div>
+        </div> */}
         {/* <div class="grid-item">
           <h2 class="chart-title">Nuclear</h2>
           <DemoChart {...getProps("nuclear")} />
@@ -61,6 +66,22 @@ function App() {
       </div>
     </div>
   );
+}
+
+function getEEXProps() {
+  return {
+    urlParams: {
+      apiQueryName: "EEXPrices",
+      searchParams: {
+        from: "2020-10-01",
+        region: "fr",
+        maturity_type: "year",
+        shape: "base",
+        start_date: "2021-01-01",
+      },
+    },
+    chartParams: eexChartParams,
+  };
 }
 
 function getUnitProps(fuel) {
