@@ -21,7 +21,7 @@ function App() {
       <h1 class="main-title">French and German power prices</h1>
       <div class="grid-container">
         <div class="grid-item">
-          <h2 class="chart-title">Two line experiment</h2>
+          <h2 class="chart-title">Oct-20</h2>
           <MultiLineChart
             {...getEEXTwoLineProps([
               {
@@ -47,6 +47,147 @@ function App() {
             ])}
           />
         </div>
+
+        <div class="grid-item">
+          <h2 class="chart-title">Nov-20</h2>
+          <MultiLineChart
+            {...getEEXTwoLineProps([
+              {
+                apiQueryName: "EEXPrices",
+                searchParams: {
+                  from: "2020-07-01",
+                  region: "fr",
+                  maturity_type: "month",
+                  shape: "base",
+                  start_date: "2020-11-01",
+                },
+              },
+              {
+                apiQueryName: "EEXPrices",
+                searchParams: {
+                  from: "2020-07-01",
+                  region: "de",
+                  maturity_type: "month",
+                  shape: "base",
+                  start_date: "2020-11-01",
+                },
+              },
+            ])}
+          />
+        </div>
+
+        <div class="grid-item">
+          <h2 class="chart-title">Dec-20</h2>
+          <MultiLineChart
+            {...getEEXTwoLineProps([
+              {
+                apiQueryName: "EEXPrices",
+                searchParams: {
+                  from: "2020-07-01",
+                  region: "fr",
+                  maturity_type: "month",
+                  shape: "base",
+                  start_date: "2020-12-01",
+                },
+              },
+              {
+                apiQueryName: "EEXPrices",
+                searchParams: {
+                  from: "2020-07-01",
+                  region: "de",
+                  maturity_type: "month",
+                  shape: "base",
+                  start_date: "2020-12-01",
+                },
+              },
+            ])}
+          />
+        </div>
+
+        <div class="grid-item">
+          <h2 class="chart-title">Q4-20</h2>
+          <MultiLineChart
+            {...getEEXTwoLineProps([
+              {
+                apiQueryName: "EEXPrices",
+                searchParams: {
+                  from: "2020-07-01",
+                  region: "fr",
+                  maturity_type: "quarter",
+                  shape: "base",
+                  start_date: "2020-10-01",
+                },
+              },
+              {
+                apiQueryName: "EEXPrices",
+                searchParams: {
+                  from: "2020-07-01",
+                  region: "de",
+                  maturity_type: "quarter",
+                  shape: "base",
+                  start_date: "2020-10-01",
+                },
+              },
+            ])}
+          />
+        </div>
+
+        <div class="grid-item">
+          <h2 class="chart-title">Q1-20</h2>
+          <MultiLineChart
+            {...getEEXTwoLineProps([
+              {
+                apiQueryName: "EEXPrices",
+                searchParams: {
+                  from: "2020-07-01",
+                  region: "fr",
+                  maturity_type: "quarter",
+                  shape: "base",
+                  start_date: "2021-01-01",
+                },
+              },
+              {
+                apiQueryName: "EEXPrices",
+                searchParams: {
+                  from: "2020-07-01",
+                  region: "de",
+                  maturity_type: "quarter",
+                  shape: "base",
+                  start_date: "2021-01-01",
+                },
+              },
+            ])}
+          />
+        </div>
+
+        <div class="grid-item">
+          <h2 class="chart-title">Cal-20</h2>
+          <MultiLineChart
+            {...getEEXTwoLineProps([
+              {
+                apiQueryName: "EEXPrices",
+                searchParams: {
+                  from: "2020-07-01",
+                  region: "fr",
+                  maturity_type: "year",
+                  shape: "base",
+                  start_date: "2021-01-01",
+                },
+              },
+              {
+                apiQueryName: "EEXPrices",
+                searchParams: {
+                  from: "2020-07-01",
+                  region: "de",
+                  maturity_type: "year",
+                  shape: "base",
+                  start_date: "2021-01-01",
+                },
+              },
+            ])}
+          />
+        </div>
+
         {/* <div class="grid-item">
           <h2 class="chart-title">French Oct</h2>
           <DemoChart
