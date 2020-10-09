@@ -10,7 +10,11 @@ function App() {
     <div>
       <h1 class="main-title">French power generation</h1>
       <div class="grid-container">
-        <div class="grid-item1">
+        <div class="grid-item">
+          <h2 class="chart-title">Tricastin 1</h2>
+          <DemoChart {...getUnitProps("tricastin 1")} />
+        </div>
+        {/* <div class="grid-item">
           <h2 class="chart-title">Nuclear</h2>
           <DemoChart {...getProps("nuclear")} />
         </div>
@@ -53,10 +57,23 @@ function App() {
         <div class="grid-item">
           <h2 class="chart-title">Waste</h2>
           <DemoChart {...getProps("waste")} />
-        </div>
+        </div> */}
       </div>
     </div>
   );
+}
+
+function getUnitProps(fuel) {
+  return {
+    urlParams: {
+      apiQueryName: "GenByUnit",
+      searchParams: {
+        generation_name: "tricastin 1",
+        from: fromDate,
+      },
+    },
+    chartParams: powerChartParams,
+  };
 }
 
 function getProps(fuel) {

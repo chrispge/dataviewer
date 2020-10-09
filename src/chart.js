@@ -110,6 +110,7 @@ function getYUpperLim(data) {
 async function getData(urlParams) {
   console.log("in getData");
   const url = makeUrl(urlParams);
+  console.log(url);
   const response = await fetch(url);
   const data = await response.json();
   console.log(data);
@@ -122,7 +123,7 @@ function makeUrl(params) {
   const queryString = Object.keys(searchParams)
     .map((key) => key + "=" + searchParams[key])
     .join("&");
-  const url = new URL(apiQueryName, "http://localhost:3001/GenByUnit?");
+  const url = new URL(apiQueryName, "http://localhost:3001/");
   url.search = queryString;
   return url;
 }
