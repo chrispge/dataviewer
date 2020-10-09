@@ -15,13 +15,15 @@ code {
 .grid-container {
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  grid-gap: 0.5rem
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-gap: 0.5rem;
+  padding: 20px;
 }
 
 .main-title {
   text-align: center;
 }
+
 .chart-title {
   text-align: center;
   font-size: 14px;
