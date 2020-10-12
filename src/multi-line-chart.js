@@ -168,35 +168,9 @@ function makeUrl(params) {
   return url;
 }
 
-function streamData() {
-  const url = "http://localhost:3001/GenByUnit?fuel=nuclear&unit=tricastin%201";
-  fetch(url)
-    .then((response) => {
-      const reader = response.body.getReader();
-      // create a new stream with all the data
-      // later if you need to you will be able to dequeue old data off this stream
-      return new ReadableStream({
-        start(controller) {
-          return pump();
-
-          function pump() {
-            return reader.read().then(({ done, value }) => {
-              // When no more data needs to be consumed, close the stream
-              if (done) {
-                controller.close();
-                return;
-              }
-              // Enqueue the next data chunk into target stream
-              controller.enqueue(value);
-              return pump();
-            });
-          }
-        },
-      });
-    })
-    .then((stream) => new Response(stream))
-    .then((response) => response.json())
-    .then((data) => renderChart(data));
+function calcSpread(data1, data2, key) {
+  const spread = [];
 }
 
+function getObjWithParam(array, key, value) {}
 export default MultiLineChart;
