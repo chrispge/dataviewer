@@ -20,7 +20,7 @@ function App() {
     <div>
       <h1 class="main-title">French and German power prices</h1>
       <div class="grid-container">
-        <div class="grid-item">
+        {/* <div class="grid-item">
           <h2 class="chart-title">Oct-20</h2>
           <SpreadChart
             {...getEEXSpreadsProps({
@@ -32,7 +32,7 @@ function App() {
               startDate: "2020-10-01",
             })}
           />
-        </div>
+        </div> */}
 
         {/* <div class="grid-item">
           <h2 class="chart-title">Nov-20</h2>
@@ -332,12 +332,16 @@ function getEEXSpreadsProps(searchParams) {
 }
 
 function getEEXPricesProps(searchParams) {
+  console.log("in getEEXPrices");
+  var chartParams = eexChartParams;
+  chartParams.y = searchParams.region;
+  console.log(chartParams);
   return {
     urlParams: {
       apiQueryName: "EEXPrices",
       searchParams: searchParams,
     },
-    chartParams: eexChartParams,
+    chartParams: chartParams,
   };
 }
 

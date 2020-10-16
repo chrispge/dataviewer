@@ -22,12 +22,15 @@ function DemoChart(props) {
       setData(fetchedData);
     })();
   }, [urlParams]);
-
   return renderChart(data, chartParams);
 }
 
 function renderChart(data, chartParams) {
+  console.log("In renderChart");
+  console.log(data);
+  console.log(chartParams);
   const { x: xName, y: yName, yUnits } = chartParams;
+  console.log(yName);
   const yUpperLim = getYUpperLim(data, yName);
   const xFormatter = getXFormatter(chartParams.xFormat);
   return (
@@ -89,6 +92,8 @@ function renderChart(data, chartParams) {
 }
 
 function getYUpperLim(data, yName) {
+  console.log("In getYUpperLim");
+  console.log(yName);
   const yValues = data.map((datum) => datum[yName]);
   console.log(yValues);
   const yMax = Math.max(...yValues);
