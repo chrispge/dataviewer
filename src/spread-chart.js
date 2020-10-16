@@ -14,8 +14,7 @@ import getXFormatter from "./xformatters";
 
 function SpreadChart(props) {
   const [data, setData] = useState([]);
-  console.log("In MultiLineChart");
-  console.log("urlParams.length");
+  console.log("In SpreadChart");
   console.log(props);
 
   useEffect(() => {
@@ -31,6 +30,7 @@ function SpreadChart(props) {
 function renderChart(data, props) {
   const { urlParams, chartParams } = props;
   console.log("In renderChart");
+  console.log(data);
   const { x: xName, y: yName, yUnits } = chartParams;
   const yUpperLim = getYUpperLim(data, urlParams.searchParams.region1);
   const xFormatter = getXFormatter(chartParams.xFormat);
@@ -84,7 +84,7 @@ function renderChart(data, props) {
           }}
           data={data}
           x={chartParams.x}
-          y={urlParams.searchParams.region1}
+          y={chartParams.y[0]}
           tickdata
         />
         <VictoryLine
@@ -115,7 +115,7 @@ function renderChart(data, props) {
           }}
           data={data}
           x={chartParams.x}
-          y={urlParams.searchParams.region2}
+          y={chartParams.y[1]}
           tickdata
         />
         <VictoryLine
@@ -146,10 +146,7 @@ function renderChart(data, props) {
           }}
           data={data}
           x={chartParams.x}
-          y={urlParams.searchParams.region1.concat(
-            "-",
-            urlParams.searchParams.region2
-          )}
+          y={chartParams.y[2]}
           tickdata
         />
       </VictoryChart>

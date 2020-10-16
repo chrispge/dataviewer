@@ -20,7 +20,7 @@ function App() {
     <div>
       <h1 class="main-title">French and German power prices</h1>
       <div class="grid-container">
-        {/* <div class="grid-item">
+        <div class="grid-item">
           <h2 class="chart-title">Oct-20</h2>
           <SpreadChart
             {...getEEXSpreadsProps({
@@ -32,7 +32,7 @@ function App() {
               startDate: "2020-10-01",
             })}
           />
-        </div> */}
+        </div>
 
         {/* <div class="grid-item">
           <h2 class="chart-title">Nov-20</h2>
@@ -125,18 +125,6 @@ function App() {
         </div> */}
 
         <div class="grid-item">
-          <h2 class="chart-title">French Oct</h2>
-          <DemoChart
-            {...getEEXPricesProps({
-              from: "2020-07-01",
-              region: "fr",
-              maturity_type: "month",
-              shape: "base",
-              start_date: "2020-10-01",
-            })}
-          />
-        </div>
-        {/*<div class="grid-item">
           <h2 class="chart-title">German Oct</h2>
           <DemoChart
             {...getEEXPricesProps({
@@ -148,7 +136,8 @@ function App() {
             })}
           />
         </div>
-        <div class="grid-item">
+
+        {/* <div class="grid-item">
           <h2 class="chart-title">French Nov</h2>
           <DemoChart
             {...getEEXPricesProps({
@@ -267,7 +256,7 @@ function App() {
               start_date: "2021-01-01",
             })}
           />
-        </div> */}
+        </div>  */}
         {/* <div class="grid-item">
           <h2 class="chart-title">Tricastin 1</h2>
           <DemoChart {...getGenByUnitProps("tricastin 1")} />
@@ -322,18 +311,26 @@ function App() {
 }
 
 function getEEXSpreadsProps(searchParams) {
+  console.log("in getEEXSpreadsProps");
+  var chartParams = { ...eexChartParams };
+  chartParams.y = [
+    searchParams.region1,
+    searchParams.region2,
+    searchParams.region1.concat("-", searchParams.region2),
+  ];
+  console.log(chartParams);
   return {
     urlParams: {
       apiQueryName: "EEXSpreads",
       searchParams: searchParams,
     },
-    chartParams: eexChartParams,
+    chartParams: chartParams,
   };
 }
 
 function getEEXPricesProps(searchParams) {
-  console.log("in getEEXPrices");
-  var chartParams = eexChartParams;
+  console.log("in getEEXPricesProps");
+  var chartParams = { ...eexChartParams };
   chartParams.y = searchParams.region;
   console.log(chartParams);
   return {

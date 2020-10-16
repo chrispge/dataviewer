@@ -13,6 +13,7 @@ import {
 import getXFormatter from "./xformatters";
 
 function DemoChart(props) {
+  console.log("In DemoChart");
   const { urlParams, chartParams } = props;
   const [data, setData] = useState([]);
 
