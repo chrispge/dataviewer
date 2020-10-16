@@ -20,6 +20,13 @@ function App() {
     ["Fr-De Oct-20", "month", "2020-10-01"],
     ["Fr-De Nov-20", "month", "2020-11-01"],
     ["Fr-De Dec-20", "month", "2020-12-01"],
+    ["Fr-De Jan-21", "month", "2021-01-01"],
+    ["Fr-De Feb-21", "month", "2021-02-01"],
+    ["Fr-De Mar-21", "month", "2021-03-01"],
+    ["Fr-De Q4-20", "quarter", "2020-10-01"],
+    ["Fr-De Q1-21", "quarter", "2021-01-01"],
+    ["Fr-De Cal-21", "year", "2021-01-01"],
+    ["Fr-De Cal-22", "year", "2022-01-01"],
   ];
   return (
     <div>
