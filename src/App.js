@@ -16,23 +16,16 @@ const eexChartParams = {
 };
 
 function App() {
+  const frDeInputs = [
+    ["Fr-De Oct-20", "month", "2020-10-01"],
+    ["Fr-De Nov-20", "month", "2020-11-01"],
+    ["Fr-De Dec-20", "month", "2020-12-01"],
+  ];
   return (
     <div>
       <h1 class="main-title">French and German power prices</h1>
       <div class="grid-container">
-        <div class="grid-item">
-          <h2 class="chart-title">Oct-20</h2>
-          <SpreadChart
-            {...getEEXSpreadsProps({
-              from: "2020-07-01",
-              region1: "fr",
-              region2: "de",
-              maturityType: "month",
-              shape: "base",
-              startDate: "2020-10-01",
-            })}
-          />
-        </div>
+        {frDeInputs.map((inputs) => renderFrDe(inputs))}
 
         {/* <div class="grid-item">
           <h2 class="chart-title">Nov-20</h2>
@@ -366,5 +359,24 @@ function getGenByFuelProps(fuel) {
     },
     chartParams: powerChartParams,
   };
+}
+
+function renderFrDe(inputs) {
+  const [chartTitle, maturityType, startDate] = [...inputs];
+  return (
+    <div class="grid-item">
+      <h2 class="chart-title">{chartTitle}</h2>
+      <SpreadChart
+        {...getEEXSpreadsProps({
+          from: "2020-07-01",
+          region1: "fr",
+          region2: "de",
+          maturityType: maturityType,
+          shape: "base",
+          startDate: startDate,
+        })}
+      />
+    </div>
+  );
 }
 export default App;
