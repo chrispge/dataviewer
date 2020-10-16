@@ -1,6 +1,6 @@
 import React from "react";
 import DemoChart from "./chart";
-import MultiLineChart from "./multi-line-chart";
+import SpreadChart from "./spread-chart";
 
 const powerChartParams = {
   x: "start_time",
@@ -22,51 +22,27 @@ function App() {
       <div class="grid-container">
         <div class="grid-item">
           <h2 class="chart-title">Oct-20</h2>
-          <MultiLineChart
-            {...getEEXTwoLineProps([
-              {
-                apiQueryName: "EEXPrices",
-                searchParams: {
-                  from: "2020-07-01",
-                  region: "fr",
-                  maturity_type: "month",
-                  shape: "base",
-                  start_date: "2020-10-01",
-                },
-              },
-              {
-                apiQueryName: "EEXPrices",
-                searchParams: {
-                  from: "2020-07-01",
-                  region: "de",
-                  maturity_type: "month",
-                  shape: "base",
-                  start_date: "2020-10-01",
-                },
-              },
-            ])}
+          <SpreadChart
+            {...getEEXSpreadsProps({
+              from: "2020-07-01",
+              region1: "fr",
+              region2: "de",
+              maturityType: "month",
+              shape: "base",
+              startDate: "2020-10-01",
+            })}
           />
         </div>
 
-        <div class="grid-item">
+        {/* <div class="grid-item">
           <h2 class="chart-title">Nov-20</h2>
-          <MultiLineChart
-            {...getEEXTwoLineProps([
+          <SpreadChart
+            {...getEEXSpreadsProps([
               {
-                apiQueryName: "EEXPrices",
                 searchParams: {
                   from: "2020-07-01",
-                  region: "fr",
-                  maturity_type: "month",
-                  shape: "base",
-                  start_date: "2020-11-01",
-                },
-              },
-              {
-                apiQueryName: "EEXPrices",
-                searchParams: {
-                  from: "2020-07-01",
-                  region: "de",
+                  region1: "fr",
+                  region2: "de",
                   maturity_type: "month",
                   shape: "base",
                   start_date: "2020-11-01",
@@ -78,23 +54,13 @@ function App() {
 
         <div class="grid-item">
           <h2 class="chart-title">Dec-20</h2>
-          <MultiLineChart
-            {...getEEXTwoLineProps([
+          <SpreadChart
+            {...getEEXSpreadsProps([
               {
-                apiQueryName: "EEXPrices",
                 searchParams: {
                   from: "2020-07-01",
-                  region: "fr",
-                  maturity_type: "month",
-                  shape: "base",
-                  start_date: "2020-12-01",
-                },
-              },
-              {
-                apiQueryName: "EEXPrices",
-                searchParams: {
-                  from: "2020-07-01",
-                  region: "de",
+                  region1: "fr",
+                  region2: "de",
                   maturity_type: "month",
                   shape: "base",
                   start_date: "2020-12-01",
@@ -106,23 +72,13 @@ function App() {
 
         <div class="grid-item">
           <h2 class="chart-title">Q4-20</h2>
-          <MultiLineChart
-            {...getEEXTwoLineProps([
+          <SpreadChart
+            {...getEEXSpreadsProps([
               {
-                apiQueryName: "EEXPrices",
                 searchParams: {
                   from: "2020-07-01",
-                  region: "fr",
-                  maturity_type: "quarter",
-                  shape: "base",
-                  start_date: "2020-10-01",
-                },
-              },
-              {
-                apiQueryName: "EEXPrices",
-                searchParams: {
-                  from: "2020-07-01",
-                  region: "de",
+                  region1: "fr",
+                  region2: "de",
                   maturity_type: "quarter",
                   shape: "base",
                   start_date: "2020-10-01",
@@ -134,23 +90,13 @@ function App() {
 
         <div class="grid-item">
           <h2 class="chart-title">Q1-20</h2>
-          <MultiLineChart
-            {...getEEXTwoLineProps([
+          <SpreadChart
+            {...getEEXSpreadsProps([
               {
-                apiQueryName: "EEXPrices",
                 searchParams: {
                   from: "2020-07-01",
-                  region: "fr",
-                  maturity_type: "quarter",
-                  shape: "base",
-                  start_date: "2021-01-01",
-                },
-              },
-              {
-                apiQueryName: "EEXPrices",
-                searchParams: {
-                  from: "2020-07-01",
-                  region: "de",
+                  region1: "fr",
+                  region2: "de",
                   maturity_type: "quarter",
                   shape: "base",
                   start_date: "2021-01-01",
@@ -162,23 +108,13 @@ function App() {
 
         <div class="grid-item">
           <h2 class="chart-title">Cal-20</h2>
-          <MultiLineChart
-            {...getEEXTwoLineProps([
+          <SpreadChart
+            {...getEEXSpreadsProps([
               {
-                apiQueryName: "EEXPrices",
                 searchParams: {
                   from: "2020-07-01",
-                  region: "fr",
-                  maturity_type: "year",
-                  shape: "base",
-                  start_date: "2021-01-01",
-                },
-              },
-              {
-                apiQueryName: "EEXPrices",
-                searchParams: {
-                  from: "2020-07-01",
-                  region: "de",
+                  region1: "fr",
+                  region2: "de",
                   maturity_type: "year",
                   shape: "base",
                   start_date: "2021-01-01",
@@ -186,9 +122,9 @@ function App() {
               },
             ])}
           />
-        </div>
+        </div> */}
 
-        {/* <div class="grid-item">
+        <div class="grid-item">
           <h2 class="chart-title">French Oct</h2>
           <DemoChart
             {...getEEXPricesProps({
@@ -200,7 +136,7 @@ function App() {
             })}
           />
         </div>
-        <div class="grid-item">
+        {/*<div class="grid-item">
           <h2 class="chart-title">German Oct</h2>
           <DemoChart
             {...getEEXPricesProps({
@@ -385,13 +321,12 @@ function App() {
   );
 }
 
-function getEEXTwoLineProps(urlParams) {
-  // In this instance urlParams are an array of objects
-  // Also - it would really make more sense just to take a whole new set of
-  // props - not just replicate the urlParams
-  // y units etc may also need to change
+function getEEXSpreadsProps(searchParams) {
   return {
-    urlParams: urlParams,
+    urlParams: {
+      apiQueryName: "EEXSpreads",
+      searchParams: searchParams,
+    },
     chartParams: eexChartParams,
   };
 }
