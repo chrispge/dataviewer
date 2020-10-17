@@ -15,16 +15,56 @@ const eexChartParams = {
 
 function App() {
   const frDeInputs = [
-    ["Fr-De Oct-20", "month", "2020-10-01"],
-    ["Fr-De Nov-20", "month", "2020-11-01"],
-    ["Fr-De Dec-20", "month", "2020-12-01"],
-    ["Fr-De Jan-21", "month", "2021-01-01"],
-    ["Fr-De Feb-21", "month", "2021-02-01"],
-    ["Fr-De Mar-21", "month", "2021-03-01"],
-    ["Fr-De Q4-20", "quarter", "2020-10-01"],
-    ["Fr-De Q1-21", "quarter", "2021-01-01"],
-    ["Fr-De Cal-21", "year", "2021-01-01"],
-    ["Fr-De Cal-22", "year", "2022-01-01"],
+    {
+      chartTitle: "Fr-De Oct-20",
+      maturityType: "month",
+      startDate: "2020-10-01",
+    },
+    {
+      chartTitle: "Fr-De Nov-20",
+      maturityType: "month",
+      startDate: "2020-11-01",
+    },
+    {
+      chartTitle: "Fr-De Dec-20",
+      maturityType: "month",
+      startDate: "2020-12-01",
+    },
+    {
+      chartTitle: "Fr-De Jan-21",
+      maturityType: "month",
+      startDate: "2021-01-01",
+    },
+    {
+      chartTitle: "Fr-De Feb-21",
+      maturityType: "month",
+      startDate: "2021-02-01",
+    },
+    {
+      chartTitle: "Fr-De Mar-21",
+      maturityType: "month",
+      startDate: "2021-03-01",
+    },
+    {
+      chartTitle: "Fr-De Q4-20",
+      maturityType: "quarter",
+      startDate: "2020-10-01",
+    },
+    {
+      chartTitle: "Fr-De Q1-21",
+      maturityType: "quarter",
+      startDate: "2021-01-01",
+    },
+    {
+      chartTitle: "Fr-De Cal-21",
+      maturityType: "year",
+      startDate: "2021-01-01",
+    },
+    {
+      chartTitle: "Fr-De Cal-22",
+      maturityType: "year",
+      startDate: "2022-01-01",
+    },
   ];
   const pricesInputs = [
     {
@@ -213,7 +253,7 @@ function getGenByFuelProps(fuel) {
 }
 
 function renderFrDe(inputs) {
-  const [chartTitle, maturityType, startDate] = [...inputs];
+  const { chartTitle, maturityType, startDate } = inputs;
   return (
     <div class="grid-item">
       <h2 class="chart-title">{chartTitle}</h2>
@@ -248,4 +288,27 @@ function renderPrices(inputs) {
     </div>
   );
 }
+
+function renderGeneration(inputs) {
+  const { chartTitle, region, maturityType, startDate, shape } = inputs;
+  return (
+    <div class="grid-item">
+      <h2 class="chart-title">{chartTitle}</h2>
+      <LineChart
+        {...getEEXPricesProps({
+          from: "2020-07-01",
+          region: region,
+          maturity_type: maturityType,
+          shape: shape,
+          start_date: startDate,
+        })}
+      />
+    </div>
+  );
+}
+
+// {/* <div class="grid-item">
+//   <h2 class="chart-title">Tricastin 1</h2>
+//   <DemoChart {...getGenByUnitProps("tricastin 1")} />
+// </div> */}
 export default App;
