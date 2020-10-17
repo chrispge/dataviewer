@@ -10,7 +10,6 @@ const powerChartParams = {
 };
 const eexChartParams = {
   x: "trade_date",
-  y: "settlement_price",
   yUnits: "",
   xFormat: "dd-mmm",
 };
@@ -18,15 +17,15 @@ const eexChartParams = {
 function App() {
   const frDeInputs = [
     ["Fr-De Oct-20", "month", "2020-10-01"],
-    ["Fr-De Nov-20", "month", "2020-11-01"],
-    ["Fr-De Dec-20", "month", "2020-12-01"],
-    ["Fr-De Jan-21", "month", "2021-01-01"],
-    ["Fr-De Feb-21", "month", "2021-02-01"],
-    ["Fr-De Mar-21", "month", "2021-03-01"],
-    ["Fr-De Q4-20", "quarter", "2020-10-01"],
-    ["Fr-De Q1-21", "quarter", "2021-01-01"],
-    ["Fr-De Cal-21", "year", "2021-01-01"],
-    ["Fr-De Cal-22", "year", "2022-01-01"],
+    // ["Fr-De Nov-20", "month", "2020-11-01"],
+    // ["Fr-De Dec-20", "month", "2020-12-01"],
+    // ["Fr-De Jan-21", "month", "2021-01-01"],
+    // ["Fr-De Feb-21", "month", "2021-02-01"],
+    // ["Fr-De Mar-21", "month", "2021-03-01"],
+    // ["Fr-De Q4-20", "quarter", "2020-10-01"],
+    // ["Fr-De Q1-21", "quarter", "2021-01-01"],
+    // ["Fr-De Cal-21", "year", "2021-01-01"],
+    // ["Fr-De Cal-22", "year", "2022-01-01"],
   ];
   return (
     <div>
@@ -34,7 +33,7 @@ function App() {
       <div class="grid-container">
         {frDeInputs.map((inputs) => renderFrDe(inputs))}
 
-        <div class="grid-item">
+        {/* <div class="grid-item">
           <h2 class="chart-title">German Oct</h2>
           <DemoChart
             {...getEEXPricesProps({
@@ -46,7 +45,7 @@ function App() {
             })}
           />
         </div>
-
+ */}
         {/* <div class="grid-item">
           <h2 class="chart-title">Tricastin 1</h2>
           <DemoChart {...getGenByUnitProps("tricastin 1")} />
@@ -103,10 +102,13 @@ function App() {
 function getEEXSpreadsProps(searchParams) {
   console.log("in getEEXSpreadsProps");
   var chartParams = { ...eexChartParams };
-  chartParams.y = [
-    searchParams.region1,
-    searchParams.region2,
-    searchParams.region1.concat("-", searchParams.region2),
+  chartParams.yParams = [
+    { name: searchParams.region1, lineColor: "blue" },
+    { name: searchParams.region2, lineColor: "red" },
+    {
+      name: searchParams.region1.concat("-", searchParams.region2),
+      lineColor: "green",
+    },
   ];
   console.log(chartParams);
   return {

@@ -56,9 +56,7 @@ function renderChart(data, props) {
             axisLabel: { fontSize: 10, padding: 20 },
           }}
         />
-        {addLine(data, xName, chartParams.y[0], yUnits, "blue")}
-        {addLine(data, xName, chartParams.y[1], yUnits, "red")}
-        {addLine(data, xName, chartParams.y[2], yUnits, "green")}
+        {chartParams.yParams.map((yParams) => addLine(data, xName, yParams))}
       </VictoryChart>
     </div>
   );
@@ -101,7 +99,8 @@ function makeUrl(params) {
   return url;
 }
 
-function addLine(data, xName, yName, yUnits, lineColor) {
+function addLine(data, xName, yParams) {
+  const { name: yName, lineColor, units: yUnits } = yParams;
   console.log("In addLine");
   return (
     <VictoryLine
