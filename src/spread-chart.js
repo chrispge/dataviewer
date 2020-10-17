@@ -31,8 +31,8 @@ function renderChart(data, props) {
   const { urlParams, chartParams } = props;
   console.log("In renderChart");
   console.log(data);
-  const { x: xName, y: yName, yUnits } = chartParams;
-  const yUpperLim = getYUpperLim(data, urlParams.searchParams.region1);
+  const { x: xName, yConfigs } = chartParams;
+  const yUpperLim = getYUpperLim(data, yConfigs);
   const xFormatter = getXFormatter(chartParams.xFormat);
   return (
     <div>
@@ -56,24 +56,31 @@ function renderChart(data, props) {
             axisLabel: { fontSize: 10, padding: 20 },
           }}
         />
-        {chartParams.yParams.map((yParams) => addLine(data, xName, yParams))}
+        {yConfigs.map((yConfig) => addLine(data, xName, yConfig))}
       </VictoryChart>
     </div>
   );
 }
 
-function getYUpperLim(data, yName) {
+function getYUpperLim(data, yConfigs) {
   console.log("In getYUpperLim");
-  console.log(yName);
-  const yValues = data.map((datum) => datum[yName]);
-  console.log(yValues);
-  const yMax = Math.max(...yValues);
+  const yMaxValues = yConfigs.map((yConfig) => getYMax(data, yConfig.name));
+  const yMax = Math.max(...yMaxValues);
   const orderMag = Math.ceil(Math.log10(yMax)) - 1;
   console.log(orderMag);
   const multiplier = Math.pow(10, orderMag);
   console.log(multiplier);
   const yUpperLim = multiplier * Math.ceil(yMax / multiplier);
   return yUpperLim;
+}
+
+function getYMax(data, yName) {
+  console.log("In getYMax");
+  console.log(yName);
+  const yValues = data.map((datum) => datum[yName]);
+  console.log(yValues);
+  const yMax = Math.max(...yValues);
+  return yMax;
 }
 
 async function getData(urlParams) {
@@ -99,8 +106,8 @@ function makeUrl(params) {
   return url;
 }
 
-function addLine(data, xName, yParams) {
-  const { name: yName, lineColor, units: yUnits } = yParams;
+function addLine(data, xName, yConfig) {
+  const { name: yName, lineColor, units: yUnits } = yConfig;
   console.log("In addLine");
   return (
     <VictoryLine

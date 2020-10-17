@@ -102,12 +102,13 @@ function App() {
 function getEEXSpreadsProps(searchParams) {
   console.log("in getEEXSpreadsProps");
   var chartParams = { ...eexChartParams };
-  chartParams.yParams = [
-    { name: searchParams.region1, lineColor: "blue" },
-    { name: searchParams.region2, lineColor: "red" },
+  chartParams.yConfigs = [
+    { name: searchParams.region1, lineColor: "blue", units: "" },
+    { name: searchParams.region2, lineColor: "red", units: "" },
     {
       name: searchParams.region1.concat("-", searchParams.region2),
       lineColor: "green",
+      units: "",
     },
   ];
   console.log(chartParams);
