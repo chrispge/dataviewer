@@ -18,6 +18,7 @@ code {
   height: 100px;
   text-align: center;
   padding: 50px 0 0 0;
+  font-size: 30;
 }
 
 .sidebar {
@@ -32,10 +33,16 @@ code {
 .main-content {
   grid-area: main-content;
   overflow-y: scroll;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-gap: 20px;
+  padding: 20px;
 }
 
 .footer {
   grid-area: footer;
+  height: 10px;
 }
 
 .wrapper {
@@ -84,13 +91,7 @@ code {
   font-size: 150%
 }
 
-.chart-container {
-  display: grid;
-  align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  grid-gap: 0.5rem;
-  padding: 20px;
-}
+.chart-container {}
 
 .header {
   text-align: center;
@@ -115,4 +116,13 @@ code {
 .chart-title {
   text-align: center;
   font-size: 14px;
+}
+
+.sidebar-btn {
+
+  background-color: #fff;
+  color: #000;
+  border: none;
+  padding: 10px;
+  font-size: 12;
 }

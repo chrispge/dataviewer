@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import LineChart from "./line-chart";
 
 const powerChartParams = {
@@ -26,28 +26,69 @@ function App() {
     ["Fr-De Cal-21", "year", "2021-01-01"],
     ["Fr-De Cal-22", "year", "2022-01-01"],
   ];
+  const pricesInputs = [
+    {
+      chartTitle: "De Nov-20",
+      region: "de",
+      maturityType: "month",
+      shape: "base",
+      startDate: "2020-11-01",
+    },
+    {
+      chartTitle: "De Dec-20",
+      region: "de",
+      maturityType: "month",
+      shape: "base",
+      startDate: "2020-12-01",
+    },
+    {
+      chartTitle: "De Jan-21",
+      region: "de",
+      maturityType: "month",
+      shape: "base",
+      startDate: "2021-01-01",
+    },
+    {
+      chartTitle: "De Q1-21",
+      region: "de",
+      maturityType: "quarter",
+      shape: "base",
+      startDate: "2021-01-01",
+    },
+    {
+      chartTitle: "De Cal-21",
+      region: "de",
+      maturityType: "year",
+      shape: "base",
+      startDate: "2021-01-01",
+    },
+  ];
+  const [activeCpt, setActiveCpt] = useState("Prices");
+  console.log(activeCpt);
   return (
     <div>
       <div class="wrapper">
-        <div class="header">French and German power prices</div>
+        <div class="header">Data viewer thing</div>
         <div class="body"></div>
         <div class="box sidebar">
-          <p>This will be the left hand column. </p>
+          <button class="sidebar-btn" onClick={() => setActiveCpt("Prices")}>
+            Prices
+          </button>
+          <button class="sidebar-btn" onClick={() => setActiveCpt("Spreads")}>
+            Spreads
+          </button>
+          <button
+            class="sidebar-btn"
+            onClick={() => setActiveCpt("Generation")}
+          >
+            Generation
+          </button>
         </div>
         <div class="box main-content chart-container">
-          {frDeInputs.map((inputs) => renderFrDe(inputs))}
-          <div class="grid-item">
-            <h2 class="chart-title">German Oct</h2>
-            <LineChart
-              {...getEEXPricesProps({
-                from: "2020-07-01",
-                region: "de",
-                maturity_type: "month",
-                shape: "base",
-                start_date: "2020-10-01",
-              })}
-            />
-          </div>
+          {activeCpt === "Prices" &&
+            pricesInputs.map((inputs) => renderPrices(inputs))}
+          {activeCpt === "Spreads" &&
+            frDeInputs.map((inputs) => renderFrDe(inputs))}
 
           {/* <div class="grid-item">
             <h2 class="chart-title">Tricastin 1</h2>
@@ -133,7 +174,7 @@ function getEEXPricesProps(searchParams) {
   console.log("in getEEXPricesProps");
   var chartParams = { ...eexChartParams };
   chartParams.yConfigs = [
-    { name: searchParams.region, lineColor: "pink", units: "" },
+    { name: searchParams.region, lineColor: "blue", units: "" },
   ];
   console.log(chartParams);
   return {
@@ -184,6 +225,24 @@ function renderFrDe(inputs) {
           maturityType: maturityType,
           shape: "base",
           startDate: startDate,
+        })}
+      />
+    </div>
+  );
+}
+
+function renderPrices(inputs) {
+  const { chartTitle, region, maturityType, startDate, shape } = inputs;
+  return (
+    <div class="grid-item">
+      <h2 class="chart-title">{chartTitle}</h2>
+      <LineChart
+        {...getEEXPricesProps({
+          from: "2020-07-01",
+          region: region,
+          maturity_type: maturityType,
+          shape: shape,
+          start_date: startDate,
         })}
       />
     </div>
