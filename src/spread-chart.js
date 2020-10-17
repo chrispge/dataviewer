@@ -56,99 +56,9 @@ function renderChart(data, props) {
             axisLabel: { fontSize: 10, padding: 20 },
           }}
         />
-        <VictoryLine
-          labelComponent={
-            <VictoryTooltip
-              cornerRadius={5}
-              flyoutStyle={{ fill: "white" }}
-              pointerLength={20}
-              style={{
-                // fill: "white",
-                fontSize: 10,
-                textAnchor: "middle",
-                padding: 3,
-              }}
-            />
-          }
-          labels={({ datum }) =>
-            `${new Date(datum[xName]).toLocaleDateString(
-              "default"
-            )}\n${new Date(datum[xName]).toLocaleTimeString("default", {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}\n${datum[yName]} ${yUnits}`
-          }
-          style={{
-            data: { stroke: "blue" },
-            parent: { border: "1px solid #ccc" },
-          }}
-          data={data}
-          x={chartParams.x}
-          y={chartParams.y[0]}
-          tickdata
-        />
-        <VictoryLine
-          labelComponent={
-            <VictoryTooltip
-              cornerRadius={5}
-              flyoutStyle={{ fill: "white" }}
-              pointerLength={20}
-              style={{
-                // fill: "white",
-                fontSize: 10,
-                textAnchor: "middle",
-                padding: 3,
-              }}
-            />
-          }
-          labels={({ datum }) =>
-            `${new Date(datum[xName]).toLocaleDateString(
-              "default"
-            )}\n${new Date(datum[xName]).toLocaleTimeString("default", {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}\n${datum[yName]} ${yUnits}`
-          }
-          style={{
-            data: { stroke: "red" },
-            parent: { border: "1px solid #ccc" },
-          }}
-          data={data}
-          x={chartParams.x}
-          y={chartParams.y[1]}
-          tickdata
-        />
-        <VictoryLine
-          labelComponent={
-            <VictoryTooltip
-              cornerRadius={5}
-              flyoutStyle={{ fill: "white" }}
-              pointerLength={20}
-              style={{
-                // fill: "white",
-                fontSize: 10,
-                textAnchor: "middle",
-                padding: 3,
-              }}
-            />
-          }
-          labels={({ datum }) =>
-            `${new Date(datum[xName]).toLocaleDateString(
-              "default"
-            )}\n${new Date(datum[xName]).toLocaleTimeString("default", {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}\n${datum[yName]} ${yUnits}`
-          }
-          style={{
-            data: { stroke: "green" },
-            parent: { border: "1px solid #ccc" },
-          }}
-          data={data}
-          x={chartParams.x}
-          y={chartParams.y[2]}
-          tickdata
-        />
+        {addLine(data, xName, chartParams.y[0], yUnits, "blue")}
+        {addLine(data, xName, chartParams.y[1], yUnits, "red")}
+        {addLine(data, xName, chartParams.y[2], yUnits, "green")}
       </VictoryChart>
     </div>
   );
@@ -191,26 +101,40 @@ function makeUrl(params) {
   return url;
 }
 
-// function innerJoin(data1, data2, onKey, suffix) {
-//   // returns a combined array
-//   // as the inner join of the two arrays on onKey
-//   // with suffix appended to each key name to make it clear
-//   // which comes from where
-//   const joined = { ...data1 };
-//   console.log("Type of joined: ");
-//   console.log(typeof joined);
-//   console.log(typeof data1);
-//   console.log(data1);
-//   joined.forEach((obj) => {
-//     const obj2 = data2[obj[onKey]];
-//     if (obj2) {
-//       Object.keys(obj2).forEach((key) => {
-//         obj[key + suffix] = obj2[key];
-//       });
-//     }
-//   });
-//   return joined;
-// }
-
-function getObjWithParam(array, key, value) {}
+function addLine(data, xName, yName, yUnits, lineColor) {
+  console.log("In addLine");
+  return (
+    <VictoryLine
+      labelComponent={
+        <VictoryTooltip
+          cornerRadius={5}
+          flyoutStyle={{ fill: "white" }}
+          pointerLength={20}
+          style={{
+            // fill: "white",
+            fontSize: 10,
+            textAnchor: "middle",
+            padding: 3,
+          }}
+        />
+      }
+      labels={({ datum }) =>
+        `${new Date(datum[xName]).toLocaleDateString("default")}\n${new Date(
+          datum[xName]
+        ).toLocaleTimeString("default", {
+          hour: "2-digit",
+          minute: "2-digit",
+        })}\n${datum[yName]} ${yUnits}`
+      }
+      style={{
+        data: { stroke: lineColor },
+        parent: { border: "1px solid #ccc" },
+      }}
+      data={data}
+      x={xName}
+      y={yName}
+      tickdata
+    />
+  );
+}
 export default SpreadChart;
