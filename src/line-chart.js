@@ -24,11 +24,10 @@ function LineChart(props) {
     })();
   }, [props.urlParams]);
 
-  return renderChart(data, props);
+  return renderChart(data, props.chartParams);
 }
 
-function renderChart(data, props) {
-  const { urlParams, chartParams } = props;
+function renderChart(data, chartParams) {
   console.log("In renderChart");
   console.log(data);
   const { x: xName, yConfigs } = chartParams;
