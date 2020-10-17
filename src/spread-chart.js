@@ -34,6 +34,7 @@ function renderChart(data, props) {
   const { x: xName, yConfigs } = chartParams;
   const yUpperLim = getYUpperLim(data, yConfigs);
   const xFormatter = getXFormatter(chartParams.xFormat);
+  const xConfig = { name: xName, formatter: xFormatter };
   return (
     <div>
       <VictoryChart
@@ -56,7 +57,7 @@ function renderChart(data, props) {
             axisLabel: { fontSize: 10, padding: 20 },
           }}
         />
-        {yConfigs.map((yConfig) => addLine(data, xName, yConfig))}
+        {yConfigs.map((yConfig) => addLine(data, xConfig, yConfig))}
       </VictoryChart>
     </div>
   );
@@ -106,8 +107,9 @@ function makeUrl(params) {
   return url;
 }
 
-function addLine(data, xName, yConfig) {
+function addLine(data, xConfig, yConfig) {
   const { name: yName, lineColor, units: yUnits } = yConfig;
+  const { name: xName, formatter: xFormatter } = xConfig;
   console.log("In addLine");
   return (
     <VictoryLine
@@ -125,12 +127,7 @@ function addLine(data, xName, yConfig) {
         />
       }
       labels={({ datum }) =>
-        `${new Date(datum[xName]).toLocaleDateString("default")}\n${new Date(
-          datum[xName]
-        ).toLocaleTimeString("default", {
-          hour: "2-digit",
-          minute: "2-digit",
-        })}\n${datum[yName]} ${yUnits}`
+        `${xFormatter(datum[xName])}\n${datum[yName]} ${yUnits}`
       }
       style={{
         data: { stroke: lineColor },
