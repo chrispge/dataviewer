@@ -1,6 +1,5 @@
 import React from "react";
-import DemoChart from "./chart";
-import SpreadChart from "./spread-chart";
+import LineChart from "./line-chart";
 
 const powerChartParams = {
   x: "start_time",
@@ -32,10 +31,9 @@ function App() {
       <h1 class="main-title">French and German power prices</h1>
       <div class="grid-container">
         {frDeInputs.map((inputs) => renderFrDe(inputs))}
-
-        {/* <div class="grid-item">
+        <div class="grid-item">
           <h2 class="chart-title">German Oct</h2>
-          <DemoChart
+          <LineChart
             {...getEEXPricesProps({
               from: "2020-07-01",
               region: "de",
@@ -45,7 +43,7 @@ function App() {
             })}
           />
         </div>
- */}
+
         {/* <div class="grid-item">
           <h2 class="chart-title">Tricastin 1</h2>
           <DemoChart {...getGenByUnitProps("tricastin 1")} />
@@ -124,7 +122,9 @@ function getEEXSpreadsProps(searchParams) {
 function getEEXPricesProps(searchParams) {
   console.log("in getEEXPricesProps");
   var chartParams = { ...eexChartParams };
-  chartParams.y = searchParams.region;
+  chartParams.yConfigs = [
+    { name: searchParams.region, lineColor: "pink", units: "" },
+  ];
   console.log(chartParams);
   return {
     urlParams: {
@@ -166,7 +166,7 @@ function renderFrDe(inputs) {
   return (
     <div class="grid-item">
       <h2 class="chart-title">{chartTitle}</h2>
-      <SpreadChart
+      <LineChart
         {...getEEXSpreadsProps({
           from: "2020-07-01",
           region1: "fr",

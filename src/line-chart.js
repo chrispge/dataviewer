@@ -12,7 +12,7 @@ import {
 } from "victory";
 import getXFormatter from "./xformatters";
 
-function SpreadChart(props) {
+function LineChart(props) {
   const [data, setData] = useState([]);
   console.log("In SpreadChart");
   console.log(props);
@@ -140,4 +140,4 @@ function addLine(data, xConfig, yConfig) {
     />
   );
 }
-export default SpreadChart;
+export default LineChart;
