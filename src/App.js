@@ -16,82 +16,92 @@ const eexChartParams = {
 function App() {
   const frDeInputs = [
     ["Fr-De Oct-20", "month", "2020-10-01"],
-    // ["Fr-De Nov-20", "month", "2020-11-01"],
-    // ["Fr-De Dec-20", "month", "2020-12-01"],
-    // ["Fr-De Jan-21", "month", "2021-01-01"],
-    // ["Fr-De Feb-21", "month", "2021-02-01"],
-    // ["Fr-De Mar-21", "month", "2021-03-01"],
-    // ["Fr-De Q4-20", "quarter", "2020-10-01"],
-    // ["Fr-De Q1-21", "quarter", "2021-01-01"],
-    // ["Fr-De Cal-21", "year", "2021-01-01"],
-    // ["Fr-De Cal-22", "year", "2022-01-01"],
+    ["Fr-De Nov-20", "month", "2020-11-01"],
+    ["Fr-De Dec-20", "month", "2020-12-01"],
+    ["Fr-De Jan-21", "month", "2021-01-01"],
+    ["Fr-De Feb-21", "month", "2021-02-01"],
+    ["Fr-De Mar-21", "month", "2021-03-01"],
+    ["Fr-De Q4-20", "quarter", "2020-10-01"],
+    ["Fr-De Q1-21", "quarter", "2021-01-01"],
+    ["Fr-De Cal-21", "year", "2021-01-01"],
+    ["Fr-De Cal-22", "year", "2022-01-01"],
   ];
   return (
     <div>
-      <h1 class="main-title">French and German power prices</h1>
-      <div class="grid-container">
-        {frDeInputs.map((inputs) => renderFrDe(inputs))}
-        <div class="grid-item">
-          <h2 class="chart-title">German Oct</h2>
-          <LineChart
-            {...getEEXPricesProps({
-              from: "2020-07-01",
-              region: "de",
-              maturity_type: "month",
-              shape: "base",
-              start_date: "2020-10-01",
-            })}
-          />
+      <div class="wrapper">
+        <div class="header">French and German power prices</div>
+        <div class="body"></div>
+        <div class="box sidebar">
+          <p>This will be the left hand column. </p>
         </div>
+        <div class="box main-content chart-container">
+          {frDeInputs.map((inputs) => renderFrDe(inputs))}
+          <div class="grid-item">
+            <h2 class="chart-title">German Oct</h2>
+            <LineChart
+              {...getEEXPricesProps({
+                from: "2020-07-01",
+                region: "de",
+                maturity_type: "month",
+                shape: "base",
+                start_date: "2020-10-01",
+              })}
+            />
+          </div>
 
-        {/* <div class="grid-item">
-          <h2 class="chart-title">Tricastin 1</h2>
-          <DemoChart {...getGenByUnitProps("tricastin 1")} />
-        </div> */}
-        {/* <div class="grid-item">
-          <h2 class="chart-title">Nuclear</h2>
-          <DemoChart {...getGenByFuelProps("nuclear")} />
+          {/* <div class="grid-item">
+            <h2 class="chart-title">Tricastin 1</h2>
+            <DemoChart {...getGenByUnitProps("tricastin 1")} />
+          </div> */}
+          {/* <div class="grid-item">
+            <h2 class="chart-title">Nuclear</h2>
+            <DemoChart {...getGenByFuelProps("nuclear")} />
+          </div>
+          <div class="grid-item">
+            <h2 class="chart-title">Gas</h2>
+            <DemoChart {...getGenByFuelProps("fossil_gas")} />
+          </div>
+          <div class="grid-item">
+            <h2 class="chart-title">Coal</h2>
+            <DemoChart {...getGenByFuelProps("fossil_hard_coal")} />
+          </div>
+          <div class="grid-item">
+            <h2 class="chart-title">Hydro Reservoir</h2>
+            <DemoChart {...getGenByFuelProps("hydro_water_reservoir")} />
+          </div>
+          <div class="grid-item">
+            <h2 class="chart-title">Hydro Run-of-river</h2>
+            <DemoChart {...getGenByFuelProps("hydro_run_of_river_and_poundage")} />
+          </div>
+          <div class="grid-item">
+            <h2 class="chart-title">Hydro Pumped Storage</h2>
+            <DemoChart {...getGenByFuelProps("hydro_pumped_storage")} />
+          </div>
+          <div class="grid-item">
+            <h2 class="chart-title">Wind</h2>
+            <DemoChart {...getGenByFuelProps("wind_onshore")} />
+          </div>
+          <div class="grid-item">
+            <h2 class="chart-title">Solar</h2>
+            <DemoChart {...getGenByFuelProps("solar")} />
+          </div>
+          <div class="grid-item">
+            <h2 class="chart-title">Oil</h2>
+            <DemoChart {...getGenByFuelProps("fossil_oil")} />
+          </div>
+          <div class="grid-item">
+            <h2 class="chart-title">Biomass</h2>
+            <DemoChart {...getGenByFuelProps("biomass")} />
+          </div>
+          <div class="grid-item">
+            <h2 class="chart-title">Waste</h2>
+            <DemoChart {...getGenByFuelProps("waste")} />
+          </div> */}
         </div>
-        <div class="grid-item">
-          <h2 class="chart-title">Gas</h2>
-          <DemoChart {...getGenByFuelProps("fossil_gas")} />
+        <div class="box sidebar2">
+          Sidebar2: I haven't decided what to put here yet
         </div>
-        <div class="grid-item">
-          <h2 class="chart-title">Coal</h2>
-          <DemoChart {...getGenByFuelProps("fossil_hard_coal")} />
-        </div>
-        <div class="grid-item">
-          <h2 class="chart-title">Hydro Reservoir</h2>
-          <DemoChart {...getGenByFuelProps("hydro_water_reservoir")} />
-        </div>
-        <div class="grid-item">
-          <h2 class="chart-title">Hydro Run-of-river</h2>
-          <DemoChart {...getGenByFuelProps("hydro_run_of_river_and_poundage")} />
-        </div>
-        <div class="grid-item">
-          <h2 class="chart-title">Hydro Pumped Storage</h2>
-          <DemoChart {...getGenByFuelProps("hydro_pumped_storage")} />
-        </div>
-        <div class="grid-item">
-          <h2 class="chart-title">Wind</h2>
-          <DemoChart {...getGenByFuelProps("wind_onshore")} />
-        </div>
-        <div class="grid-item">
-          <h2 class="chart-title">Solar</h2>
-          <DemoChart {...getGenByFuelProps("solar")} />
-        </div>
-        <div class="grid-item">
-          <h2 class="chart-title">Oil</h2>
-          <DemoChart {...getGenByFuelProps("fossil_oil")} />
-        </div>
-        <div class="grid-item">
-          <h2 class="chart-title">Biomass</h2>
-          <DemoChart {...getGenByFuelProps("biomass")} />
-        </div>
-        <div class="grid-item">
-          <h2 class="chart-title">Waste</h2>
-          <DemoChart {...getGenByFuelProps("waste")} />
-        </div> */}
+        <div class="box footer">© Chris Page {new Date().getFullYear()}</div>
       </div>
     </div>
   );
