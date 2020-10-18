@@ -7,15 +7,16 @@ const RTEGenByUnitChartParams = {
   xFormat: "two-line",
 };
 
-function RTEGenByUnit() {
+function RTEGenByUnit(props) {
   console.log("In RTE GenByUnit");
   const [units, setUnits] = useState([]);
   useEffect(() => {
     (async () => {
-      const fetchedUnits = await getUnits();
+      const fetchedUnits = await getUnits(props.fuel);
+
       setUnits(fetchedUnits);
     })();
-  }, []);
+  }, [props.fuel]);
 
   // const units = [
   //   { generation_name: "TRICASTIN 1" },
@@ -30,11 +31,14 @@ function RTEGenByUnit() {
   return chartInputs.map((inputs) => renderGenByUnit(inputs));
 }
 
-async function getUnits() {
+async function getUnits(fuel) {
+  console.log("In getUnits");
   const apiQueryName = "RTEUnits";
   const url = new URL(apiQueryName, "http://localhost:3001/");
+  url.search = "fuel=" + fuel;
   const response = await fetch(url);
   const data = await response.json();
+  console.log(url);
   return data;
 }
 
