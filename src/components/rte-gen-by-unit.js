@@ -9,19 +9,19 @@ const RTEGenByUnitChartParams = {
 
 function RTEGenByUnit(props) {
   console.log("In RTE GenByUnit");
-  const [units, setUnits] = useState([]);
-  useEffect(() => {
-    (async () => {
-      const fetchedUnits = await getUnits(props.fuel);
+  // const [units, setUnits] = useState([]);
+  // useEffect(() => {
+  //   (async () => {
+  //     const fetchedUnits = await getUnits(props.fuel);
 
-      setUnits(fetchedUnits);
-    })();
-  }, [props.fuel]);
+  //     setUnits(fetchedUnits);
+  //   })();
+  // }, [props.fuel]);
 
-  // const units = [
-  //   { generation_name: "TRICASTIN 1" },
-  //   { generation_name: "TRICASTIN 2" },
-  // ];
+  const units = [
+    { generation_name: "TRICASTIN 1" },
+    { generation_name: "TRICASTIN 2" },
+  ];
   console.log(units);
   const chartInputs = units.map((obj) => ({
     chartTitle: obj.generation_name,
