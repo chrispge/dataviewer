@@ -41,6 +41,11 @@ function renderChart(data, chartParams) {
   console.log(data);
   const { x: xName, yConfigs, xFormat } = chartParams;
   const yUpperLim = getYUpperLim(data, yConfigs);
+  console.log("yUpperLim");
+  console.log(yUpperLim);
+  const yLowerLim = getYLowerLim(data, yConfigs);
+  console.log("yLowerLim");
+  console.log(yLowerLim);
   const xFormatter = getXFormatter(xFormat);
   const xConfig = { name: xName, formatter: xFormatter };
   return (
@@ -60,7 +65,7 @@ function renderChart(data, chartParams) {
           dependentAxis
           // NB using domain here gives a warning - but it works
           // I have tried e.g. maxDomain but those don't set axis max at right point
-          domain={[0, yUpperLim]}
+          domain={[yLowerLim, yUpperLim]}
           // label="MW"
           style={{
             tickLabels: { fontSize: 10, padding: 3 },
@@ -74,15 +79,24 @@ function renderChart(data, chartParams) {
 }
 
 function getYUpperLim(data, yConfigs) {
-  console.log("In getYUpperLim");
   const yMaxValues = yConfigs.map((yConfig) => getYMax(data, yConfig.name));
-  const yMax = Math.max(...yMaxValues);
+  const yMax = Math.max(Math.max(...yMaxValues), 10);
   const orderMag = Math.ceil(Math.log10(yMax)) - 1;
-  console.log(orderMag);
   const multiplier = Math.pow(10, orderMag);
-  console.log(multiplier);
   const yUpperLim = multiplier * Math.ceil(yMax / multiplier);
   return yUpperLim;
+}
+
+function getYLowerLim(data, yConfigs) {
+  const yMinValues = yConfigs.map((yConfig) => getYMin(data, yConfig.name));
+  const yMin = Math.min(Math.min(...yMinValues), 0);
+  console.log(yMin);
+  const orderMag = Math.ceil(Math.log10(Math.abs(yMin))) - 1;
+  console.log(orderMag);
+  const multiplier = Math.pow(10, orderMag);
+  const yLowerLim =
+    multiplier * Math.sign(yMin) * Math.ceil(Math.abs(yMin) / multiplier);
+  return yLowerLim;
 }
 
 function getYMax(data, yName) {
@@ -91,7 +105,18 @@ function getYMax(data, yName) {
   const yValues = data.map((datum) => datum[yName]);
   console.log(yValues);
   const yMax = Math.max(...yValues);
+  console.log(yMax);
   return yMax;
+}
+
+function getYMin(data, yName) {
+  console.log("In getYMin");
+  console.log(yName);
+  const yValues = data.map((datum) => datum[yName]);
+  console.log(yValues);
+  const yMin = Math.min(...yValues);
+  console.log(yMin);
+  return yMin;
 }
 
 async function getData(urlParams) {
