@@ -44,8 +44,8 @@ function RTEGenByFuel() {
 function renderGenByFuel(inputs) {
   const { chartTitle, fuel } = inputs;
   return (
-    <div class="grid-item">
-      <h2 class="chart-title">{chartTitle}</h2>
+    <div key={chartTitle} className="grid-item">
+      <h2 className="chart-title">{chartTitle}</h2>
       <LineChart
         {...getGenByFuelProps({
           from: "2020-10-01",

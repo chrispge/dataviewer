@@ -52,8 +52,8 @@ function Prices() {
 function renderPrices(inputs) {
   const { chartTitle, region, maturityType, startDate, shape } = inputs;
   return (
-    <div class="grid-item">
-      <h2 class="chart-title">{chartTitle}</h2>
+    <div key={chartTitle} className="grid-item">
+      <h2 className="chart-title">{chartTitle}</h2>
       <LineChart
         {...getEEXPricesProps({
           from: "2020-07-01",

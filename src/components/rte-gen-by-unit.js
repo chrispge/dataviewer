@@ -45,8 +45,8 @@ async function getUnits(fuel) {
 function renderGenByUnit(inputs) {
   const { chartTitle, unit } = inputs;
   return (
-    <div class="grid-item">
-      <h2 class="chart-title">{chartTitle}</h2>
+    <div key={chartTitle} className="grid-item">
+      <h2 className="chart-title">{chartTitle}</h2>
       <LineChart
         {...getGenByUnitProps({
           from: "2020-10-01",

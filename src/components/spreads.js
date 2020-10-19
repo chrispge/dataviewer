@@ -67,8 +67,8 @@ function Spreads() {
 function renderFrDe(inputs) {
   const { chartTitle, maturityType, startDate } = inputs;
   return (
-    <div class="grid-item">
-      <h2 class="chart-title">{chartTitle}</h2>
+    <div key={chartTitle} className="grid-item">
+      <h2 className="chart-title">{chartTitle}</h2>
       <LineChart
         {...getEEXSpreadsProps({
           from: "2020-07-01",
