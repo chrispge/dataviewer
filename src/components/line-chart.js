@@ -29,7 +29,11 @@ function LineChart(props) {
     [props.urlParams]
   );
 
-  return renderChart(data, props.chartParams);
+  if (data.length > 0) {
+    return renderChart(data, props.chartParams);
+  } else {
+    return <div>Loading...</div>;
+  }
 }
 
 function renderChart(data, chartParams) {
@@ -54,6 +58,8 @@ function renderChart(data, chartParams) {
         />
         <VictoryAxis
           dependentAxis
+          // NB using domain here gives a warning - but it works
+          // I have tried e.g. maxDomain but those don't set axis max at right point
           domain={[0, yUpperLim]}
           // label="MW"
           style={{
