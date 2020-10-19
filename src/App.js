@@ -3,9 +3,10 @@ import Spreads from "./components/spreads";
 import Prices from "./components/prices";
 import RTEGenByFuel from "./components/rte-gen-by-fuel";
 import RTEGenByUnit from "./components/rte-gen-by-unit";
+import SidebarButton from "./components/sidebar-button";
 
 function App() {
-  const [activeCpt, setActiveCpt] = useState("RTEGenByUnit");
+  const [activeCpt, setActiveCpt] = useState("RTEGenByFuel");
   console.log(activeCpt);
   return (
     <div>
@@ -13,37 +14,71 @@ function App() {
         <div className="header">Data viewer thing</div>
         <div className="body"></div>
         <div className="box sidebar">
-          <button
-            className="sidebar-btn"
-            onClick={() => setActiveCpt("Prices")}
-          >
-            Prices
-          </button>
-          <button
-            className="sidebar-btn"
-            onClick={() => setActiveCpt("Spreads")}
-          >
-            Spreads
-          </button>
-          <button
-            className="sidebar-btn"
-            onClick={() => setActiveCpt("RTEGenByFuel")}
-          >
-            French Generation By Fuel
-          </button>
-          <button
-            className="sidebar-btn"
-            onClick={() => setActiveCpt("RTEGenByUnit")}
-          >
-            French Generation By Unit
-          </button>
+          <SidebarButton
+            title="Prices"
+            cptSetter={() => setActiveCpt("Prices")}
+          />
+          <SidebarButton
+            title="Spreads"
+            cptSetter={() => setActiveCpt("Spreads")}
+          />
+          <SidebarButton
+            title="French Generation by Fuel"
+            cptSetter={() => setActiveCpt("RTEGenByFuel")}
+          />
+          <SidebarButton
+            title="French Gen by Unit: Nuclear"
+            cptSetter={() => setActiveCpt("RTEGenByUnitNuclear")}
+          />
+          <SidebarButton
+            title="French Gen by Unit: Gas"
+            cptSetter={() => setActiveCpt("RTEGenByUnitGas")}
+          />
+          <SidebarButton
+            title="French Gen by Unit: Coal"
+            cptSetter={() => setActiveCpt("RTEGenByUnitCoal")}
+          />
+          <SidebarButton
+            title="French Gen by Unit: Hydro Reservoir"
+            cptSetter={() => setActiveCpt("RTEGenByUnitHydroRes")}
+          />
+          <SidebarButton
+            title="French Gen by Unit: Hydro Run-of-River"
+            cptSetter={() => setActiveCpt("RTEGenByUnitHydroROR")}
+          />
+          <SidebarButton
+            title="French Gen by Unit: Hydro Pumped Storage"
+            cptSetter={() => setActiveCpt("RTEGenByUnitHydroPS")}
+          />
+          <SidebarButton
+            title="French Gen by Unit: Oil"
+            cptSetter={() => setActiveCpt("RTEGenByUnitOil")}
+          />
         </div>
         <div className="box main-content chart-container">
           {activeCpt === "Prices" && <Prices></Prices>}
           {activeCpt === "Spreads" && <Spreads></Spreads>}
           {activeCpt === "RTEGenByFuel" && <RTEGenByFuel></RTEGenByFuel>}
-          {activeCpt === "RTEGenByUnit" && (
+          {activeCpt === "RTEGenByUnitNuclear" && (
             <RTEGenByUnit fuel="nuclear"></RTEGenByUnit>
+          )}
+          {activeCpt === "RTEGenByUnitGas" && (
+            <RTEGenByUnit fuel="fossil_gas"></RTEGenByUnit>
+          )}
+          {activeCpt === "RTEGenByUnitCoal" && (
+            <RTEGenByUnit fuel="fossil_hard_coal"></RTEGenByUnit>
+          )}
+          {activeCpt === "RTEGenByUnitHydroRes" && (
+            <RTEGenByUnit fuel="hydro_water_reservoir"></RTEGenByUnit>
+          )}
+          {activeCpt === "RTEGenByUnitHydroROR" && (
+            <RTEGenByUnit fuel="hydro_run_of_river_and_poundage"></RTEGenByUnit>
+          )}
+          {activeCpt === "RTEGenByUnitHydroPS" && (
+            <RTEGenByUnit fuel="hydro_pumped_storage"></RTEGenByUnit>
+          )}
+          {activeCpt === "RTEGenByUnitOil" && (
+            <RTEGenByUnit fuel="fossil_oil"></RTEGenByUnit>
           )}
         </div>
         <div className="box sidebar2">
