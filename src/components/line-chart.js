@@ -93,7 +93,7 @@ function getYLowerLim(data, yConfigs) {
   console.log(yMin);
   const orderMag = Math.ceil(Math.log10(Math.abs(yMin))) - 1;
   console.log(orderMag);
-  const multiplier = Math.pow(10, orderMag);
+  const multiplier = Math.max(Math.pow(10, orderMag), 1);
   const yLowerLim =
     multiplier * Math.sign(yMin) * Math.ceil(Math.abs(yMin) / multiplier);
   return yLowerLim;
