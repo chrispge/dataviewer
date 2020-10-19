@@ -14,15 +14,20 @@ import getXFormatter from "./xformatters";
 
 function LineChart(props) {
   const [data, setData] = useState([]);
-  console.log("In SpreadChart");
+  console.log("In LineChart");
   console.log(props);
 
-  useEffect(() => {
-    (async () => {
-      const fetchedData = await getData(props.urlParams);
-      setData(fetchedData);
-    })();
-  }, [props.urlParams]);
+  useEffect(
+    () => {
+      (async () => {
+        const fetchedData = await getData(props.urlParams);
+        setData(fetchedData);
+      })();
+    },
+    // decalare dependent parameters
+    // useEffect will only run when these change
+    [props.urlParams]
+  );
 
   return renderChart(data, props.chartParams);
 }
@@ -30,9 +35,9 @@ function LineChart(props) {
 function renderChart(data, chartParams) {
   console.log("In renderChart");
   console.log(data);
-  const { x: xName, yConfigs } = chartParams;
+  const { x: xName, yConfigs, xFormat } = chartParams;
   const yUpperLim = getYUpperLim(data, yConfigs);
-  const xFormatter = getXFormatter(chartParams.xFormat);
+  const xFormatter = getXFormatter(xFormat);
   const xConfig = { name: xName, formatter: xFormatter };
   return (
     <div>
