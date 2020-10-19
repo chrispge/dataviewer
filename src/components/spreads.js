@@ -61,7 +61,7 @@ function Spreads() {
     },
   ];
 
-  return [frDeInputs[0]].map((inputs) => renderFrDe(inputs));
+  return frDeInputs.map((inputs) => renderFrDe(inputs));
 }
 
 function renderFrDe(inputs) {
