@@ -14,14 +14,17 @@ import getXFormatter from "./xformatters";
 
 function LineChart(props) {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState([]);
   console.log("In LineChart");
   console.log(props);
 
   useEffect(
     () => {
       (async () => {
+        setIsLoading(true);
         const fetchedData = await getData(props.urlParams);
         setData(fetchedData);
+        setIsLoading(false);
       })();
     },
     // decalare dependent parameters
@@ -31,8 +34,10 @@ function LineChart(props) {
 
   if (data.length > 0) {
     return renderChart(data, props.chartParams);
-  } else {
+  } else if (isLoading) {
     return <div>Loading...</div>;
+  } else {
+    return <div>No Data</div>;
   }
 }
 
