@@ -112,6 +112,7 @@ function addLine(data, xConfig, yConfig) {
   console.log("In addLine");
   return (
     <VictoryLine
+      key={yName}
       labelComponent={
         <VictoryTooltip
           cornerRadius={5}
