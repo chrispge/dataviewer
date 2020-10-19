@@ -9,26 +9,29 @@ const RTEGenByUnitChartParams = {
 
 function RTEGenByUnit(props) {
   console.log("In RTE GenByUnit");
-  // const [units, setUnits] = useState([]);
-  // useEffect(() => {
-  //   (async () => {
-  //     const fetchedUnits = await getUnits(props.fuel);
+  const [units, setUnits] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const fetchedUnits = await getUnits(props.fuel);
 
-  //     setUnits(fetchedUnits);
-  //   })();
-  // }, [props.fuel]);
+      setUnits(fetchedUnits);
+    })();
+  }, [props.fuel]);
 
-  const units = [
-    { generation_name: "TRICASTIN 1" },
-    { generation_name: "TRICASTIN 2" },
-  ];
+  // const units = [
+  //   { generation_name: "TRICASTIN 1" },
+  //   { generation_name: "TRICASTIN 2" },
+  // ];
   console.log(units);
-  const chartInputs = units.map((obj) => ({
-    chartTitle: obj.generation_name,
-    unit: obj.generation_name,
-  }));
-
-  return chartInputs.map((inputs) => renderGenByUnit(inputs));
+  if (units.length > 0) {
+    const chartInputs = units.map((obj) => ({
+      chartTitle: obj.generation_name,
+      unit: obj.generation_name,
+    }));
+    return chartInputs.map((inputs) => renderGenByUnit(inputs));
+  } else {
+    return <div>Fetching unit names...</div>;
+  }
 }
 
 async function getUnits(fuel) {
