@@ -5,7 +5,7 @@ import RTEGenByFuel from "./components/rte-gen-by-fuel";
 import RTEGenByUnit from "./components/rte-gen-by-unit";
 
 function App() {
-  const [activeCpt, setActiveCpt] = useState("Spreads");
+  const [activeCpt, setActiveCpt] = useState("RTEGenByUnit");
   console.log(activeCpt);
   return (
     <div>
@@ -39,10 +39,12 @@ function App() {
           </button>
         </div>
         <div className="box main-content chart-container">
-          {activeCpt === "Prices" && Prices()}
-          {activeCpt === "Spreads" && Spreads()}
-          {activeCpt === "RTEGenByFuel" && RTEGenByFuel()}
-          {activeCpt === "RTEGenByUnit" && RTEGenByUnit({ fuel: "nuclear" })}
+          {activeCpt === "Prices" && <Prices></Prices>}
+          {activeCpt === "Spreads" && <Spreads></Spreads>}
+          {activeCpt === "RTEGenByFuel" && <RTEGenByFuel></RTEGenByFuel>}
+          {activeCpt === "RTEGenByUnit" && (
+            <RTEGenByUnit fuel="nuclear"></RTEGenByUnit>
+          )}
         </div>
         <div className="box sidebar2">
           Sidebar2: I haven't decided what to put here yet
