@@ -30,7 +30,7 @@ function RTEGenByUnit(props) {
     }));
     return chartInputs.map((inputs) => renderGenByUnit(inputs));
   } else {
-    return <div>Fetching unit names...</div>;
+    return <div>Loading...</div>;
   }
 }
 
@@ -48,21 +48,22 @@ async function getUnits(fuel) {
 function renderGenByUnit(inputs) {
   const { chartTitle, unit } = inputs;
   return (
-    <div key={chartTitle} className="grid-item">
-      <h2 className="chart-title">{chartTitle}</h2>
-      <LineChart
-        {...getGenByUnitProps({
+    <LineChart
+      {...getGenByUnitProps(
+        {
           from: "2020-10-01",
           generation_name: unit,
-        })}
-      />
-    </div>
+        },
+        chartTitle
+      )}
+    />
   );
 }
 
-function getGenByUnitProps(searchParams) {
+function getGenByUnitProps(searchParams, chartTitle) {
   var chartParams = { ...RTEGenByUnitChartParams };
   chartParams.yConfigs = [{ name: "mw_value", lineColor: "blue" }];
+  chartParams.chartTitle = chartTitle;
   return {
     urlParams: {
       apiQueryName: "GenByUnit",

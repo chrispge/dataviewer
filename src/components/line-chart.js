@@ -14,17 +14,14 @@ import getXFormatter from "./xformatters";
 
 function LineChart(props) {
   const [data, setData] = useState([]);
-  const [isLoading, setIsLoading] = useState([]);
   console.log("In LineChart");
   console.log(props);
 
   useEffect(
     () => {
       (async () => {
-        setIsLoading(true);
         const fetchedData = await getData(props.urlParams);
         setData(fetchedData);
-        setIsLoading(false);
       })();
     },
     // decalare dependent parameters
@@ -34,17 +31,15 @@ function LineChart(props) {
 
   if (data.length > 0) {
     return renderChart(data, props.chartParams);
-  } else if (isLoading) {
-    return <div>Loading...</div>;
   } else {
-    return <div>No Data</div>;
+    return null;
   }
 }
 
 function renderChart(data, chartParams) {
   console.log("In renderChart");
   console.log(data);
-  const { x: xName, yConfigs, xFormat } = chartParams;
+  const { x: xName, yConfigs, xFormat, chartTitle } = chartParams;
   const yUpperLim = getYUpperLim(data, yConfigs);
   console.log("yUpperLim");
   console.log(yUpperLim);
@@ -54,7 +49,8 @@ function renderChart(data, chartParams) {
   const xFormatter = getXFormatter(xFormat);
   const xConfig = { name: xName, formatter: xFormatter };
   return (
-    <div>
+    <div key={chartTitle} className="grid-item">
+      <h2 className="chart-title">{chartTitle}</h2>
       <VictoryChart
         theme={VictoryTheme.material}
         containerComponent={<VictoryVoronoiContainer />}

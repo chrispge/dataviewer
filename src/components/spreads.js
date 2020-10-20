@@ -67,23 +67,23 @@ function Spreads() {
 function renderFrDe(inputs) {
   const { chartTitle, maturityType, startDate } = inputs;
   return (
-    <div key={chartTitle} className="grid-item">
-      <h2 className="chart-title">{chartTitle}</h2>
-      <LineChart
-        {...getEEXSpreadsProps({
+    <LineChart
+      {...getEEXSpreadsProps(
+        {
           from: "2020-07-01",
           region1: "fr",
           region2: "de",
           maturityType: maturityType,
           shape: "base",
           startDate: startDate,
-        })}
-      />
-    </div>
+        },
+        chartTitle
+      )}
+    />
   );
 }
 
-function getEEXSpreadsProps(searchParams) {
+function getEEXSpreadsProps(searchParams, chartTitle) {
   console.log("in getEEXSpreadsProps");
   var chartParams = { ...eexChartParams };
   chartParams.yConfigs = [
@@ -95,6 +95,7 @@ function getEEXSpreadsProps(searchParams) {
       units: "",
     },
   ];
+  chartParams.chartTitle = chartTitle;
   console.log(chartParams);
   return {
     urlParams: {

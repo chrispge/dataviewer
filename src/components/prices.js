@@ -52,27 +52,28 @@ function Prices() {
 function renderPrices(inputs) {
   const { chartTitle, region, maturityType, startDate, shape } = inputs;
   return (
-    <div key={chartTitle} className="grid-item">
-      <h2 className="chart-title">{chartTitle}</h2>
-      <LineChart
-        {...getEEXPricesProps({
+    <LineChart
+      {...getEEXPricesProps(
+        {
           from: "2020-07-01",
           region: region,
           maturity_type: maturityType,
           shape: shape,
           start_date: startDate,
-        })}
-      />
-    </div>
+        },
+        chartTitle
+      )}
+    />
   );
 }
 
-function getEEXPricesProps(searchParams) {
+function getEEXPricesProps(searchParams, chartTitle) {
   console.log("in getEEXPricesProps");
   var chartParams = { ...eexChartParams };
   chartParams.yConfigs = [
     { name: searchParams.region, lineColor: "blue", units: "" },
   ];
+  chartParams.chartTitle = chartTitle;
   console.log(chartParams);
   return {
     urlParams: {
