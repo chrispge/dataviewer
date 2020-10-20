@@ -44,21 +44,22 @@ function RTEGenByFuel() {
 function renderGenByFuel(inputs) {
   const { chartTitle, fuel } = inputs;
   return (
-    <div key={chartTitle} className="grid-item">
-      <h2 className="chart-title">{chartTitle}</h2>
-      <LineChart
-        {...getGenByFuelProps({
+    <LineChart
+      {...getGenByFuelProps(
+        {
           from: "2020-10-01",
           fuel: fuel,
-        })}
-      />
-    </div>
+        },
+        chartTitle
+      )}
+    />
   );
 }
 
-function getGenByFuelProps(searchParams) {
+function getGenByFuelProps(searchParams, chartTitle) {
   var chartParams = { ...RTEGenByFuelChartParams };
-  chartParams.yConfigs = [{ name: "mw_value", lineColor: "blue" }];
+  chartParams.yConfigs = [{ name: "mw_value", lineColor: "blue", units: "MW" }];
+  chartParams.chartTitle = chartTitle;
   return {
     urlParams: {
       apiQueryName: "GenByFuel",

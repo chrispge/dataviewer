@@ -62,7 +62,7 @@ function renderGenByUnit(inputs) {
 
 function getGenByUnitProps(searchParams, chartTitle) {
   var chartParams = { ...RTEGenByUnitChartParams };
-  chartParams.yConfigs = [{ name: "mw_value", lineColor: "blue" }];
+  chartParams.yConfigs = [{ name: "mw_value", lineColor: "blue", units: "MW" }];
   chartParams.chartTitle = chartTitle;
   return {
     urlParams: {

@@ -144,9 +144,10 @@ function makeUrl(params) {
 }
 
 function addLine(data, xConfig, yConfig) {
+  console.log("In addLine");
+  console.log(yConfig);
   const { name: yName, lineColor, units: yUnits } = yConfig;
   const { name: xName, formatter: xFormatter } = xConfig;
-  console.log("In addLine");
   return (
     <VictoryLine
       key={yName}
