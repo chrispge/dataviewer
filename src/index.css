@@ -99,7 +99,7 @@ code {
 .footer {
   text-align: center;
   font-weight: lighter;
-  font-size: 1rem
+  font-size: 12px
 }
 
 /* .sidebar2 {
@@ -126,7 +126,7 @@ code {
   color: #000;
   border: none;
   padding: 10px;
-  font-size: 12;
+  font-size: 12px;
   text-align: left;
 }
 
