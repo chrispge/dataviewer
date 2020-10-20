@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Collapsible from "react-collapsible";
 import Spreads from "./components/spreads";
 import Prices from "./components/prices";
 import RTEGenByFuel from "./components/rte-gen-by-fuel";
@@ -26,34 +27,36 @@ function App() {
             title="French Generation by Fuel"
             cptSetter={() => setActiveCpt("RTEGenByFuel")}
           />
-          <SidebarButton
-            title="French Gen by Unit: Nuclear"
-            cptSetter={() => setActiveCpt("RTEGenByUnitNuclear")}
-          />
-          <SidebarButton
-            title="French Gen by Unit: Gas"
-            cptSetter={() => setActiveCpt("RTEGenByUnitGas")}
-          />
-          <SidebarButton
-            title="French Gen by Unit: Coal"
-            cptSetter={() => setActiveCpt("RTEGenByUnitCoal")}
-          />
-          <SidebarButton
-            title="French Gen by Unit: Hydro Reservoir"
-            cptSetter={() => setActiveCpt("RTEGenByUnitHydroRes")}
-          />
-          <SidebarButton
-            title="French Gen by Unit: Hydro Run-of-River"
-            cptSetter={() => setActiveCpt("RTEGenByUnitHydroROR")}
-          />
-          <SidebarButton
-            title="French Gen by Unit: Hydro Pumped Storage"
-            cptSetter={() => setActiveCpt("RTEGenByUnitHydroPS")}
-          />
-          <SidebarButton
-            title="French Gen by Unit: Oil"
-            cptSetter={() => setActiveCpt("RTEGenByUnitOil")}
-          />
+          <Collapsible trigger="RTE Gen By Unit">
+            <SidebarButton
+              title="French Gen by Unit: Nuclear"
+              cptSetter={() => setActiveCpt("RTEGenByUnitNuclear")}
+            />
+            <SidebarButton
+              title="French Gen by Unit: Gas"
+              cptSetter={() => setActiveCpt("RTEGenByUnitGas")}
+            />
+            <SidebarButton
+              title="French Gen by Unit: Coal"
+              cptSetter={() => setActiveCpt("RTEGenByUnitCoal")}
+            />
+            <SidebarButton
+              title="French Gen by Unit: Hydro Reservoir"
+              cptSetter={() => setActiveCpt("RTEGenByUnitHydroRes")}
+            />
+            <SidebarButton
+              title="French Gen by Unit: Hydro Run-of-River"
+              cptSetter={() => setActiveCpt("RTEGenByUnitHydroROR")}
+            />
+            <SidebarButton
+              title="French Gen by Unit: Hydro Pumped Storage"
+              cptSetter={() => setActiveCpt("RTEGenByUnitHydroPS")}
+            />
+            <SidebarButton
+              title="French Gen by Unit: Oil"
+              cptSetter={() => setActiveCpt("RTEGenByUnitOil")}
+            />
+          </Collapsible>
         </div>
         <div className="box main-content chart-container">
           {activeCpt === "Prices" && <Prices></Prices>}
