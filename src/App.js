@@ -24,10 +24,10 @@ function App() {
             cptSetter={() => setActiveCpt("Spreads")}
           />
           <SidebarButton
-            title="French Generation by Fuel"
+            title="RTE Generation by Fuel"
             cptSetter={() => setActiveCpt("RTEGenByFuel")}
           />
-          <Collapsible trigger="RTE Gen By Unit" transitionTime={50}>
+          <Collapsible trigger="RTE Generation by Unit" transitionTime={50}>
             <SidebarButton
               title="Nuclear"
               cptSetter={() => setActiveCpt("RTEGenByUnitNuclear")}
