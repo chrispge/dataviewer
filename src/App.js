@@ -27,33 +27,33 @@ function App() {
             title="French Generation by Fuel"
             cptSetter={() => setActiveCpt("RTEGenByFuel")}
           />
-          <Collapsible trigger="RTE Gen By Unit">
+          <Collapsible trigger="RTE Gen By Unit" transitionTime={50}>
             <SidebarButton
-              title="French Gen by Unit: Nuclear"
+              title="Nuclear"
               cptSetter={() => setActiveCpt("RTEGenByUnitNuclear")}
             />
             <SidebarButton
-              title="French Gen by Unit: Gas"
+              title="Gas"
               cptSetter={() => setActiveCpt("RTEGenByUnitGas")}
             />
             <SidebarButton
-              title="French Gen by Unit: Coal"
+              title="Coal"
               cptSetter={() => setActiveCpt("RTEGenByUnitCoal")}
             />
             <SidebarButton
-              title="French Gen by Unit: Hydro Reservoir"
+              title="Hydro Reservoir"
               cptSetter={() => setActiveCpt("RTEGenByUnitHydroRes")}
             />
             <SidebarButton
-              title="French Gen by Unit: Hydro Run-of-River"
+              title="Hydro Run-of-River"
               cptSetter={() => setActiveCpt("RTEGenByUnitHydroROR")}
             />
             <SidebarButton
-              title="French Gen by Unit: Hydro Pumped Storage"
+              title="Hydro Pumped Storage"
               cptSetter={() => setActiveCpt("RTEGenByUnitHydroPS")}
             />
             <SidebarButton
-              title="French Gen by Unit: Oil"
+              title="Oil"
               cptSetter={() => setActiveCpt("RTEGenByUnitOil")}
             />
           </Collapsible>

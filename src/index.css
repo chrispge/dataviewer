@@ -119,10 +119,74 @@ code {
 }
 
 .sidebar-btn {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  font-weight: 400;
 
   background-color: #fff;
   color: #000;
   border: none;
   padding: 10px;
   font-size: 12;
+  text-align: left;
 }
+
+/* Collapsible css based on this
+https://github.com/glennflanagan/react-collapsible/blob/develop/example/_src/sass/components/_Collapsible.scss
+ */
+
+.Collapsible {
+  background-color: white;
+}
+
+
+.Collapsible__contentInner {
+  padding: 10px;
+  border: none;
+  border-top: 0;
+}
+
+.Collapsible__trigger {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  display: block;
+  font-weight: 400;
+  text-decoration: none;
+  color: grey;
+  position: relative;
+  padding: 10px;
+  background: white;
+  color: black;
+  font-size: 12px;
+
+}
+.Collapsible__trigger:open .after {
+  font-family: "Times New Roman";
+  border: 1px solid black;
+  background-color: blue;
+}
+
+  /* &:after {
+    font-family: 'FontAwesome';
+    content: '\f107';
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    display: block;
+    transition: transform 300ms;
+  } */
+
+  /* &.is-open {
+    &:after {
+      transform: rotateZ(180deg);
+    }
+  } */
+
+  /* &.is-disabled {
+    opacity: 0.5;
+    background-color: grey;
+  } */
+
+
