@@ -133,7 +133,8 @@ async function getData(urlParams) {
   const url = makeUrl(urlParams);
   console.log(url);
   const response = await fetch(url);
-  const data = await response.json();
+  console.log(response);
+  const data = response.json();
   console.log(data);
   return data;
 }
@@ -143,11 +144,9 @@ function makeUrl(params) {
   const { apiQueryName, searchParams } = params;
   console.log(apiQueryName);
   console.log(searchParams);
-  const queryString = Object.keys(searchParams)
-    .map((key) => key + "=" + searchParams[key])
-    .join("&");
-  const url = new URL(apiQueryName, "http://localhost:3001/");
-  url.search = queryString;
+  const queryString = Object.values(searchParams).join("-");
+  // data folder must be in 'public'
+  const url = "./data/" + apiQueryName + "/" + queryString + ".json";
   return url;
 }
 

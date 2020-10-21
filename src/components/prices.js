@@ -52,18 +52,20 @@ function Prices() {
 function renderPrices(inputs) {
   const { chartTitle, region, maturityType, startDate, shape } = inputs;
   return (
-    <LineChart
-      {...getEEXPricesProps(
-        {
-          from: "2020-07-01",
-          region: region,
-          maturity_type: maturityType,
-          shape: shape,
-          start_date: startDate,
-        },
-        chartTitle
-      )}
-    />
+    <div key={chartTitle}>
+      <LineChart
+        {...getEEXPricesProps(
+          {
+            region: region,
+            maturity_type: maturityType,
+            start_date: startDate,
+            shape: shape,
+            from: "2020-07-01",
+          },
+          chartTitle
+        )}
+      />
+    </div>
   );
 }
 

@@ -7,7 +7,7 @@ import RTEGenByUnit from "./components/rte-gen-by-unit";
 import SidebarButton from "./components/sidebar-button";
 
 function App() {
-  const [activeCpt, setActiveCpt] = useState("RTEGenByFuel");
+  const [activeCpt, setActiveCpt] = useState("Prices");
   console.log(activeCpt);
   return (
     <div>

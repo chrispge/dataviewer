@@ -67,19 +67,21 @@ function Spreads() {
 function renderFrDe(inputs) {
   const { chartTitle, maturityType, startDate } = inputs;
   return (
-    <LineChart
-      {...getEEXSpreadsProps(
-        {
-          from: "2020-07-01",
-          region1: "fr",
-          region2: "de",
-          maturityType: maturityType,
-          shape: "base",
-          startDate: startDate,
-        },
-        chartTitle
-      )}
-    />
+    <div key={chartTitle}>
+      <LineChart
+        {...getEEXSpreadsProps(
+          {
+            region1: "fr",
+            region2: "de",
+            maturity_type: maturityType,
+            start_date: startDate,
+            shape: "base",
+            from: "2020-07-01",
+          },
+          chartTitle
+        )}
+      />
+    </div>
   );
 }
 

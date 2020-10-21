@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import LineChart from "./line-chart";
 
 const RTEGenByUnitChartParams = {
@@ -9,64 +9,37 @@ const RTEGenByUnitChartParams = {
 
 function RTEGenByUnit(props) {
   console.log("In RTE GenByUnit");
-  const [units, setUnits] = useState([]);
-  useEffect(() => {
-    (async () => {
-      const fetchedUnits = await getUnits(props.fuel);
+  const { fuel } = props;
+  const chartInputs = [{ chartTitle: "Nogent 1", unit: "nogent 1" }];
 
-      setUnits(fetchedUnits);
-    })();
-  }, [props.fuel]);
-
-  // const units = [
-  //   { generation_name: "TRICASTIN 1" },
-  //   { generation_name: "TRICASTIN 2" },
-  // ];
-  console.log(units);
-  if (units.length > 0) {
-    const chartInputs = units.map((obj) => ({
-      chartTitle: obj.generation_name,
-      unit: obj.generation_name,
-    }));
-    return chartInputs.map((inputs) => renderGenByUnit(inputs));
-  } else {
-    return <div>Loading...</div>;
-  }
+  return chartInputs.map((inputs) => renderGenByUnit(fuel, inputs));
 }
 
-async function getUnits(fuel) {
-  console.log("In getUnits");
-  const apiQueryName = "RTEUnits";
-  const url = new URL(apiQueryName, "http://localhost:3001/");
-  url.search = "fuel=" + fuel;
-  const response = await fetch(url);
-  const data = await response.json();
-  console.log(url);
-  return data;
-}
-
-function renderGenByUnit(inputs) {
+function renderGenByUnit(fuel, inputs) {
   const { chartTitle, unit } = inputs;
   return (
-    <LineChart
-      {...getGenByUnitProps(
-        {
-          from: "2020-10-01",
-          generation_name: unit,
-        },
-        chartTitle
-      )}
-    />
+    <div key={chartTitle}>
+      <LineChart
+        {...getGenByUnitProps(
+          {
+            generation_name: unit,
+            from: "2020-10-01",
+          },
+          chartTitle,
+          fuel
+        )}
+      />
+    </div>
   );
 }
 
-function getGenByUnitProps(searchParams, chartTitle) {
+function getGenByUnitProps(searchParams, chartTitle, fuel) {
   var chartParams = { ...RTEGenByUnitChartParams };
   chartParams.yConfigs = [{ name: "mw_value", lineColor: "blue", units: "MW" }];
   chartParams.chartTitle = chartTitle;
   return {
     urlParams: {
-      apiQueryName: "GenByUnit",
+      apiQueryName: "GenByUnit/" + fuel,
       searchParams: searchParams,
     },
     chartParams: chartParams,
