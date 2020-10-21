@@ -28,19 +28,6 @@ function RTEGenByFuel() {
   return chartInputs.map((inputs) => renderGenByFuel(inputs));
 }
 
-// function getGenByUnitProps() {
-//   return {
-//     urlParams: {
-//       apiQueryName: "GenByUnit",
-//       searchParams: {
-//         generation_name: "tricastin 1",
-//         from: "2020-10-06",
-//       },
-//     },
-//     chartParams: powerChartParams,
-//   };
-// }
-
 function renderGenByFuel(inputs) {
   const { chartTitle, fuel } = inputs;
   return (
