@@ -14,14 +14,17 @@ import getXFormatter from "./xformatters";
 
 function LineChart(props) {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   console.log("In LineChart");
   console.log(props);
 
   useEffect(
     () => {
       (async () => {
+        setIsLoading(true);
         const fetchedData = await getData(props.urlParams);
         setData(fetchedData);
+        setIsLoading(false);
       })();
     },
     // decalare dependent parameters
@@ -31,6 +34,11 @@ function LineChart(props) {
 
   if (data.length > 0) {
     return renderChart(data, props.chartParams);
+  } else if (isLoading) {
+    // experiment to see if adding a Loading place holder produces less jumpiness
+    // (it doesn't)
+    // return <div>Loading...</div>;
+    return null;
   } else {
     return null;
   }
