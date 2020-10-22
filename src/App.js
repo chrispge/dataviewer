@@ -12,7 +12,7 @@ function App() {
   return (
     <div>
       <div className="wrapper">
-        <div className="header">Data viewer thing</div>
+        <div className="header">Data viewer</div>
         <div className="body"></div>
         <div className="box sidebar">
           <SidebarButton
