@@ -47,7 +47,7 @@ function renderGenByFuel(inputs) {
 
 function getGenByFuelProps(searchParams, chartTitle) {
   var chartParams = { ...RTEGenByFuelChartParams };
-  chartParams.yConfigs = [{ name: "mw_value", lineColor: "blue" }];
+  chartParams.yConfigs = [{ name: "mw_value", lineColor: "blue", units: "MW" }];
   chartParams.chartTitle = chartTitle;
   return {
     urlParams: {
