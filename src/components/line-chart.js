@@ -146,9 +146,12 @@ function makeUrl(params) {
   console.log(searchParams);
   var noFrom = { ...searchParams };
   delete noFrom.from;
-  const queryString = Object.values(noFrom).join("-");
+  var queryString = Object.values(noFrom).join("-");
+  queryString = queryString.replace(" ", "");
+  console.log(queryString);
   // data folder must be in 'public'
   const url = "./data/" + apiQueryName + "/" + queryString + ".json";
+  console.log(url);
   return url;
 }
 

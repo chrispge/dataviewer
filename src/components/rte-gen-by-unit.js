@@ -22,6 +22,7 @@ function renderGenByUnit(fuel, inputs) {
       <LineChart
         {...getGenByUnitProps(
           {
+            fuel: fuel,
             generation_name: unit,
             from: "2020-10-01",
           },
@@ -39,7 +40,7 @@ function getGenByUnitProps(searchParams, chartTitle, fuel) {
   chartParams.chartTitle = chartTitle;
   return {
     urlParams: {
-      apiQueryName: "GenByUnit/" + fuel,
+      apiQueryName: "GenByUnit",
       searchParams: searchParams,
     },
     chartParams: chartParams,
