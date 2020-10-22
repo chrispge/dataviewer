@@ -84,12 +84,6 @@ function App() {
             <RTEGenByUnit fuel="fossil_oil"></RTEGenByUnit>
           )}
         </div>
-        <div className="box sidebar2">
-          Sidebar2: I haven't decided what to put here yet
-        </div>
-        <div className="box footer">
-          © Chris Page {new Date().getFullYear()}
-        </div>
       </div>
     </div>
   );
