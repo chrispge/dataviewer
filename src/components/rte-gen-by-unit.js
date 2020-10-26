@@ -22,7 +22,6 @@ function RTEGenByUnit(props) {
   //   { generation_name: "TRICASTIN 1" },
   //   { generation_name: "TRICASTIN 2" },
   // ];
-  console.log(units);
   if (units.length > 0) {
     const chartInputs = units.map((obj) => ({
       chartTitle: obj.generation_name,
@@ -32,6 +31,24 @@ function RTEGenByUnit(props) {
   } else {
     return <div>Loading...</div>;
   }
+}
+
+async function getUnitsFromDB(fuel) {
+  const apiQueryName = "RTEUnits";
+  const url = new URL(
+    apiQueryName,
+    "https://sleepy-refuge-42158.herokuapp.com/"
+  );
+  url.search = "fuel=" + fuel;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+}
+
+async function getUnits(fuel) {
+  const response = await fetch("./units/units.json");
+  const data = await response.json();
+  return data[0][fuel];
 }
 
 function renderGenByUnit(inputs) {
