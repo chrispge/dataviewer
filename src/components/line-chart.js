@@ -11,8 +11,6 @@ import {
   VictoryTooltip,
 } from "victory";
 import getXFormatter from "./xformatters";
-import dotenv from "dotenv";
-dotenv.config();
 
 function LineChart(props) {
   const [data, setData] = useState([]);
@@ -147,8 +145,10 @@ function makeUrl(params) {
   const queryString = Object.keys(searchParams)
     .map((key) => key + "=" + searchParams[key])
     .join("&");
-  console.log(process.env);
-  const url = new URL(apiQueryName, process.env.REACT_APP_BASE_URL);
+  const url = new URL(
+    apiQueryName,
+    "https://sleepy-refuge-42158.herokuapp.com/"
+  );
   url.search = queryString;
   return url;
 }
