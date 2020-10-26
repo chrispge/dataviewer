@@ -11,6 +11,8 @@ import {
   VictoryTooltip,
 } from "victory";
 import getXFormatter from "./xformatters";
+import dotenv from "dotenv";
+dotenv.config();
 
 function LineChart(props) {
   const [data, setData] = useState([]);
@@ -140,6 +142,17 @@ async function getData(urlParams) {
 }
 
 function makeUrl(params) {
+  const { apiQueryName, searchParams } = params;
+  console.log(apiQueryName);
+  const queryString = Object.keys(searchParams)
+    .map((key) => key + "=" + searchParams[key])
+    .join("&");
+  const url = new URL(apiQueryName, process.env.REACT_APP_BASE_URL);
+  url.search = queryString;
+  return url;
+}
+
+function makeFileUrl(params) {
   console.log("In makeUrl:");
   const { apiQueryName, searchParams } = params;
   console.log(apiQueryName);
@@ -153,6 +166,37 @@ function makeUrl(params) {
   const url = "./data/" + apiQueryName + "/" + queryString + ".json";
   console.log(url);
   return url;
+}
+
+function streamData() {
+  const url = "http://localhost:3001/GenByUnit?fuel=nuclear&unit=tricastin%201";
+  fetch(url)
+    .then((response) => {
+      const reader = response.body.getReader();
+      // create a new stream with all the data
+      // later if you need to you will be able to dequeue old data off this stream
+      return new ReadableStream({
+        start(controller) {
+          return pump();
+
+          function pump() {
+            return reader.read().then(({ done, value }) => {
+              // When no more data needs to be consumed, close the stream
+              if (done) {
+                controller.close();
+                return;
+              }
+              // Enqueue the next data chunk into target stream
+              controller.enqueue(value);
+              return pump();
+            });
+          }
+        },
+      });
+    })
+    .then((stream) => new Response(stream))
+    .then((response) => response.json())
+    .then((data) => renderChart(data));
 }
 
 function addLine(data, xConfig, yConfig) {
@@ -190,4 +234,5 @@ function addLine(data, xConfig, yConfig) {
     />
   );
 }
+
 export default LineChart;
