@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import LineChart from "./line-chart";
 
 const RTEGenByUnitChartParams = {
@@ -9,32 +9,49 @@ const RTEGenByUnitChartParams = {
 
 function RTEGenByUnit(props) {
   console.log("In RTE GenByUnit");
-  const { fuel } = props;
-  const chartInputs = [{ chartTitle: "Nogent 1", unit: "nogent 1" }];
+  const [units, setUnits] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const fetchedUnits = await getUnits(props.fuel);
 
-  return chartInputs.map((inputs) => renderGenByUnit(fuel, inputs));
+      setUnits(fetchedUnits);
+    })();
+  }, [props.fuel]);
+
+  // const units = [
+  //   { generation_name: "TRICASTIN 1" },
+  //   { generation_name: "TRICASTIN 2" },
+  // ];
+  console.log(units);
+  if (units.length > 0) {
+    const chartInputs = units.map((obj) => ({
+      chartTitle: obj.generation_name,
+      unit: obj.generation_name,
+    }));
+    return chartInputs.map((inputs) => renderGenByUnit(inputs));
+  } else {
+    return <div>Loading...</div>;
+  }
 }
 
-function renderGenByUnit(fuel, inputs) {
+function renderGenByUnit(inputs) {
   const { chartTitle, unit } = inputs;
   return (
     <div key={chartTitle}>
       <LineChart
         {...getGenByUnitProps(
           {
-            fuel: fuel,
             generation_name: unit,
             from: "2020-10-01",
           },
-          chartTitle,
-          fuel
+          chartTitle
         )}
       />
     </div>
   );
 }
 
-function getGenByUnitProps(searchParams, chartTitle, fuel) {
+function getGenByUnitProps(searchParams, chartTitle) {
   var chartParams = { ...RTEGenByUnitChartParams };
   chartParams.yConfigs = [{ name: "mw_value", lineColor: "blue", units: "MW" }];
   chartParams.chartTitle = chartTitle;
