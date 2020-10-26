@@ -29,7 +29,7 @@ function RTEGenByUnit(props) {
     }));
     return chartInputs.map((inputs) => renderGenByUnit(inputs));
   } else {
-    return <div>Loading...</div>;
+    return null;
   }
 }
 
