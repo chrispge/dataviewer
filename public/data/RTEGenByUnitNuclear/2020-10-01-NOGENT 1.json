@@ -1,1 +1,0 @@
-{"length": 105, "name": "error", "severity": "ERROR", "code": "42703", "position": "137", "file": "parse_relation.c", "line": "3294", "routine": "errorMissingColumn"}
