@@ -8,7 +8,6 @@ import SidebarButton from "./components/sidebar-button";
 
 function App() {
   const [activeCpt, setActiveCpt] = useState("Prices");
-  console.log(activeCpt);
   return (
     <div>
       <div className="wrapper">

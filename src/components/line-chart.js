@@ -15,8 +15,6 @@ import getXFormatter from "./xformatters";
 function LineChart(props) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  console.log("In LineChart");
-  console.log(props);
 
   useEffect(
     () => {
@@ -45,15 +43,9 @@ function LineChart(props) {
 }
 
 function renderChart(data, chartParams) {
-  console.log("In renderChart");
-  console.log(data);
   const { x: xName, yConfigs, xFormat, chartTitle } = chartParams;
   const yUpperLim = getYUpperLim(data, yConfigs);
-  console.log("yUpperLim");
-  console.log(yUpperLim);
   const yLowerLim = getYLowerLim(data, yConfigs);
-  console.log("yLowerLim");
-  console.log(yLowerLim);
   const xFormatter = getXFormatter(xFormat);
   const xConfig = { name: xName, formatter: xFormatter };
   return (
@@ -99,9 +91,7 @@ function getYUpperLim(data, yConfigs) {
 function getYLowerLim(data, yConfigs) {
   const yMinValues = yConfigs.map((yConfig) => getYMin(data, yConfig.name));
   const yMin = Math.min(Math.min(...yMinValues), 0);
-  console.log(yMin);
   const orderMag = Math.ceil(Math.log10(Math.abs(yMin))) - 1;
-  console.log(orderMag);
   const multiplier = Math.max(Math.pow(10, orderMag), 1);
   const yLowerLim =
     multiplier * Math.sign(yMin) * Math.ceil(Math.abs(yMin) / multiplier);
@@ -109,39 +99,26 @@ function getYLowerLim(data, yConfigs) {
 }
 
 function getYMax(data, yName) {
-  console.log("In getYMax");
-  console.log(yName);
   const yValues = data.map((datum) => datum[yName]);
-  console.log(yValues);
   const yMax = Math.max(...yValues);
-  console.log(yMax);
   return yMax;
 }
 
 function getYMin(data, yName) {
-  console.log("In getYMin");
-  console.log(yName);
   const yValues = data.map((datum) => datum[yName]);
-  console.log(yValues);
   const yMin = Math.min(...yValues);
-  console.log(yMin);
   return yMin;
 }
 
 async function getData(urlParams) {
-  console.log("in getData");
   const url = makeUrl(urlParams);
-  console.log(url);
   const response = await fetch(url);
-  console.log(response);
   const data = response.json();
-  console.log(data);
   return data;
 }
 
 function makeUrl(params) {
   const { apiQueryName, searchParams } = params;
-  console.log(apiQueryName);
   const queryString = Object.keys(searchParams)
     .map((key) => key + "=" + searchParams[key])
     .join("&");
@@ -154,18 +131,13 @@ function makeUrl(params) {
 }
 
 function makeFileUrl(params) {
-  console.log("In makeUrl:");
   const { apiQueryName, searchParams } = params;
-  console.log(apiQueryName);
-  console.log(searchParams);
   var noFrom = { ...searchParams };
   delete noFrom.from;
   var queryString = Object.values(noFrom).join("-");
   queryString = queryString.replace(new RegExp(" ", "g"), "");
-  console.log(queryString);
   // data folder must be in 'public'
   const url = "./data/" + apiQueryName + "/" + queryString + ".json";
-  console.log(url);
   return url;
 }
 
@@ -201,8 +173,6 @@ function streamData() {
 }
 
 function addLine(data, xConfig, yConfig) {
-  console.log("In addLine");
-  console.log(yConfig);
   const { name: yName, lineColor, units: yUnits } = yConfig;
   const { name: xName, formatter: xFormatter } = xConfig;
   return (
