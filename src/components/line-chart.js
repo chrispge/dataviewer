@@ -147,6 +147,7 @@ function makeUrl(params) {
   const queryString = Object.keys(searchParams)
     .map((key) => key + "=" + searchParams[key])
     .join("&");
+  console.log(process.env);
   const url = new URL(apiQueryName, process.env.REACT_APP_BASE_URL);
   url.search = queryString;
   return url;
