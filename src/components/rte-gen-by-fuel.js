@@ -1,5 +1,6 @@
 import React from "react";
 import LineChart from "./line-chart";
+import {getDateOffset} from "./format-date"; 
 
 const RTEGenByFuelChartParams = {
   x: "start_time",
@@ -30,12 +31,13 @@ function RTEGenByFuel() {
 
 function renderGenByFuel(inputs) {
   const { chartTitle, fuel } = inputs;
+  const from = getDateOffset(-3)
   return (
     <div key={chartTitle}>
       <LineChart
         {...getGenByFuelProps(
           {
-            from: "2020-11-01",
+            from: from,
             fuel: fuel,
           },
           chartTitle

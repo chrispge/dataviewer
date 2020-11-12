@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LineChart from "./line-chart";
+import {getDateOffset} from "./format-date"; 
 
 const RTEGenByUnitChartParams = {
   x: "start_time",
@@ -53,13 +54,14 @@ async function getUnits(fuel) {
 
 function renderGenByUnit(inputs) {
   const { chartTitle, unit } = inputs;
+  const from = getDateOffset(-3)
   return (
     <div key={chartTitle}>
       <LineChart
         {...getGenByUnitProps(
           {
             generation_name: unit,
-            from: "2020-11-01",
+            from: from,
           },
           chartTitle
         )}
