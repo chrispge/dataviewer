@@ -35,7 +35,7 @@ function renderGenByFuel(inputs) {
       <LineChart
         {...getGenByFuelProps(
           {
-            from: "2020-10-01",
+            from: "2020-11-01",
             fuel: fuel,
           },
           chartTitle

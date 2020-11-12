@@ -59,7 +59,7 @@ function renderGenByUnit(inputs) {
         {...getGenByUnitProps(
           {
             generation_name: unit,
-            from: "2020-10-01",
+            from: "2020-11-01",
           },
           chartTitle
         )}
