@@ -2,22 +2,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import ListSubheader from "@material-ui/core/ListSubheader";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import Paper from "@material-ui/core/Paper";
 import Collapse from "@material-ui/core/Collapse";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
-import Typography from "@material-ui/core/Typography";
-import {
-  Route,
-  Link,
-  BrowserRouter as Router,
-  useHistory,
-} from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -68,61 +60,56 @@ export default function Sidebar() {
   };
 
   return (
-    <div className={classes.root}>
-      <Route>
-        {({ location }) => (
-          <Typography gutterBottom>
-            Current route: {location.pathname}
-          </Typography>
-        )}
-      </Route>
+    <List component="nav" className={classes.root}>
+      <ListItemLink to="/prices/" primary="Prices" />
+      <ListItemLink to="/spreads/" primary="Spreads" />
+      <ListItemLink to="/rte-gen-by-fuel/" primary="RTE Gen By Fuel" />
 
-      <Paper eleveation={0}>
-        <List
-          component="nav"
-          aria-labelledby="nested-list-subheader"
-          // subheader={
-          //   <ListSubheader component="div" id="nested-list-subheader">
-          //     Select a data source:
-          //   </ListSubheader>
-          // }
-          className={classes.root}
-        >
-          <ListItemLink to="/prices/" primary="Prices" />
-          <ListItemLink to="/spreads/" primary="Spreads" />
-          <ListItemLink to="/rte-gen-by-fuel/" primary="RTE Gen By Fuel" />
-
-          {/* <ListItem button>
+      {/* collpsable list
+          https://material-ui.com/components/lists/#lists
+          */}
+      <ListItem button onClick={handleClick}>
         <ListItemText primary="RTE Gen By Unit" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Nuclear" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Gas" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Coal" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Hydro Reservoir" />
-          </ListItem>
-          <ListItem butto className={classes.nested} n>
-            <ListItemText primary="Hydro Run-of-River" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Hydro Pumped Storage" />
-          </ListItem>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Oil" />
-          </ListItem>
+          <ListItemLink
+            className={classes.nested}
+            to="/rte-gen-by-fuel/nuclear"
+            primary="Nuclear"
+          />
+          <ListItemLink
+            classNmae={classes.nested}
+            to="/rte-gen-by-fuel/gas"
+            primary="Gas"
+          />
+          <ListItemLink
+            classNmae={classes.nested}
+            to="/rte-gen-by-fuel/coal"
+            primary="Coal"
+          />
+          <ListItemLink
+            to="/rte-gen-by-fuel/hydro-res"
+            primary="Hydro Reservoir"
+          />
+          <ListItemLink
+            classNmae={classes.nested}
+            to="/rte-gen-by-fuel/hydro-ror"
+            primary="Hydro Run-of-River"
+          />
+          <ListItemLink
+            classNmae={classes.nested}
+            to="/rte-gen-by-fuel/hydro-ps"
+            primary="Hydro Pumped-Storage"
+          />
+          <ListItemLink
+            classNmae={classes.nested}
+            to="/rte-gen-by-fuel/oil"
+            primary="Oil"
+          />
         </List>
-      </Collapse> */}
-        </List>
-      </Paper>
-    </div>
+      </Collapse>
+    </List>
   );
 }
