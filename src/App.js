@@ -11,81 +11,79 @@ function App() {
   const [activeCpt, setActiveCpt] = useState("Prices");
   return (
     <div>
-      <div className="wrapper">
-        <Typography variant="h1" align="center">
-          Data Viewer
-        </Typography>
-        <div className="body"></div>
-        <div className="box sidebar">
+      <Typography variant="h1" align="center">
+        Data Viewer
+      </Typography>
+      <div className="body"></div>
+      <div className="box sidebar">
+        <SidebarButton
+          title="Prices"
+          cptSetter={() => setActiveCpt("Prices")}
+        />
+        <SidebarButton
+          title="Spreads"
+          cptSetter={() => setActiveCpt("Spreads")}
+        />
+        <SidebarButton
+          title="RTE Generation by Fuel"
+          cptSetter={() => setActiveCpt("RTEGenByFuel")}
+        />
+        <Collapsible trigger="RTE Generation by Unit" transitionTime={50}>
           <SidebarButton
-            title="Prices"
-            cptSetter={() => setActiveCpt("Prices")}
+            title="Nuclear"
+            cptSetter={() => setActiveCpt("RTEGenByUnitNuclear")}
           />
           <SidebarButton
-            title="Spreads"
-            cptSetter={() => setActiveCpt("Spreads")}
+            title="Gas"
+            cptSetter={() => setActiveCpt("RTEGenByUnitGas")}
           />
           <SidebarButton
-            title="RTE Generation by Fuel"
-            cptSetter={() => setActiveCpt("RTEGenByFuel")}
+            title="Coal"
+            cptSetter={() => setActiveCpt("RTEGenByUnitCoal")}
           />
-          <Collapsible trigger="RTE Generation by Unit" transitionTime={50}>
-            <SidebarButton
-              title="Nuclear"
-              cptSetter={() => setActiveCpt("RTEGenByUnitNuclear")}
-            />
-            <SidebarButton
-              title="Gas"
-              cptSetter={() => setActiveCpt("RTEGenByUnitGas")}
-            />
-            <SidebarButton
-              title="Coal"
-              cptSetter={() => setActiveCpt("RTEGenByUnitCoal")}
-            />
-            <SidebarButton
-              title="Hydro Reservoir"
-              cptSetter={() => setActiveCpt("RTEGenByUnitHydroRes")}
-            />
-            <SidebarButton
-              title="Hydro Run-of-River"
-              cptSetter={() => setActiveCpt("RTEGenByUnitHydroROR")}
-            />
-            <SidebarButton
-              title="Hydro Pumped Storage"
-              cptSetter={() => setActiveCpt("RTEGenByUnitHydroPS")}
-            />
-            <SidebarButton
-              title="Oil"
-              cptSetter={() => setActiveCpt("RTEGenByUnitOil")}
-            />
-          </Collapsible>
-        </div>
-        <div className="box main-content chart-container">
-          {activeCpt === "Prices" && <Prices></Prices>}
-          {activeCpt === "Spreads" && <Spreads></Spreads>}
-          {activeCpt === "RTEGenByFuel" && <RTEGenByFuel></RTEGenByFuel>}
-          {activeCpt === "RTEGenByUnitNuclear" && (
-            <RTEGenByUnit fuel="nuclear"></RTEGenByUnit>
-          )}
-          {activeCpt === "RTEGenByUnitGas" && (
-            <RTEGenByUnit fuel="fossil_gas"></RTEGenByUnit>
-          )}
-          {activeCpt === "RTEGenByUnitCoal" && (
-            <RTEGenByUnit fuel="fossil_hard_coal"></RTEGenByUnit>
-          )}
-          {activeCpt === "RTEGenByUnitHydroRes" && (
-            <RTEGenByUnit fuel="hydro_water_reservoir"></RTEGenByUnit>
-          )}
-          {activeCpt === "RTEGenByUnitHydroROR" && (
-            <RTEGenByUnit fuel="hydro_run_of_river_and_poundage"></RTEGenByUnit>
-          )}
-          {activeCpt === "RTEGenByUnitHydroPS" && (
-            <RTEGenByUnit fuel="hydro_pumped_storage"></RTEGenByUnit>
-          )}
-          {activeCpt === "RTEGenByUnitOil" && (
-            <RTEGenByUnit fuel="fossil_oil"></RTEGenByUnit>
-          )}
-        </div>
+          <SidebarButton
+            title="Hydro Reservoir"
+            cptSetter={() => setActiveCpt("RTEGenByUnitHydroRes")}
+          />
+          <SidebarButton
+            title="Hydro Run-of-River"
+            cptSetter={() => setActiveCpt("RTEGenByUnitHydroROR")}
+          />
+          <SidebarButton
+            title="Hydro Pumped Storage"
+            cptSetter={() => setActiveCpt("RTEGenByUnitHydroPS")}
+          />
+          <SidebarButton
+            title="Oil"
+            cptSetter={() => setActiveCpt("RTEGenByUnitOil")}
+          />
+        </Collapsible>
+      </div>
+      <div className="box main-content ">
+        {activeCpt === "Prices" && <Prices></Prices>}
+        {activeCpt === "Spreads" && <Spreads></Spreads>}
+        {activeCpt === "RTEGenByFuel" && <RTEGenByFuel></RTEGenByFuel>}
+        {activeCpt === "RTEGenByUnitNuclear" && (
+          <RTEGenByUnit fuel="nuclear"></RTEGenByUnit>
+        )}
+        {activeCpt === "RTEGenByUnitGas" && (
+          <RTEGenByUnit fuel="fossil_gas"></RTEGenByUnit>
+        )}
+        {activeCpt === "RTEGenByUnitCoal" && (
+          <RTEGenByUnit fuel="fossil_hard_coal"></RTEGenByUnit>
+        )}
+        {activeCpt === "RTEGenByUnitHydroRes" && (
+          <RTEGenByUnit fuel="hydro_water_reservoir"></RTEGenByUnit>
+        )}
+        {activeCpt === "RTEGenByUnitHydroROR" && (
+          <RTEGenByUnit fuel="hydro_run_of_river_and_poundage"></RTEGenByUnit>
+        )}
+        {activeCpt === "RTEGenByUnitHydroPS" && (
+          <RTEGenByUnit fuel="hydro_pumped_storage"></RTEGenByUnit>
+        )}
+        {activeCpt === "RTEGenByUnitOil" && (
+          <RTEGenByUnit fuel="fossil_oil"></RTEGenByUnit>
+        )}
       </div>
     </div>
   );

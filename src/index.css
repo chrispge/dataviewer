@@ -1,0 +1,9 @@
+.main-content {
+  grid-area: main-content;
+  overflow-y: scroll;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-gap: 20px;
+  padding: 20px;
+}
