@@ -11,6 +11,7 @@ import {
   VictoryTooltip,
 } from "victory";
 import getXFormatter from "./xformatters";
+import Typography from "@material-ui/core/Typography";
 
 function LineChart(props) {
   const [data, setData] = useState([]);
@@ -50,7 +51,9 @@ function renderChart(data, chartParams) {
   const xConfig = { name: xName, formatter: xFormatter };
   return (
     <div key={chartTitle} className="grid-item">
-      <h2 className="chart-title">{chartTitle}</h2>
+      <Typography variant="h4" align="center">
+        {chartTitle}
+      </Typography>
       <VictoryChart
         theme={VictoryTheme.material}
         containerComponent={<VictoryVoronoiContainer />}
