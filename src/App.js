@@ -5,6 +5,7 @@ import Prices from "./components/prices";
 import RTEGenByFuel from "./components/rte-gen-by-fuel";
 import RTEGenByUnit from "./components/rte-gen-by-unit";
 import SidebarButton from "./components/sidebar-button";
+import "fontsource-roboto";
 
 function App() {
   const [activeCpt, setActiveCpt] = useState("Prices");
