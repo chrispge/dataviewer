@@ -18,7 +18,7 @@ function App() {
           </Typography>
         </Grid>
         <Grid item xs={2}>
-          <Sidebar setComponenent={setActiveCpt}></Sidebar>
+          <Sidebar setComponent={setActiveCpt}></Sidebar>
         </Grid>
         <Grid item xs={10}>
           <div className="box main-content ">
