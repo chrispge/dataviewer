@@ -43,11 +43,9 @@ function ListItemLink(props) {
     [to]
   );
 
-  const history = useHistory();
-
   return (
     <li>
-      <ListItem button component={Link} to={to}>
+      <ListItem button component={renderLink}>
         {icon ? <ListItemIcon>{icon}</ListItemIcon> : null}
         <ListItemText primary={primary} />
       </ListItem>
@@ -70,32 +68,31 @@ export default function Sidebar() {
   };
 
   return (
-    <Router>
-      <div className={classes.root}>
-        <Route>
-          {({ location }) => (
-            <Typography gutterBottom>
-              Current route: {location.pathname}
-            </Typography>
-          )}
-        </Route>
+    <div className={classes.root}>
+      <Route>
+        {({ location }) => (
+          <Typography gutterBottom>
+            Current route: {location.pathname}
+          </Typography>
+        )}
+      </Route>
 
-        <Paper eleveation={0}>
-          <List
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-            // subheader={
-            //   <ListSubheader component="div" id="nested-list-subheader">
-            //     Select a data source:
-            //   </ListSubheader>
-            // }
-            className={classes.root}
-          >
-            <ListItemLink to="/prices/" primary="Prices" />
-            <ListItemLink to="/spreads/" primary="Spreads" />
-            <ListItemLink to="/rte-gen-by-fuel/" primary="RTE Gen By Fuel" />
+      <Paper eleveation={0}>
+        <List
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          // subheader={
+          //   <ListSubheader component="div" id="nested-list-subheader">
+          //     Select a data source:
+          //   </ListSubheader>
+          // }
+          className={classes.root}
+        >
+          <ListItemLink to="/prices/" primary="Prices" />
+          <ListItemLink to="/spreads/" primary="Spreads" />
+          <ListItemLink to="/rte-gen-by-fuel/" primary="RTE Gen By Fuel" />
 
-            {/* <ListItem button>
+          {/* <ListItem button>
         <ListItemText primary="RTE Gen By Unit" />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
@@ -124,9 +121,8 @@ export default function Sidebar() {
           </ListItem>
         </List>
       </Collapse> */}
-          </List>
-        </Paper>
-      </div>
-    </Router>
+        </List>
+      </Paper>
+    </div>
   );
 }

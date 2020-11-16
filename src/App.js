@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 function App() {
   const [activeCpt, setActiveCpt] = useState("Prices");
   return (
-    <div>
+    <Router>
       <Grid container>
         <Grid item xs={12}>
           <Typography variant="h1" align="center">
@@ -23,15 +23,11 @@ function App() {
         </Grid>
         <Grid item xs={10}>
           <div className="box main-content ">
-            <Router>
-              <div>
-                <Route exact path="/" component={Prices} />
-                <Route exact path="/prices" component={Prices} />
-                <Route exact path="/spreads" component={Spreads} />
-                <Route exact path="/rte-gen-by-fuel" component={RTEGenByFuel} />
-                {/* <Route exact path="/gen-by-unit" component={RTEGenByUnit} /> */}
-              </div>
-            </Router>
+            <Route exact path="/" component={Prices} />
+            <Route exact path="/prices" component={Prices} />
+            <Route exact path="/spreads" component={Spreads} />
+            <Route exact path="/rte-gen-by-fuel" component={RTEGenByFuel} />
+            {/* <Route exact path="/gen-by-unit" component={RTEGenByUnit} /> */}
             {/* {activeCpt === "RTEGenByUnitNuclear" && (
               <RTEGenByUnit fuel="nuclear"></RTEGenByUnit>
             )}
@@ -56,7 +52,7 @@ function App() {
           </div>
         </Grid>
       </Grid>
-    </div>
+    </Router>
   );
 }
 
