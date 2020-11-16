@@ -5,14 +5,16 @@ import Prices from "./components/prices";
 import RTEGenByFuel from "./components/rte-gen-by-fuel";
 import RTEGenByUnit from "./components/rte-gen-by-unit";
 import SidebarButton from "./components/sidebar-button";
-import "fontsource-roboto";
+import Typography from "@material-ui/core/Typography";
 
 function App() {
   const [activeCpt, setActiveCpt] = useState("Prices");
   return (
     <div>
       <div className="wrapper">
-        <div className="header">Data viewer</div>
+        <Typography variant="h1" align="center">
+          Data Viewer
+        </Typography>
         <div className="body"></div>
         <div className="box sidebar">
           <SidebarButton
