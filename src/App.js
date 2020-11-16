@@ -6,6 +6,7 @@ import RTEGenByUnit from "./components/rte-gen-by-unit";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Sidebar from "./components/sidebar";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
   const [activeCpt, setActiveCpt] = useState("Prices");
@@ -22,10 +23,16 @@ function App() {
         </Grid>
         <Grid item xs={10}>
           <div className="box main-content ">
-            {activeCpt === "Prices" && <Prices></Prices>}
-            {activeCpt === "Spreads" && <Spreads></Spreads>}
-            {activeCpt === "RTEGenByFuel" && <RTEGenByFuel></RTEGenByFuel>}
-            {activeCpt === "RTEGenByUnitNuclear" && (
+            <Router>
+              <div>
+                <Route exact path="/" component={Prices} />
+                <Route exact path="/prices" component={Prices} />
+                <Route exact path="/spreads" component={Spreads} />
+                <Route exact path="/rte-gen-by-fuel" component={RTEGenByFuel} />
+                {/* <Route exact path="/gen-by-unit" component={RTEGenByUnit} /> */}
+              </div>
+            </Router>
+            {/* {activeCpt === "RTEGenByUnitNuclear" && (
               <RTEGenByUnit fuel="nuclear"></RTEGenByUnit>
             )}
             {activeCpt === "RTEGenByUnitGas" && (
@@ -45,7 +52,7 @@ function App() {
             )}
             {activeCpt === "RTEGenByUnitOil" && (
               <RTEGenByUnit fuel="fossil_oil"></RTEGenByUnit>
-            )}
+            )} */}
           </div>
         </Grid>
       </Grid>
