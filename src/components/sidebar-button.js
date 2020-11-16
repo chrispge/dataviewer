@@ -1,11 +1,17 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
 
 function SidebarButton(props) {
   const { title, cptSetter } = props;
   return (
-    <button className="sidebar-btn" onClick={() => cptSetter()}>
+    <Button
+      variant="contained"
+      color="primary"
+      className="sidebar-btn"
+      onClick={() => cptSetter()}
+    >
       {title}
-    </button>
+    </Button>
   );
 }
 
