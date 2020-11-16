@@ -7,6 +7,8 @@ import RTEGenByUnit from "./components/rte-gen-by-unit";
 import SidebarButton from "./components/sidebar-button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
 
 function App() {
   const [activeCpt, setActiveCpt] = useState("Prices");
@@ -19,19 +21,25 @@ function App() {
           </Typography>
         </Grid>
         <Grid item xs={2}>
-          <div className="box sidebar">
-            <SidebarButton
-              title="Prices"
-              cptSetter={() => setActiveCpt("Prices")}
-            />
-            <SidebarButton
-              title="Spreads"
-              cptSetter={() => setActiveCpt("Spreads")}
-            />
-            <SidebarButton
-              title="RTE Generation by Fuel"
-              cptSetter={() => setActiveCpt("RTEGenByFuel")}
-            />
+          <List>
+            <ListItem>
+              <SidebarButton
+                title="Prices"
+                cptSetter={() => setActiveCpt("Prices")}
+              />
+            </ListItem>
+            <ListItem>
+              <SidebarButton
+                title="Spreads"
+                cptSetter={() => setActiveCpt("Spreads")}
+              />
+            </ListItem>
+            <ListItem>
+              <SidebarButton
+                title="RTE Generation by Fuel"
+                cptSetter={() => setActiveCpt("RTEGenByFuel")}
+              />
+            </ListItem>
             <Collapsible trigger="RTE Generation by Unit" transitionTime={50}>
               <SidebarButton
                 title="Nuclear"
@@ -62,7 +70,7 @@ function App() {
                 cptSetter={() => setActiveCpt("RTEGenByUnitOil")}
               />
             </Collapsible>
-          </div>
+          </List>
         </Grid>
         <Grid item xs={10}>
           <div className="box main-content ">
