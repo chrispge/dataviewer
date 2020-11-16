@@ -1,14 +1,11 @@
 import React, { useState } from "react";
-import Collapsible from "react-collapsible";
 import Spreads from "./components/spreads";
 import Prices from "./components/prices";
 import RTEGenByFuel from "./components/rte-gen-by-fuel";
 import RTEGenByUnit from "./components/rte-gen-by-unit";
-import SidebarButton from "./components/sidebar-button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
+import Sidebar from "./components/sidebar";
 
 function App() {
   const [activeCpt, setActiveCpt] = useState("Prices");
@@ -21,56 +18,7 @@ function App() {
           </Typography>
         </Grid>
         <Grid item xs={2}>
-          <List>
-            <ListItem>
-              <SidebarButton
-                title="Prices"
-                cptSetter={() => setActiveCpt("Prices")}
-              />
-            </ListItem>
-            <ListItem>
-              <SidebarButton
-                title="Spreads"
-                cptSetter={() => setActiveCpt("Spreads")}
-              />
-            </ListItem>
-            <ListItem>
-              <SidebarButton
-                title="RTE Generation by Fuel"
-                cptSetter={() => setActiveCpt("RTEGenByFuel")}
-              />
-            </ListItem>
-            <Collapsible trigger="RTE Generation by Unit" transitionTime={50}>
-              <SidebarButton
-                title="Nuclear"
-                cptSetter={() => setActiveCpt("RTEGenByUnitNuclear")}
-              />
-              <SidebarButton
-                title="Gas"
-                cptSetter={() => setActiveCpt("RTEGenByUnitGas")}
-              />
-              <SidebarButton
-                title="Coal"
-                cptSetter={() => setActiveCpt("RTEGenByUnitCoal")}
-              />
-              <SidebarButton
-                title="Hydro Reservoir"
-                cptSetter={() => setActiveCpt("RTEGenByUnitHydroRes")}
-              />
-              <SidebarButton
-                title="Hydro Run-of-River"
-                cptSetter={() => setActiveCpt("RTEGenByUnitHydroROR")}
-              />
-              <SidebarButton
-                title="Hydro Pumped Storage"
-                cptSetter={() => setActiveCpt("RTEGenByUnitHydroPS")}
-              />
-              <SidebarButton
-                title="Oil"
-                cptSetter={() => setActiveCpt("RTEGenByUnitOil")}
-              />
-            </Collapsible>
-          </List>
+          <Sidebar setComponenent={setActiveCpt}></Sidebar>
         </Grid>
         <Grid item xs={10}>
           <div className="box main-content ">
