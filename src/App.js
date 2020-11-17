@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Sidebar from "./components/sidebar";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 
 import Header from "./components/header";
-import Spreads from "./components/spreads";
-import Prices from "./components/prices";
-import RTEGenByFuel from "./components/rte-gen-by-fuel";
-import RTEGenByUnit from "./components/rte-gen-by-unit";
+import Routes from "./components/routes";
 
 function App() {
   const theme = React.useMemo(
@@ -33,62 +30,7 @@ function App() {
             <Sidebar />
           </Grid>
           <Grid item xs={10}>
-            <div className="box main-content ">
-              <Route exact path="/" component={Prices} />
-              <Route exact path="/prices" component={Prices} />
-              <Route exact path="/spreads" component={Spreads} />
-              <Route exact path="/rte-gen-by-fuel" component={RTEGenByFuel} />
-              <Route
-                exact
-                path="/rte-gen-by-unit/nuclear"
-                render={(props) => <RTEGenByFuel {...props} fuel={"nuclear"} />}
-              />
-              <Route
-                exact
-                path="/rte-gen-by-unit/gas"
-                render={(props) => (
-                  <RTEGenByFuel {...props} fuel={"fossil_gas"} />
-                )}
-              />
-              <Route
-                exact
-                path="/rte-gen-by-unit/coal"
-                render={(props) => (
-                  <RTEGenByFuel {...props} fuel={"fossil_hard_coal"} />
-                )}
-              />
-              <Route
-                exact
-                path="/rte-gen-by-unit/hydro-res"
-                render={(props) => (
-                  <RTEGenByFuel {...props} fuel={"hydro_water_reservoir"} />
-                )}
-              />
-              <Route
-                exact
-                path="/rte-gen-by-unit/hydro-ror"
-                render={(props) => (
-                  <RTEGenByFuel
-                    {...props}
-                    fuel={"hydro_run_of_river_and_poundage"}
-                  />
-                )}
-              />
-              <Route
-                exact
-                path="/rte-gen-by-unit/hydro-ps"
-                render={(props) => (
-                  <RTEGenByFuel {...props} fuel={"hydro_pumped_storage"} />
-                )}
-              />
-              <Route
-                exact
-                path="/rte-gen-by-unit/oil"
-                render={(props) => (
-                  <RTEGenByFuel {...props} fuel={"fossil_oil"} />
-                )}
-              />
-            </div>
+            <Routes />
           </Grid>
         </Grid>
       </ThemeProvider>
