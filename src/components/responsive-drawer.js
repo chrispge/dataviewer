@@ -50,12 +50,16 @@ const useStyles = makeStyles((theme) => ({
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
+  drawer_: theme.mixins.drawer,
   drawerPaper: {
     width: drawerWidth,
   },
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+    [theme.breakpoints.up(breakpoint)]: {
+      marginLeft: drawerWidth,
+    },
   },
   nested: {
     paddingLeft: theme.spacing(4),
@@ -192,7 +196,8 @@ function ResponsiveDrawer(props) {
         </Hidden>
       </nav>
       <main className={classes.content}>
-        {/* <div className={classes.toolbar} /> */}
+        {/* necessary for content to be below app bar */}
+        <div className={classes.toolbar} />
         <Routes />
       </main>
     </div>
