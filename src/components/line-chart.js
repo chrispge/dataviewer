@@ -51,7 +51,7 @@ function renderChart(data, chartParams) {
   const xConfig = { name: xName, formatter: xFormatter };
   return (
     <div key={chartTitle} className="grid-item">
-      <Typography variant="h4" align="center">
+      <Typography variant="h6" align="center">
         {chartTitle}
       </Typography>
       <VictoryChart
