@@ -13,6 +13,9 @@ import {
 import getXFormatter from "./xformatters";
 import Typography from "@material-ui/core/Typography";
 
+const chartTheme = { ...VictoryTheme.material };
+chartTheme.axis.style.tickLabels.fill = "white";
+
 function LineChart(props) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,13 +52,15 @@ function renderChart(data, chartParams) {
   const yLowerLim = getYLowerLim(data, yConfigs);
   const xFormatter = getXFormatter(xFormat);
   const xConfig = { name: xName, formatter: xFormatter };
+
   return (
     <div key={chartTitle} className="grid-item">
       <Typography variant="h6" align="center">
         {chartTitle}
       </Typography>
       <VictoryChart
-        theme={VictoryTheme.material}
+        // theme={VictoryTheme.material}
+        theme={chartTheme}
         containerComponent={<VictoryVoronoiContainer />}
       >
         <VictoryAxis
