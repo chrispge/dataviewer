@@ -1,26 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Sidebar from "./components/sidebar";
 import { BrowserRouter as Router } from "react-router-dom";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 
 import Header from "./components/header";
 import Routes from "./components/routes";
+import getTheme from "./components/theme";
 
 function App() {
-  const theme = React.useMemo(
-    () =>
-      createMuiTheme({
-        palette: {
-          type: "dark",
-        },
-      }),
-    []
-  );
   return (
     <Router>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={getTheme()}>
         <CssBaseline />
         <Grid container>
           <Grid item xs={12}>
