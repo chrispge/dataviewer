@@ -1,45 +1,36 @@
 import React, { useState } from "react";
+import Grid from "@material-ui/core/Grid";
+import Sidebar from "./components/sidebar";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { CssBaseline } from "@material-ui/core";
+
+import Header from "./components/header";
 import Spreads from "./components/spreads";
 import Prices from "./components/prices";
 import RTEGenByFuel from "./components/rte-gen-by-fuel";
 import RTEGenByUnit from "./components/rte-gen-by-unit";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-import Switch from "@material-ui/core/Switch";
-import Sidebar from "./components/sidebar";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
-import { CssBaseline } from "@material-ui/core";
 
 function App() {
-  const [darkState, setDarkState] = useState(false);
-  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
   const theme = React.useMemo(
     () =>
       createMuiTheme({
         palette: {
-          type: prefersDarkMode ? "dark" : "light",
+          type: "dark",
         },
       }),
-    [prefersDarkMode]
+    []
   );
-  const handleThemeChange = () => {
-    setDarkState(!darkState);
-  };
   return (
     <Router>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Grid container>
           <Grid item xs={12}>
-            <Typography variant="h1" align="center">
-              Data Viewer
-            </Typography>
-            <Switch checked={darkState} onChange={handleThemeChange} />
+            <Header />
           </Grid>
           <Grid item xs={2}>
-            <Sidebar></Sidebar>
+            <Sidebar />
           </Grid>
           <Grid item xs={10}>
             <div className="box main-content ">
