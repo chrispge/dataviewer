@@ -2,6 +2,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
+import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -24,26 +25,26 @@ import ListItemLink from "./list-item-link";
 // from https://material-ui.com/components/drawers/#drawer
 
 const drawerWidth = 240;
-
+const breakpoint = "sm";
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
   drawer: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up(breakpoint)]: {
       width: drawerWidth,
       flexShrink: 0,
     },
   },
   appBar: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up(breakpoint)]: {
       width: `calc(100% - ${drawerWidth}px)`,
       marginLeft: drawerWidth,
     },
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up(breakpoint)]: {
       display: "none",
     },
   },
@@ -55,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
   content: {
     flexGrow: 1,
     padding: theme.spacing(3),
+  },
+  nested: {
+    paddingLeft: theme.spacing(4),
   },
 }));
 
@@ -76,56 +80,61 @@ function ResponsiveDrawer(props) {
   const drawer = (
     <div>
       <div className={classes.toolbar} />
-      <List component="nav" className={classes.root}>
+      <Divider />
+      <List>
         <ListItemLink to="/prices/" primary="Prices" />
         <ListItemLink to="/spreads/" primary="Spreads" />
-        <ListItemLink to="/rte-gen-by-fuel/" primary="RTE Gen By Fuel" />
+        <List />
+        <Divider />
+        <List>
+          <ListItemLink to="/rte-gen-by-fuel/" primary="RTE Gen By Fuel" />
 
-        {/* collpsable list
+          {/* collpsable list
           https://material-ui.com/components/lists/#lists
           */}
-        <ListItem button onClick={handleListClick}>
-          <ListItemText primary="RTE Gen By Unit" />
-          {listOpen ? <ExpandLess /> : <ExpandMore />}
-        </ListItem>
-        <Collapse in={listOpen} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItemLink
-              className={classes.nested}
-              to="/rte-gen-by-fuel/nuclear"
-              primary="Nuclear"
-            />
-            <ListItemLink
-              className={classes.nested}
-              to="/rte-gen-by-fuel/gas"
-              primary="Gas"
-            />
-            <ListItemLink
-              className={classes.nested}
-              to="/rte-gen-by-fuel/coal"
-              primary="Coal"
-            />
-            <ListItemLink
-              to="/rte-gen-by-fuel/hydro-res"
-              primary="Hydro Reservoir"
-            />
-            <ListItemLink
-              className={classes.nested}
-              to="/rte-gen-by-fuel/hydro-ror"
-              primary="Hydro Run-of-River"
-            />
-            <ListItemLink
-              className={classes.nested}
-              to="/rte-gen-by-fuel/hydro-ps"
-              primary="Hydro Pumped-Storage"
-            />
-            <ListItemLink
-              className={classes.nested}
-              to="/rte-gen-by-fuel/oil"
-              primary="Oil"
-            />
-          </List>
-        </Collapse>
+          <ListItem button onClick={handleListClick}>
+            <ListItemText primary="RTE Gen By Unit" />
+            {listOpen ? <ExpandLess /> : <ExpandMore />}
+          </ListItem>
+          <Collapse in={listOpen} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemLink
+                className={classes.nested}
+                to="/rte-gen-by-fuel/nuclear"
+                primary="Nuclear"
+              />
+              <ListItemLink
+                className={classes.nested}
+                to="/rte-gen-by-fuel/gas"
+                primary="Gas"
+              />
+              <ListItemLink
+                className={classes.nested}
+                to="/rte-gen-by-fuel/coal"
+                primary="Coal"
+              />
+              <ListItemLink
+                to="/rte-gen-by-fuel/hydro-res"
+                primary="Hydro Reservoir"
+              />
+              <ListItemLink
+                className={classes.nested}
+                to="/rte-gen-by-fuel/hydro-ror"
+                primary="Hydro Run-of-River"
+              />
+              <ListItemLink
+                className={classes.nested}
+                to="/rte-gen-by-fuel/hydro-ps"
+                primary="Hydro Pumped-Storage"
+              />
+              <ListItemLink
+                className={classes.nested}
+                to="/rte-gen-by-fuel/oil"
+                primary="Oil"
+              />
+            </List>
+          </Collapse>
+        </List>
       </List>
     </div>
   );
@@ -183,7 +192,7 @@ function ResponsiveDrawer(props) {
         </Hidden>
       </nav>
       <main className={classes.content}>
-        <div className={classes.toolbar} />
+        {/* <div className={classes.toolbar} /> */}
         <Routes />
       </main>
     </div>

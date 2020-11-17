@@ -5,7 +5,7 @@ import Prices from "./prices";
 import RTEGenByFuel from "./rte-gen-by-fuel";
 import RTEGenByUnit from "./rte-gen-by-unit";
 
-export default function () {
+export default function Routes() {
   return (
     <div className="box main-content ">
       <Route exact path="/" component={Prices} />
