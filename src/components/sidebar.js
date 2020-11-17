@@ -15,7 +15,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
   },
   nested: {
     paddingLeft: theme.spacing(4),
@@ -80,12 +79,12 @@ export default function Sidebar() {
             primary="Nuclear"
           />
           <ListItemLink
-            classNmae={classes.nested}
+            className={classes.nested}
             to="/rte-gen-by-fuel/gas"
             primary="Gas"
           />
           <ListItemLink
-            classNmae={classes.nested}
+            className={classes.nested}
             to="/rte-gen-by-fuel/coal"
             primary="Coal"
           />
@@ -94,17 +93,17 @@ export default function Sidebar() {
             primary="Hydro Reservoir"
           />
           <ListItemLink
-            classNmae={classes.nested}
+            className={classes.nested}
             to="/rte-gen-by-fuel/hydro-ror"
             primary="Hydro Run-of-River"
           />
           <ListItemLink
-            classNmae={classes.nested}
+            className={classes.nested}
             to="/rte-gen-by-fuel/hydro-ps"
             primary="Hydro Pumped-Storage"
           />
           <ListItemLink
-            classNmae={classes.nested}
+            className={classes.nested}
             to="/rte-gen-by-fuel/oil"
             primary="Oil"
           />
