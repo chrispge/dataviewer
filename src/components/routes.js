@@ -8,9 +8,7 @@ import EntsoeGenByFuel from "./entsoe-gen-by-fuel";
 
 function RTEGenByUnitRoute(props) {
   const { fuel } = props;
-  console.log(typeof fuel);
   const fuelForDB = fuel.split("-").join("_");
-  console.log(fuelForDB);
   const path = "/rte-gen-by-unit/" + fuel;
   return (
     <Route
