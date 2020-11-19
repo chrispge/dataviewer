@@ -104,36 +104,36 @@ function ResponsiveDrawer(props) {
             <List component="div" disablePadding>
               <ListItemLink
                 className={classes.nested}
-                to="/rte-gen-by-fuel/nuclear"
+                to="/rte-gen-by-unit/nuclear"
                 primary="Nuclear"
               />
               <ListItemLink
                 className={classes.nested}
-                to="/rte-gen-by-fuel/gas"
+                to="/rte-gen-by-unit/gas"
                 primary="Gas"
               />
               <ListItemLink
                 className={classes.nested}
-                to="/rte-gen-by-fuel/coal"
+                to="/rte-gen-by-unit/coal"
                 primary="Coal"
               />
               <ListItemLink
-                to="/rte-gen-by-fuel/hydro-res"
+                to="/rte-gen-by-unit/hydro-res"
                 primary="Hydro Reservoir"
               />
               <ListItemLink
                 className={classes.nested}
-                to="/rte-gen-by-fuel/hydro-ror"
+                to="/rte-gen-by-unit/hydro-ror"
                 primary="Hydro Run-of-River"
               />
               <ListItemLink
                 className={classes.nested}
-                to="/rte-gen-by-fuel/hydro-ps"
-                primary="Hydro Pumped-Storage"
+                to="/rte-gen-by-unit/hydro-ps"
+                primary="Hydro Pumped Storage"
               />
               <ListItemLink
                 className={classes.nested}
-                to="/rte-gen-by-fuel/oil"
+                to="/rte-gen-by-unit/oil"
                 primary="Oil"
               />
             </List>

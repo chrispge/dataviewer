@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LineChart from "./line-chart";
-import {getDateOffset} from "./format-date"; 
+import { getDateOffset } from "./format-date";
 
 const RTEGenByUnitChartParams = {
   x: "start_time",
@@ -10,21 +10,22 @@ const RTEGenByUnitChartParams = {
 
 function RTEGenByUnit(props) {
   console.log("In RTE GenByUnit");
-  const [units, setUnits] = useState([]);
+  const { fuel } = props;
+  console.log("fuel=" + fuel);
+  const [units, setUnits] = useState({});
+  console.log("units: ");
+  console.log(units);
+
   useEffect(() => {
     (async () => {
-      const fetchedUnits = await getUnits(props.fuel);
-
+      const fetchedUnits = await getUnits();
       setUnits(fetchedUnits);
     })();
-  }, [props.fuel]);
+  }, []);
 
-  // const units = [
-  //   { generation_name: "TRICASTIN 1" },
-  //   { generation_name: "TRICASTIN 2" },
-  // ];
-  if (units.length > 0) {
-    const chartInputs = units.map((obj) => ({
+  console.log(units);
+  if (units[fuel]) {
+    const chartInputs = units[fuel].map((obj) => ({
       chartTitle: obj.generation_name,
       unit: obj.generation_name,
     }));
@@ -47,14 +48,14 @@ async function getUnitsFromDB(fuel) {
 }
 
 async function getUnits(fuel) {
-  const response = await fetch("./units/units.json");
+  const response = await fetch("/rte-gen-by-unit/units.json");
   const data = await response.json();
-  return data[0][fuel];
+  return data[0];
 }
 
 function renderGenByUnit(inputs) {
   const { chartTitle, unit } = inputs;
-  const from = getDateOffset(-3)
+  const from = getDateOffset(-3);
   return (
     <div key={chartTitle}>
       <LineChart

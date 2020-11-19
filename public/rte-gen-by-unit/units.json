@@ -1,0 +1,522 @@
+[
+  {
+    "nuclear": [
+      {
+        "generation_name": "BELLEVILLE 1"
+      },
+      {
+        "generation_name": "BELLEVILLE 2"
+      },
+      {
+        "generation_name": "BLAYAIS 1"
+      },
+      {
+        "generation_name": "BLAYAIS 2"
+      },
+      {
+        "generation_name": "BLAYAIS 3"
+      },
+      {
+        "generation_name": "BLAYAIS 4"
+      },
+      {
+        "generation_name": "BUGEY 2"
+      },
+      {
+        "generation_name": "BUGEY 3"
+      },
+      {
+        "generation_name": "BUGEY 4"
+      },
+      {
+        "generation_name": "BUGEY 5"
+      },
+      {
+        "generation_name": "CATTENOM 1"
+      },
+      {
+        "generation_name": "CATTENOM 2"
+      },
+      {
+        "generation_name": "CATTENOM 3"
+      },
+      {
+        "generation_name": "CATTENOM 4"
+      },
+      {
+        "generation_name": "CHINON 1"
+      },
+      {
+        "generation_name": "CHINON 2"
+      },
+      {
+        "generation_name": "CHINON 3"
+      },
+      {
+        "generation_name": "CHINON 4"
+      },
+      {
+        "generation_name": "CHOOZ 1"
+      },
+      {
+        "generation_name": "CHOOZ 2"
+      },
+      {
+        "generation_name": "CIVAUX 1"
+      },
+      {
+        "generation_name": "CIVAUX 2"
+      },
+      {
+        "generation_name": "CRUAS 1"
+      },
+      {
+        "generation_name": "CRUAS 2"
+      },
+      {
+        "generation_name": "CRUAS 3"
+      },
+      {
+        "generation_name": "CRUAS 4"
+      },
+      {
+        "generation_name": "DAMPIERRE 1"
+      },
+      {
+        "generation_name": "DAMPIERRE 2"
+      },
+      {
+        "generation_name": "DAMPIERRE 3"
+      },
+      {
+        "generation_name": "DAMPIERRE 4"
+      },
+      {
+        "generation_name": "FESSENHEIM 1"
+      },
+      {
+        "generation_name": "FESSENHEIM 2"
+      },
+      {
+        "generation_name": "FLAMANVILLE 1"
+      },
+      {
+        "generation_name": "FLAMANVILLE 2"
+      },
+      {
+        "generation_name": "GOLFECH 1"
+      },
+      {
+        "generation_name": "GOLFECH 2"
+      },
+      {
+        "generation_name": "GRAVELINES 1"
+      },
+      {
+        "generation_name": "GRAVELINES 2"
+      },
+      {
+        "generation_name": "GRAVELINES 3"
+      },
+      {
+        "generation_name": "GRAVELINES 4"
+      },
+      {
+        "generation_name": "GRAVELINES 5"
+      },
+      {
+        "generation_name": "GRAVELINES 6"
+      },
+      {
+        "generation_name": "NOGENT 1"
+      },
+      {
+        "generation_name": "NOGENT 2"
+      },
+      {
+        "generation_name": "PALUEL 1"
+      },
+      {
+        "generation_name": "PALUEL 2"
+      },
+      {
+        "generation_name": "PALUEL 3"
+      },
+      {
+        "generation_name": "PALUEL 4"
+      },
+      {
+        "generation_name": "PENLY 1"
+      },
+      {
+        "generation_name": "PENLY 2"
+      },
+      {
+        "generation_name": "ST ALBAN 1"
+      },
+      {
+        "generation_name": "ST ALBAN 2"
+      },
+      {
+        "generation_name": "ST LAURENT 1"
+      },
+      {
+        "generation_name": "ST LAURENT 2"
+      },
+      {
+        "generation_name": "TRICASTIN 1"
+      },
+      {
+        "generation_name": "TRICASTIN 2"
+      },
+      {
+        "generation_name": "TRICASTIN 3"
+      },
+      {
+        "generation_name": "TRICASTIN 4"
+      }
+    ],
+    "fossil_gas": [
+      {
+        "generation_name": "AMFARD14"
+      },
+      {
+        "generation_name": "AMFARD15"
+      },
+      {
+        "generation_name": "BLENOD 5"
+      },
+      {
+        "generation_name": "BOUCHAIN 7"
+      },
+      {
+        "generation_name": "COMBIGOLFE CCG"
+      },
+      {
+        "generation_name": "Croix-de-Metz"
+      },
+      {
+        "generation_name": "CYCOFOS"
+      },
+      {
+        "generation_name": "CYCOFOS PL1"
+      },
+      {
+        "generation_name": "DK6 1"
+      },
+      {
+        "generation_name": "DK6 2"
+      },
+      {
+        "generation_name": "DK6-TG1"
+      },
+      {
+        "generation_name": "DK6-TG2"
+      },
+      {
+        "generation_name": "DK6-TV1"
+      },
+      {
+        "generation_name": "DK6-TV2"
+      },
+      {
+        "generation_name": "EMILE HUCHET 7"
+      },
+      {
+        "generation_name": "EMILE HUCHET 8"
+      },
+      {
+        "generation_name": "FR-GA-MORANT1"
+      },
+      {
+        "generation_name": "GENNEVILLIERS 1"
+      },
+      {
+        "generation_name": "MARTIGUES PONTEAU 5"
+      },
+      {
+        "generation_name": "MARTIGUES PONTEAU 6"
+      },
+      {
+        "generation_name": "Pont-sur-Sambre"
+      },
+      {
+        "generation_name": "SPEM CCG"
+      }
+    ],
+    "fossil_hard_coal": [
+      {
+        "generation_name": "BLENOD 2"
+      },
+      {
+        "generation_name": "BLENOD 3"
+      },
+      {
+        "generation_name": "BLENOD 4"
+      },
+      {
+        "generation_name": "BOUCHAIN 1"
+      },
+      {
+        "generation_name": "CORDEMAIS 4"
+      },
+      {
+        "generation_name": "CORDEMAIS 5"
+      },
+      {
+        "generation_name": "EMILE HUCHET 4"
+      },
+      {
+        "generation_name": "EMILE HUCHET 5"
+      },
+      {
+        "generation_name": "EMILE HUCHET 6"
+      },
+      {
+        "generation_name": "HAVRE 4"
+      },
+      {
+        "generation_name": "HAVRE (LE) 1"
+      },
+      {
+        "generation_name": "HAVRE (LE) 2"
+      },
+      {
+        "generation_name": "HORNAING"
+      },
+      {
+        "generation_name": "LUCY 3"
+      },
+      {
+        "generation_name": "MAXE 1"
+      },
+      {
+        "generation_name": "MAXE 2"
+      },
+      {
+        "generation_name": "PROVENCE 4"
+      },
+      {
+        "generation_name": "PROVENCE 5"
+      },
+      {
+        "generation_name": "VITRY 3"
+      },
+      {
+        "generation_name": "VITRY 4"
+      }
+    ],
+    "hydro_water_reservoir": [
+      {
+        "generation_name": "AIGLE 6"
+      },
+      {
+        "generation_name": "BATHIE 1"
+      },
+      {
+        "generation_name": "BATHIE 4"
+      },
+      {
+        "generation_name": "BATHIE 5"
+      },
+      {
+        "generation_name": "BATHIE 6"
+      },
+      {
+        "generation_name": "BORT 1"
+      },
+      {
+        "generation_name": "BORT 2"
+      },
+      {
+        "generation_name": "BROMMAT 7"
+      },
+      {
+        "generation_name": "COMBE D'AVRIEUX 1"
+      },
+      {
+        "generation_name": "POUGET 4"
+      },
+      {
+        "generation_name": "SISTERON 1"
+      },
+      {
+        "generation_name": "SISTERON 2"
+      },
+      {
+        "generation_name": "VILLARODIN 1"
+      },
+      {
+        "generation_name": "VILLARODIN 2"
+      }
+    ],
+    "hydro_run_of_river_and_poundage": [
+      {
+        "generation_name": "CHASTANG 2"
+      },
+      {
+        "generation_name": "CHASTANG 3"
+      },
+      {
+        "generation_name": "CHASTANG (LE) 1"
+      },
+      {
+        "generation_name": "FR_LA-STPIERRE-G"
+      },
+      {
+        "generation_name": "SAINT-PIERRE"
+      }
+    ],
+    "hydro_pumped_storage": [
+      {
+        "generation_name": "CHEYLAS 1"
+      },
+      {
+        "generation_name": "CHEYLAS 2"
+      },
+      {
+        "generation_name": "COCHE 5"
+      },
+      {
+        "generation_name": "GRAND MAISON 1"
+      },
+      {
+        "generation_name": "GRAND MAISON 10"
+      },
+      {
+        "generation_name": "GRAND MAISON 11"
+      },
+      {
+        "generation_name": "GRAND MAISON 12"
+      },
+      {
+        "generation_name": "GRAND MAISON 2"
+      },
+      {
+        "generation_name": "GRAND MAISON 3"
+      },
+      {
+        "generation_name": "GRAND MAISON 4"
+      },
+      {
+        "generation_name": "GRAND MAISON 5"
+      },
+      {
+        "generation_name": "GRAND MAISON 6"
+      },
+      {
+        "generation_name": "GRAND MAISON 7"
+      },
+      {
+        "generation_name": "GRAND MAISON 8"
+      },
+      {
+        "generation_name": "GRAND MAISON 9"
+      },
+      {
+        "generation_name": "MONTEZIC 1"
+      },
+      {
+        "generation_name": "MONTEZIC 2"
+      },
+      {
+        "generation_name": "MONTEZIC 3"
+      },
+      {
+        "generation_name": "MONTEZIC 4"
+      },
+      {
+        "generation_name": "REVIN 1"
+      },
+      {
+        "generation_name": "REVIN 2"
+      },
+      {
+        "generation_name": "REVIN 3"
+      },
+      {
+        "generation_name": "REVIN 4"
+      },
+      {
+        "generation_name": "SUPER BISSORTE 1"
+      },
+      {
+        "generation_name": "SUPER BISSORTE 2"
+      },
+      {
+        "generation_name": "SUPER BISSORTE 3"
+      },
+      {
+        "generation_name": "SUPER BISSORTE 4"
+      },
+      {
+        "generation_name": "SUPER BISSORTE 5"
+      }
+    ],
+    "fossil_oil": [
+      {
+        "generation_name": "ARAMON 1"
+      },
+      {
+        "generation_name": "ARAMON 2"
+      },
+      {
+        "generation_name": "ARRIGHI 1"
+      },
+      {
+        "generation_name": "ARRIGHI 2"
+      },
+      {
+        "generation_name": "BRENNILIS 1"
+      },
+      {
+        "generation_name": "BRENNILIS 2"
+      },
+      {
+        "generation_name": "BRENNILIS 3"
+      },
+      {
+        "generation_name": "CORDEMAIS 2"
+      },
+      {
+        "generation_name": "CORDEMAIS 3"
+      },
+      {
+        "generation_name": "DIRINON 1"
+      },
+      {
+        "generation_name": "DIRINON 2"
+      },
+      {
+        "generation_name": "MARTIGUES-PONTEAU 1"
+      },
+      {
+        "generation_name": "MONTEREAU 5"
+      },
+      {
+        "generation_name": "MONTEREAU 6"
+      },
+      {
+        "generation_name": "PORCHEVILLE 1"
+      },
+      {
+        "generation_name": "PORCHEVILLE 2"
+      },
+      {
+        "generation_name": "PORCHEVILLE 3"
+      },
+      {
+        "generation_name": "PORCHEVILLE 4"
+      },
+      {
+        "generation_name": "VAIRES 1"
+      },
+      {
+        "generation_name": "VAIRES 2"
+      },
+      {
+        "generation_name": "VAIRES 3"
+      }
+    ]
+  }
+]

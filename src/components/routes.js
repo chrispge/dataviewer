@@ -4,6 +4,7 @@ import Spreads from "./spreads";
 import Prices from "./prices";
 import RTEGenByFuel from "./rte-gen-by-fuel";
 import RTEGenByUnit from "./rte-gen-by-unit";
+import EntsoeGenByFuel from "./entsoe-gen-by-fuel";
 
 export default function Routes() {
   return (
@@ -15,46 +16,47 @@ export default function Routes() {
       <Route
         exact
         path="/rte-gen-by-unit/nuclear"
-        render={(props) => <RTEGenByFuel {...props} fuel={"nuclear"} />}
+        render={(props) => <RTEGenByUnit {...props} fuel={"nuclear"} />}
       />
       <Route
         exact
         path="/rte-gen-by-unit/gas"
-        render={(props) => <RTEGenByFuel {...props} fuel={"fossil_gas"} />}
+        render={(props) => <RTEGenByUnit {...props} fuel={"fossil_gas"} />}
       />
       <Route
         exact
         path="/rte-gen-by-unit/coal"
         render={(props) => (
-          <RTEGenByFuel {...props} fuel={"fossil_hard_coal"} />
+          <RTEGenByUnit {...props} fuel={"fossil_hard_coal"} />
         )}
       />
       <Route
         exact
         path="/rte-gen-by-unit/hydro-res"
         render={(props) => (
-          <RTEGenByFuel {...props} fuel={"hydro_water_reservoir"} />
+          <RTEGenByUnit {...props} fuel={"hydro_water_reservoir"} />
         )}
       />
       <Route
         exact
         path="/rte-gen-by-unit/hydro-ror"
         render={(props) => (
-          <RTEGenByFuel {...props} fuel={"hydro_run_of_river_and_poundage"} />
+          <RTEGenByUnit {...props} fuel={"hydro_run_of_river_and_poundage"} />
         )}
       />
       <Route
         exact
         path="/rte-gen-by-unit/hydro-ps"
         render={(props) => (
-          <RTEGenByFuel {...props} fuel={"hydro_pumped_storage"} />
+          <RTEGenByUnit {...props} fuel={"hydro_pumped_storage"} />
         )}
       />
       <Route
         exact
         path="/rte-gen-by-unit/oil"
-        render={(props) => <RTEGenByFuel {...props} fuel={"fossil_oil"} />}
+        render={(props) => <RTEGenByUnit {...props} fuel={"fossil_oil"} />}
       />
+      <Route exact path="/entsoe-gen-by-fuel" component={EntsoeGenByFuel} />
     </div>
   );
 }
