@@ -109,31 +109,31 @@ function ResponsiveDrawer(props) {
               />
               <ListItemLink
                 className={classes.nested}
-                to="/rte-gen-by-unit/gas"
+                to="/rte-gen-by-unit/fossil-gas"
                 primary="Gas"
               />
               <ListItemLink
                 className={classes.nested}
-                to="/rte-gen-by-unit/coal"
+                to="/rte-gen-by-unit/fossil-hard-coal"
                 primary="Coal"
               />
               <ListItemLink
-                to="/rte-gen-by-unit/hydro-res"
+                to="/rte-gen-by-unit/hydro-water-reservoir"
                 primary="Hydro Reservoir"
               />
               <ListItemLink
                 className={classes.nested}
-                to="/rte-gen-by-unit/hydro-ror"
+                to="/rte-gen-by-unit/hydro-run-of-river-and-poundage"
                 primary="Hydro Run-of-River"
               />
               <ListItemLink
                 className={classes.nested}
-                to="/rte-gen-by-unit/hydro-ps"
+                to="/rte-gen-by-unit/hydro-pumped-storage"
                 primary="Hydro Pumped Storage"
               />
               <ListItemLink
                 className={classes.nested}
-                to="/rte-gen-by-unit/oil"
+                to="/rte-gen-by-unit/fossil-oil"
                 primary="Oil"
               />
             </List>
