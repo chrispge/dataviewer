@@ -45,10 +45,11 @@ function renderEntsoeGenByFuel(inputs) {
   return (
     <div key={chartTitle}>
       <LineChart
-        {...getGenByFuelProps(
+        {...getEntsoeGenByFuelProps(
           {
             from: from,
             fuel: fuel,
+            region_display: "FR",
           },
           chartTitle
         )}
@@ -57,13 +58,13 @@ function renderEntsoeGenByFuel(inputs) {
   );
 }
 
-function getGenByFuelProps(searchParams, chartTitle) {
+function getEntsoeGenByFuelProps(searchParams, chartTitle) {
   var chartParams = { ...EntsoeGenByFuelChartParams };
   chartParams.yConfigs = [{ name: "mw_value", lineColor: "blue", units: "MW" }];
   chartParams.chartTitle = chartTitle;
   return {
     urlParams: {
-      apiQueryName: "GenByFuel",
+      apiQueryName: "EntsoeGenByType",
       searchParams: searchParams,
     },
     chartParams: chartParams,

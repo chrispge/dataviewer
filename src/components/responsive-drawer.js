@@ -92,10 +92,6 @@ function ResponsiveDrawer(props) {
         <Divider />
         <List>
           <ListItemLink to="/rte-gen-by-fuel/" primary="RTE Gen By Fuel" />
-
-          {/* collpsable list
-          https://material-ui.com/components/lists/#lists
-          */}
           <ListItem button onClick={handleListClick}>
             <ListItemText primary="RTE Gen By Unit" />
             {listOpen ? <ExpandLess /> : <ExpandMore />}
@@ -138,6 +134,10 @@ function ResponsiveDrawer(props) {
               />
             </List>
           </Collapse>
+          <ListItemLink
+            to="/entsoe-gen-by-fuel/"
+            primary="Entsoe Gen By Fuel"
+          />
         </List>
       </List>
     </div>
