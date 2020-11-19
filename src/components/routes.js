@@ -33,7 +33,7 @@ export default function Routes() {
       <RTEGenByUnitRoute fuel="hydro-run-of-river-and-poundage" />
       <RTEGenByUnitRoute fuel="hydro-pumped-storage" />
       <RTEGenByUnitRoute fuel="fossil-oil" />
-      <Route exact path="/entsoe-gen-by-fuel" component={EntsoeGenByFuel} />
+      {/* <Route exact path="/entsoe-gen-by-fuel" component={EntsoeGenByFuel} /> */}
     </div>
   );
 }
