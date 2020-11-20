@@ -13,30 +13,10 @@ import {
 import getXFormatter from "./xformatters";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import useStyles from "./use-styles";
 
 const chartTheme = { ...VictoryTheme.material };
 chartTheme.axis.style.tickLabels.fill = "white";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  },
-}));
-// .main-content {
-//   grid-area: main-content;
-//   overflow-y: scroll;
-//   display: grid;
-//   align-items: center;
-//   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-//   grid-gap: 20px;
-//   padding: 20px;
-// }
 
 function LineChart(props) {
   const [data, setData] = useState([]);

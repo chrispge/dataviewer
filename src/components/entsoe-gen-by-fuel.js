@@ -4,26 +4,16 @@ import { getDateOffset } from "./format-date";
 import Select from "@material-ui/core/Select";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
-import { makeStyles } from "@material-ui/core/Styles";
 import { MenuItem } from "@material-ui/core";
 import Content from "./content";
 import regions from "../static/entsoe-gen-regions";
+import useStyles from "./use-styles";
 
 const EntsoeGenByFuelChartParams = {
   x: "start_time",
   yUnits: "MW",
   xFormat: "two-line",
 };
-
-const useStyles = makeStyles((theme) => ({
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-  },
-  selectEmpty: {
-    marginTop: theme.spacing(2),
-  },
-}));
 
 function EntsoeGenByFuel() {
   const [region, setRegion] = useState("DE");

@@ -1,6 +1,8 @@
 import React from "react";
 import LineChart from "./line-chart";
 import Content from "./content";
+import regions from "../static/entsoe-gen-regions";
+import useStyles from "./use-styles";
 
 const eexChartParams = {
   x: "trade_date",
