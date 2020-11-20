@@ -53,35 +53,35 @@ function pricesForm(classes, region, handleChange) {
 function renderCharts(region) {
   const pricesInputs = [
     {
-      chartTitle: region.toUpperCase() + " " + "Nov-20",
+      chartTitle: "Nov-20",
       region: region,
       maturityType: "month",
       shape: "base",
       startDate: "2020-11-01",
     },
     {
-      chartTitle: region.toUpperCase() + " " + "Dec-20",
+      chartTitle: "Dec-20",
       region: region,
       maturityType: "month",
       shape: "base",
       startDate: "2020-12-01",
     },
     {
-      chartTitle: region.toUpperCase() + " " + "Jan-21",
+      chartTitle: "Jan-21",
       region: region,
       maturityType: "month",
       shape: "base",
       startDate: "2021-01-01",
     },
     {
-      chartTitle: region.toUpperCase() + " " + "Q1-21",
+      chartTitle: "Q1-21",
       region: region,
       maturityType: "quarter",
       shape: "base",
       startDate: "2021-01-01",
     },
     {
-      chartTitle: region.toUpperCase() + " " + "Cal-21",
+      chartTitle: "Cal-21",
       region: region,
       maturityType: "year",
       shape: "base",
