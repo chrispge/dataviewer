@@ -1,6 +1,15 @@
 import React from "react";
 import LineChart from "./line-chart";
 import { getDateOffset } from "./format-date";
+import Grid from "@material-ui/core/Grid";
+import Select from "@material-ui/core/Select";
+import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
+import FormControl from "@material-ui/core/FormControl";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import InputLabel from "@material-ui/core/InputLabel";
+import { makeStyles } from "@material-ui/core/Styles";
+import { MenuItem } from "@material-ui/core";
 
 const EntsoeGenByFuelChartParams = {
   x: "start_time",
@@ -8,7 +17,49 @@ const EntsoeGenByFuelChartParams = {
   xFormat: "two-line",
 };
 
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
+
 function EntsoeGenByFuel() {
+  const [region, setRegion] = React.useState("FR");
+  const classes = useStyles();
+
+  const handleChange = (event) => {
+    setRegion(event.target.value);
+  };
+
+  return (
+    <Grid container spacing={3}>
+      <Grid item xs={12}>
+        <Typography variant="h6">Entsoe Gen By Fuel</Typography>
+        <FormControl className={classes.formControl}>
+          <InputLabel id="region-label">Region</InputLabel>
+          <Select
+            lableId="region-label"
+            id="region-select"
+            value={region}
+            onChange={handleChange}
+          >
+            <MenuItem value={"FR"}>FR</MenuItem>
+            <MenuItem value={"DE"}>DE</MenuItem>
+            <MenuItem value={"ES"}>ES</MenuItem>
+          </Select>
+        </FormControl>
+        <Divider></Divider>
+      </Grid>
+      {renderCharts(region)}
+    </Grid>
+  );
+}
+
+function renderCharts(region) {
   const chartInputs = [
     { chartTitle: "Nuclear", fuel: "nuclear" },
     { chartTitle: "Gas", fuel: "fossil gas" },
@@ -36,10 +87,10 @@ function EntsoeGenByFuel() {
     { chartTitle: "Other", fuel: "other" },
   ];
 
-  return chartInputs.map((inputs) => renderEntsoeGenByFuel(inputs));
+  return chartInputs.map((inputs) => renderEntsoeGenByFuel(region, inputs));
 }
 
-function renderEntsoeGenByFuel(inputs) {
+function renderEntsoeGenByFuel(region, inputs) {
   const { chartTitle, fuel } = inputs;
   const from = getDateOffset(-3);
   return (
@@ -49,7 +100,7 @@ function renderEntsoeGenByFuel(inputs) {
           {
             from: from,
             fuel: fuel,
-            region_display: "FR",
+            region_display: region,
           },
           chartTitle
         )}

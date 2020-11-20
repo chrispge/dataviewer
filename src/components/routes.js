@@ -23,20 +23,18 @@ function RTEGenByUnitRoute(props) {
 export default function Routes() {
   return (
     <div className="box ">
-      <Grid container spacing={3}>
-        <Route exact path="/" component={Prices} />
-        <Route exact path="/prices" component={Prices} />
-        <Route exact path="/spreads" component={Spreads} />
-        <Route exact path="/rte-gen-by-fuel" component={RTEGenByFuel} />
-        <RTEGenByUnitRoute fuel="nuclear" />
-        <RTEGenByUnitRoute fuel="fossil-gas" />
-        <RTEGenByUnitRoute fuel="fossil-hard-coal" />
-        <RTEGenByUnitRoute fuel="hydro-water-reservoir" />
-        <RTEGenByUnitRoute fuel="hydro-run-of-river-and-poundage" />
-        <RTEGenByUnitRoute fuel="hydro-pumped-storage" />
-        <RTEGenByUnitRoute fuel="fossil-oil" />
-        <Route exact path="/entsoe-gen-by-fuel" component={EntsoeGenByFuel} />
-      </Grid>
+      <Route exact path="/" component={Prices} />
+      <Route exact path="/prices" component={Prices} />
+      <Route exact path="/spreads" component={Spreads} />
+      <Route exact path="/rte-gen-by-fuel" component={RTEGenByFuel} />
+      <RTEGenByUnitRoute fuel="nuclear" />
+      <RTEGenByUnitRoute fuel="fossil-gas" />
+      <RTEGenByUnitRoute fuel="fossil-hard-coal" />
+      <RTEGenByUnitRoute fuel="hydro-water-reservoir" />
+      <RTEGenByUnitRoute fuel="hydro-run-of-river-and-poundage" />
+      <RTEGenByUnitRoute fuel="hydro-pumped-storage" />
+      <RTEGenByUnitRoute fuel="fossil-oil" />
+      <Route exact path="/entsoe-gen-by-fuel" component={EntsoeGenByFuel} />
     </div>
   );
 }
