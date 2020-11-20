@@ -48,13 +48,11 @@ function EntsoeGenByFuel() {
 
   const classes = useStyles();
   return (
-    <div>
-      <Content
-        title="Entsoe Gen By Fuel"
-        form={entsoeForm(classes, region, handleChange)}
-        display={renderCharts(region)}
-      />
-    </div>
+    <Content
+      title="Entsoe Gen By Fuel"
+      form={entsoeForm(classes, region, handleChange)}
+      display={renderCharts(region)}
+    />
   );
 }
 
@@ -63,13 +61,15 @@ function entsoeForm(classes, region, handleChange) {
     <FormControl className={classes.formControl}>
       <InputLabel id="region-label">Region</InputLabel>
       <Select
-        lableId="region-label"
+        labelId="region-label"
         id="region-select"
         value={region}
         onChange={handleChange}
       >
         {regions.map((label) => (
-          <MenuItem value={label}>{label}</MenuItem>
+          <MenuItem value={label} key={label}>
+            {label}
+          </MenuItem>
         ))}
       </Select>
     </FormControl>
