@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import LineChart from "./line-chart";
 import { getDateOffset } from "./format-date";
 import Grid from "@material-ui/core/Grid";
@@ -6,7 +6,6 @@ import Select from "@material-ui/core/Select";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import FormControl from "@material-ui/core/FormControl";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
 import { makeStyles } from "@material-ui/core/Styles";
 import { MenuItem } from "@material-ui/core";
@@ -28,13 +27,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function EntsoeGenByFuel() {
-  const [region, setRegion] = React.useState("FR");
+  const regions = [
+    "BE",
+    "CH",
+    "DE",
+    "DK",
+    "ES",
+    "FI",
+    "FR",
+    "GB",
+    "IT",
+    "NL",
+    "NO",
+    "SE",
+  ].sort();
+  const [region, setRegion] = useState("DE");
   const classes = useStyles();
 
   const handleChange = (event) => {
     setRegion(event.target.value);
   };
-  const regions = ["FR", "DE", "ES", "GB"];
 
   return (
     <Grid container>
