@@ -11,14 +11,37 @@ import {
   VictoryTooltip,
 } from "victory";
 import getXFormatter from "./xformatters";
+import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
 
 const chartTheme = { ...VictoryTheme.material };
 chartTheme.axis.style.tickLabels.fill = "white";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+}));
+// .main-content {
+//   grid-area: main-content;
+//   overflow-y: scroll;
+//   display: grid;
+//   align-items: center;
+//   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+//   grid-gap: 20px;
+//   padding: 20px;
+// }
+
 function LineChart(props) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const classes = useStyles();
 
   useEffect(
     () => {
@@ -35,7 +58,7 @@ function LineChart(props) {
   );
 
   if (data.length > 0) {
-    return renderChart(data, props.chartParams);
+    return renderChart(data, props.chartParams, classes);
   } else if (isLoading) {
     // experiment to see if adding a Loading place holder produces less jumpiness
     // (it doesn't)
@@ -46,7 +69,7 @@ function LineChart(props) {
   }
 }
 
-function renderChart(data, chartParams) {
+function renderChart(data, chartParams, classes) {
   const { x: xName, yConfigs, xFormat, chartTitle } = chartParams;
   const yUpperLim = getYUpperLim(data, yConfigs);
   const yLowerLim = getYLowerLim(data, yConfigs);
@@ -54,35 +77,38 @@ function renderChart(data, chartParams) {
   const xConfig = { name: xName, formatter: xFormatter };
 
   return (
-    <div key={chartTitle} className="grid-item">
-      <Typography variant="h6" align="center">
-        {chartTitle}
-      </Typography>
-      <VictoryChart
-        // theme={VictoryTheme.material}
-        theme={chartTheme}
-        containerComponent={<VictoryVoronoiContainer />}
-      >
-        <VictoryAxis
-          tickCount={5}
-          // tickValues={data.map((datum) => datum[xName])}
-          // tickFormat={(x) => new Date(x).toLocaleTimeString("fr-FR")}
-          tickFormat={xFormatter}
-          style={{ tickLabels: { fontSize: 10, padding: 3 } }}
-        />
-        <VictoryAxis
-          dependentAxis
-          // NB using domain here gives a warning - but it works
-          // I have tried e.g. maxDomain but those don't set axis max at right point
-          domain={[yLowerLim, yUpperLim]}
-          // label="MW"
-          style={{
-            tickLabels: { fontSize: 10, padding: 3 },
-            axisLabel: { fontSize: 10, padding: 20 },
-          }}
-        />
-        {yConfigs.map((yConfig) => addLine(data, xConfig, yConfig))}
-      </VictoryChart>
+    <div key={chartTitle} className={classes.root}>
+      {/* <Grid item xs={12} sm={6} md={4} lg={3} min-height={240}> */}
+      <Grid item xs>
+        <Typography variant="h6" align="center">
+          {chartTitle}
+        </Typography>
+        <VictoryChart
+          // theme={VictoryTheme.material}
+          theme={chartTheme}
+          containerComponent={<VictoryVoronoiContainer />}
+        >
+          <VictoryAxis
+            tickCount={5}
+            // tickValues={data.map((datum) => datum[xName])}
+            // tickFormat={(x) => new Date(x).toLocaleTimeString("fr-FR")}
+            tickFormat={xFormatter}
+            style={{ tickLabels: { fontSize: 10, padding: 3 } }}
+          />
+          <VictoryAxis
+            dependentAxis
+            // NB using domain here gives a warning - but it works
+            // I have tried e.g. maxDomain but those don't set axis max at right point
+            domain={[yLowerLim, yUpperLim]}
+            // label="MW"
+            style={{
+              tickLabels: { fontSize: 10, padding: 3 },
+              axisLabel: { fontSize: 10, padding: 20 },
+            }}
+          />
+          {yConfigs.map((yConfig) => addLine(data, xConfig, yConfig))}
+        </VictoryChart>
+      </Grid>
     </div>
   );
 }
