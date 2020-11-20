@@ -34,9 +34,10 @@ function EntsoeGenByFuel() {
   const handleChange = (event) => {
     setRegion(event.target.value);
   };
+  const regions = ["FR", "DE", "ES", "GB"];
 
   return (
-    <Grid container spacing={3}>
+    <Grid container>
       <Grid item xs={12}>
         <Typography variant="h6">Entsoe Gen By Fuel</Typography>
         <FormControl className={classes.formControl}>
@@ -47,9 +48,9 @@ function EntsoeGenByFuel() {
             value={region}
             onChange={handleChange}
           >
-            <MenuItem value={"FR"}>FR</MenuItem>
-            <MenuItem value={"DE"}>DE</MenuItem>
-            <MenuItem value={"ES"}>ES</MenuItem>
+            {regions.map((label) => (
+              <MenuItem value={label}>{label}</MenuItem>
+            ))}
           </Select>
         </FormControl>
         <Divider></Divider>
