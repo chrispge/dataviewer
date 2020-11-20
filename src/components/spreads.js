@@ -1,5 +1,6 @@
 import React from "react";
 import LineChart from "./line-chart";
+import Content from "./content";
 
 const eexChartParams = {
   x: "trade_date",
@@ -8,6 +9,10 @@ const eexChartParams = {
 };
 
 function Spreads() {
+  return <Content title="Location Spreads" display={renderCharts()} />;
+}
+
+function renderCharts() {
   const frDeInputs = [
     {
       chartTitle: "Fr-De Oct-20",
@@ -63,7 +68,6 @@ function Spreads() {
 
   return frDeInputs.map((inputs) => renderFrDe(inputs));
 }
-
 function renderFrDe(inputs) {
   const { chartTitle, maturityType, startDate } = inputs;
   return (

@@ -1,6 +1,7 @@
 import React from "react";
 import LineChart from "./line-chart";
-import {getDateOffset} from "./format-date"; 
+import { getDateOffset } from "./format-date";
+import Content from "./content";
 
 const RTEGenByFuelChartParams = {
   x: "start_time",
@@ -9,6 +10,10 @@ const RTEGenByFuelChartParams = {
 };
 
 function RTEGenByFuel() {
+  return <Content title="RTE Generation by Fuel" display={renderCharts()} />;
+}
+
+function renderCharts() {
   const chartInputs = [
     { chartTitle: "Nuclear", fuel: "nuclear" },
     { chartTitle: "Gas", fuel: "fossil_gas" },
@@ -25,13 +30,12 @@ function RTEGenByFuel() {
     { chartTitle: "Biomass", fuel: "biomass" },
     { chartTitle: "Waste", fuel: "waste" },
   ];
-
   return chartInputs.map((inputs) => renderGenByFuel(inputs));
 }
 
 function renderGenByFuel(inputs) {
   const { chartTitle, fuel } = inputs;
-  const from = getDateOffset(-3)
+  const from = getDateOffset(-3);
   return (
     <div key={chartTitle}>
       <LineChart

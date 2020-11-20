@@ -1,5 +1,6 @@
 import React from "react";
 import LineChart from "./line-chart";
+import Content from "./content";
 
 const eexChartParams = {
   x: "trade_date",
@@ -8,6 +9,10 @@ const eexChartParams = {
 };
 
 function Prices() {
+  return <Content title="Prices" display={renderCharts()} />;
+}
+
+function renderCharts() {
   const pricesInputs = [
     {
       chartTitle: "De Nov-20",

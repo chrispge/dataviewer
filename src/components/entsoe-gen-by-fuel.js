@@ -49,7 +49,7 @@ function EntsoeGenByFuel() {
   const classes = useStyles();
   return (
     <Content
-      title="Entsoe Gen By Fuel"
+      title="Entsoe Generation By Fuel"
       form={entsoeForm(classes, region, handleChange)}
       display={renderCharts(region)}
     />
