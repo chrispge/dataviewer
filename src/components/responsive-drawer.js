@@ -64,6 +64,9 @@ const useStyles = makeStyles((theme) => ({
   nested: {
     paddingLeft: theme.spacing(4),
   },
+  toolbarstyle: {
+    background: "#676767",
+  },
 }));
 
 function ResponsiveDrawer(props) {
@@ -150,7 +153,7 @@ function ResponsiveDrawer(props) {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
+        <Toolbar className={classes.toolbarstyle}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
