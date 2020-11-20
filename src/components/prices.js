@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import LineChart from "./line-chart";
 import Content from "./content";
-import regions from "../static/entsoe-gen-regions";
+import regions from "../static/prices-regions";
 import useStyles from "./use-styles";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import { MenuItem } from "@material-ui/core";
+import Select from "@material-ui/core/Select";
 
 const eexChartParams = {
   x: "trade_date",
@@ -11,42 +15,74 @@ const eexChartParams = {
 };
 
 function Prices() {
-  return <Content title="Prices" display={renderCharts()} />;
+  const [region, setRegion] = useState("de");
+
+  const handleChange = (event) => {
+    setRegion(event.target.value);
+  };
+  const classes = useStyles();
+  return (
+    <Content
+      title="Prices"
+      form={pricesForm(classes, region, handleChange)}
+      display={renderCharts(region)}
+    />
+  );
 }
 
-function renderCharts() {
+function pricesForm(classes, region, handleChange) {
+  return (
+    <FormControl className={classes.formControl}>
+      <InputLabel id="region-label">Region</InputLabel>
+      <Select
+        labelId="region-label"
+        id="region-select"
+        value={region}
+        onChange={handleChange}
+      >
+        {regions.map((label) => (
+          <MenuItem value={label} key={label}>
+            {label.toUpperCase()}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  );
+}
+
+function renderCharts(region) {
   const pricesInputs = [
     {
-      chartTitle: "De Nov-20",
-      region: "de",
+      chartTitle: region + " " + "Nov-20",
+      region: region,
       maturityType: "month",
       shape: "base",
       startDate: "2020-11-01",
     },
     {
-      chartTitle: "De Dec-20",
-      region: "de",
+      chartTitle: region + " " + "Dec-20",
+      region: region,
       maturityType: "month",
       shape: "base",
       startDate: "2020-12-01",
     },
     {
-      chartTitle: "De Jan-21",
-      region: "de",
+      chartTitle: region + " " + "Jan-21",
+      region: region,
       maturityType: "month",
       shape: "base",
       startDate: "2021-01-01",
     },
     {
-      chartTitle: "De Q1-21",
-      region: "de",
+      chartTitle: region + " " + "Q1-21",
+      region: region,
       maturityType: "quarter",
       shape: "base",
       startDate: "2021-01-01",
     },
     {
-      chartTitle: "De Cal-21",
-      region: "de",
+      chartTitle: region + " " + "Cal-21",
+      region: region,
       maturityType: "year",
       shape: "base",
       startDate: "2021-01-01",

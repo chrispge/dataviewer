@@ -1,0 +1,26 @@
+const pricesRegions = [
+  "ro",
+  "po",
+  "de",
+  "nl",
+  "fr",
+  "sk",
+  "gb",
+  "ch",
+  "sl",
+  "bu",
+  "jp-kansai",
+  "deat",
+  "no",
+  "hu",
+  "sb",
+  "it",
+  "es",
+  "be",
+  "gr",
+  "at",
+  "jp-tokyo",
+  "cz",
+];
+
+export default pricesRegions;

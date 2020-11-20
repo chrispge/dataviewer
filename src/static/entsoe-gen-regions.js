@@ -1,4 +1,4 @@
-const regions = [
+const entsoeGenRegions = [
   "BE",
   "CH",
   "DE",
@@ -13,4 +13,4 @@ const regions = [
   "SE",
 ].sort();
 
-export default regions;
+export default entsoeGenRegions
