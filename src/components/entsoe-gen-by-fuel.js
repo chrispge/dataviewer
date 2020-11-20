@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import LineChart from "./line-chart";
 import { getDateOffset } from "./format-date";
-import Grid from "@material-ui/core/Grid";
 import Select from "@material-ui/core/Select";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import { makeStyles } from "@material-ui/core/Styles";
 import { MenuItem } from "@material-ui/core";
+import Content from "./content";
 
 const EntsoeGenByFuelChartParams = {
   x: "start_time",
@@ -26,49 +24,55 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const regions = [
+  "BE",
+  "CH",
+  "DE",
+  "DK",
+  "ES",
+  "FI",
+  "FR",
+  "GB",
+  "IT",
+  "NL",
+  "NO",
+  "SE",
+].sort();
+
 function EntsoeGenByFuel() {
-  const regions = [
-    "BE",
-    "CH",
-    "DE",
-    "DK",
-    "ES",
-    "FI",
-    "FR",
-    "GB",
-    "IT",
-    "NL",
-    "NO",
-    "SE",
-  ].sort();
   const [region, setRegion] = useState("DE");
-  const classes = useStyles();
 
   const handleChange = (event) => {
     setRegion(event.target.value);
   };
 
+  const classes = useStyles();
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <Typography variant="h6">Entsoe Gen By Fuel</Typography>
-        <FormControl className={classes.formControl}>
-          <InputLabel id="region-label">Region</InputLabel>
-          <Select
-            lableId="region-label"
-            id="region-select"
-            value={region}
-            onChange={handleChange}
-          >
-            {regions.map((label) => (
-              <MenuItem value={label}>{label}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-        <Divider></Divider>
-      </Grid>
-      {renderCharts(region)}
-    </Grid>
+    <div>
+      <Content
+        title="Entsoe Gen By Fuel"
+        form={entsoeForm(classes, region, handleChange)}
+        display={renderCharts(region)}
+      />
+    </div>
+  );
+}
+
+function entsoeForm(classes, region, handleChange) {
+  return (
+    <FormControl className={classes.formControl}>
+      <InputLabel id="region-label">Region</InputLabel>
+      <Select
+        lableId="region-label"
+        id="region-select"
+        value={region}
+        onChange={handleChange}
+      >
+        {regions.map((label) => (
+          <MenuItem value={label}>{label}</MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 }
 
