@@ -9,7 +9,7 @@ export default function Content(props) {
     <Grid container>
       <Grid item xs={12}>
         <Typography variant="h6">{title}</Typography>
-        {form}
+        {form ? form : null}
         <Divider></Divider>
       </Grid>
       {display}
