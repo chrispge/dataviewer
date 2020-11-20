@@ -7,6 +7,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { makeStyles } from "@material-ui/core/Styles";
 import { MenuItem } from "@material-ui/core";
 import Content from "./content";
+import regions from "../static/entsoe-gen-regions";
 
 const EntsoeGenByFuelChartParams = {
   x: "start_time",
@@ -23,21 +24,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(2),
   },
 }));
-
-const regions = [
-  "BE",
-  "CH",
-  "DE",
-  "DK",
-  "ES",
-  "FI",
-  "FR",
-  "GB",
-  "IT",
-  "NL",
-  "NO",
-  "SE",
-].sort();
 
 function EntsoeGenByFuel() {
   const [region, setRegion] = useState("DE");
