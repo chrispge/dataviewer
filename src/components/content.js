@@ -7,10 +7,10 @@ export default function Content(props) {
   const { title, form, display } = props;
   return (
     <Grid container>
-      <Grid item xs={12}>
+      <Grid item xs={12} className="title-grid">
         <Typography variant="h6">{title}</Typography>
         {form ? form : null}
-        <Divider></Divider>
+        <Divider />
       </Grid>
       {display}
     </Grid>
