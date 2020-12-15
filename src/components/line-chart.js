@@ -67,6 +67,7 @@ function renderChart(data, chartParams, classes) {
           // theme={VictoryTheme.material}
           theme={chartTheme}
           containerComponent={<VictoryVoronoiContainer />}
+          padding={{ top: 10, bottom: 60, left: 30, right: 30 }}
         >
           <VictoryAxis
             tickCount={5}
