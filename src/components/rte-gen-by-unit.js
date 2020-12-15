@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import LineChart from "./line-chart";
 import { getDateOffset } from "./format-date";
+import Content from "./content";
 
 const RTEGenByUnitChartParams = {
   x: "start_time",
@@ -29,7 +30,12 @@ function RTEGenByUnit(props) {
       chartTitle: obj.generation_name,
       unit: obj.generation_name,
     }));
-    return chartInputs.map((inputs) => renderGenByUnit(inputs));
+    return (
+      <Content
+        title="RTE Generation by Fuel"
+        display={renderCharts(chartInputs)}
+      />
+    );
   } else {
     return null;
   }
@@ -53,6 +59,9 @@ async function getUnits(fuel) {
   return data[0];
 }
 
+function renderCharts(chartInputs) {
+  return chartInputs.map((inputs) => renderGenByUnit(inputs));
+}
 function renderGenByUnit(inputs) {
   const { chartTitle, unit } = inputs;
   const from = getDateOffset(-3);
