@@ -6,6 +6,7 @@ import {
   VictoryLine,
   VictoryChart,
   VictoryAxis,
+  VictoryLabel,
   VictoryTheme,
   VictoryVoronoiContainer,
   VictoryTooltip,
@@ -67,7 +68,7 @@ function renderChart(data, chartParams, classes) {
           // theme={VictoryTheme.material}
           theme={chartTheme}
           containerComponent={<VictoryVoronoiContainer />}
-          padding={{ top: 10, bottom: 60, left: 40, right: 40 }}
+          padding={{ top: 10, bottom: 60, left: 60, right: 40 }}
         >
           <VictoryAxis
             tickCount={5}
@@ -81,11 +82,12 @@ function renderChart(data, chartParams, classes) {
             // NB using domain here gives a warning - but it works
             // I have tried e.g. maxDomain but those don't set axis max at right point
             domain={[yLowerLim, yUpperLim]}
-            // label="MW"
             style={{
               tickLabels: { fontSize: 10, padding: 3 },
-              axisLabel: { fontSize: 10, padding: 20 },
+              axisLabel: { fontSize: 10, padding: 45 },
             }}
+            label={yConfigs.units}
+            // why is this not working?
           />
           {yConfigs.map((yConfig) => addLine(data, xConfig, yConfig))}
         </VictoryChart>
