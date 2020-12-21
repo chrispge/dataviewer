@@ -1,4 +1,4 @@
-const pricesRegions = [
+const spotRegions = [
   "de_lu",
   "fr",
   "nl",
@@ -8,4 +8,4 @@ const pricesRegions = [
   "it", 
 ];
 
-export default pricesRegions;
+export default spotRegions;
