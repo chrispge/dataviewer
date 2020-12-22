@@ -144,8 +144,8 @@ function makeUrl(params) {
     .join("&");
   const url = new URL(
     apiQueryName,
-    // "https://sleepy-refuge-42158.herokuapp.com/"
-    "http://localhost:3001/"
+    "https://sleepy-refuge-42158.herokuapp.com/"
+    // "http://localhost:3001/"
   );
   url.search = queryString;
   return url;
