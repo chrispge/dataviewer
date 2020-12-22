@@ -15,12 +15,14 @@ const spotChartParams = {
 };
 
 function Prices() {
+  console.log("in Prices")
   const [region, setRegion] = useState("de_lu");
 
   const handleChange = (event) => {
     setRegion(event.target.value);
   };
   const classes = useStyles();
+  console.log("region: " + region)
   return (
     <Content
       title="Spot"
@@ -31,6 +33,7 @@ function Prices() {
 }
 
 function spotForm(classes, region, handleChange) {
+  console.log("in spotForm")
   return (
     <FormControl className={classes.formControl}>
       <InputLabel id="region-label">Region</InputLabel>
@@ -51,6 +54,7 @@ function spotForm(classes, region, handleChange) {
 }
 
 function renderCharts(region) {
+  console.log("in renderCharts")
   const pricesInputs =   {
       chartTitle: "Test Chart",
       region: region,
@@ -62,6 +66,7 @@ function renderCharts(region) {
 }
 
 function renderPrices(inputs) {
+  console.log("in renderPrices")
   const { chartTitle, region, from, to} = inputs;
   return (
     <div key={chartTitle}>
