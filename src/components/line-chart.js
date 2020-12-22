@@ -20,6 +20,7 @@ const chartTheme = { ...VictoryTheme.material };
 chartTheme.axis.style.tickLabels.fill = "white";
 
 function LineChart(props) {
+  console.log("in LineChart")
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const classes = useStyles();
@@ -39,6 +40,8 @@ function LineChart(props) {
   );
 
   if (data.length > 0) {
+    console.log("Data found: ")
+    console.log(data)
     return renderChart(data, props.chartParams, classes);
   } else if (isLoading) {
     // experiment to see if adding a Loading place holder produces less jumpiness
@@ -130,7 +133,7 @@ function getYMin(data, yName) {
 async function getData(urlParams) {
   const url = makeUrl(urlParams);
   const response = await fetch(url);
-  const data = response.json();
+  const data = await response.json();
   return data;
 }
 
@@ -141,7 +144,8 @@ function makeUrl(params) {
     .join("&");
   const url = new URL(
     apiQueryName,
-    "https://sleepy-refuge-42158.herokuapp.com/"
+    // "https://sleepy-refuge-42158.herokuapp.com/"
+    "http://localhost:3001/"
   );
   url.search = queryString;
   return url;
