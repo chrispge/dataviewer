@@ -59,7 +59,6 @@ function renderCharts(region) {
       chartTitle: "Test Chart",
       region: region,
       from: "2020-12-20", 
-      to: "2020-20-21",
     };
 
   return renderPrices(pricesInputs);

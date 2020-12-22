@@ -21,6 +21,7 @@ chartTheme.axis.style.tickLabels.fill = "white";
 
 function LineChart(props) {
   console.log("in LineChart")
+  console.log(props)
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const classes = useStyles();
