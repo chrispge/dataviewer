@@ -45,7 +45,6 @@ function ResponsiveDrawer(props) {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        <ListItemLink to="/spot/" primary="Spot" />
         <ListItemLink to="/prices/" primary="Prices" />
         <ListItemLink to="/spreads/" primary="Spreads" />
         <List />

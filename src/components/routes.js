@@ -24,7 +24,7 @@ export default function Routes() {
   return (
     <div className="box ">
       <Route exact path="/" component={Prices} />
-      <Route exact path="/spot" component={Spot} />
+      // <Route exact path="/spot" component={Spot} />
       <Route exact path="/prices" component={Prices} />
       <Route exact path="/spreads" component={Spreads} />
       <Route exact path="/rte-gen-by-fuel" component={RTEGenByFuel} />
