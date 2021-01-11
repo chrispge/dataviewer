@@ -61,9 +61,9 @@ function rteGenByUnitForm(classes, fuel, handleChange) {
         value={fuel}
         onChange={handleChange}
       >
-        {fuels.map((label) => (
+        {Object.keys(fuels).map((label) => (
           <MenuItem value={label} key={label}>
-            {label.toUpperCase().replace(/_/g, " ")}
+            {fuels[label]}
           </MenuItem>
         ))}
       </Select>
