@@ -40,9 +40,9 @@ function pricesForm(classes, region, handleChange) {
         value={region}
         onChange={handleChange}
       >
-        {regions.map((label) => (
+        {Object.keys(regions).map((label) => (
           <MenuItem value={label} key={label}>
-            {label.toUpperCase()}
+            {regions[label].toUpperCase()}
           </MenuItem>
         ))}
       </Select>

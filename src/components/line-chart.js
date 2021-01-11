@@ -20,8 +20,6 @@ const chartTheme = { ...VictoryTheme.material };
 chartTheme.axis.style.tickLabels.fill = "white";
 
 function LineChart(props) {
-  console.log("in LineChart")
-  console.log(props)
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const classes = useStyles();
@@ -41,8 +39,6 @@ function LineChart(props) {
   );
 
   if (data.length > 0) {
-    console.log("Data found: ")
-    console.log(data)
     return renderChart(data, props.chartParams, classes);
   } else if (isLoading) {
     // experiment to see if adding a Loading place holder produces less jumpiness
@@ -64,7 +60,7 @@ function renderChart(data, chartParams, classes) {
   return (
     <div key={chartTitle} className={classes.root}>
       {/* <Grid item xs={12} sm={6} md={4} lg={3} min-height={240}> */}
-      <Grid item xs>
+      <Grid item xs={12} >
         <Typography variant="h6" align="center">
           {chartTitle}
         </Typography>
