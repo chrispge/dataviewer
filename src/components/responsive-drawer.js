@@ -51,48 +51,7 @@ function ResponsiveDrawer(props) {
         <Divider />
         <List>
           <ListItemLink to="/rte-gen-by-fuel/" primary="RTE Gen By Fuel" />
-          <ListItem button onClick={handleListClick}>
-            <ListItemText primary="RTE Gen By Unit" />
-            {listOpen ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={listOpen} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <ListItemLink
-                className={classes.nested}
-                to="/rte-gen-by-unit/nuclear"
-                primary="Nuclear"
-              />
-              <ListItemLink
-                className={classes.nested}
-                to="/rte-gen-by-unit/fossil-gas"
-                primary="Gas"
-              />
-              <ListItemLink
-                className={classes.nested}
-                to="/rte-gen-by-unit/fossil-hard-coal"
-                primary="Coal"
-              />
-              <ListItemLink
-                to="/rte-gen-by-unit/hydro-water-reservoir"
-                primary="Hydro Reservoir"
-              />
-              <ListItemLink
-                className={classes.nested}
-                to="/rte-gen-by-unit/hydro-run-of-river-and-poundage"
-                primary="Hydro Run-of-River"
-              />
-              <ListItemLink
-                className={classes.nested}
-                to="/rte-gen-by-unit/hydro-pumped-storage"
-                primary="Hydro Pumped Storage"
-              />
-              <ListItemLink
-                className={classes.nested}
-                to="/rte-gen-by-unit/fossil-oil"
-                primary="Oil"
-              />
-            </List>
-          </Collapse>
+          <ListItemLink to="/rte-gen-by-unit/" primary="RTE Gen By Unit" />
           <ListItemLink
             to="/entsoe-gen-by-fuel/"
             primary="Entsoe Gen By Fuel"

@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import LineChart from "./line-chart";
 import { getDateOffset } from "./format-date";
 import Content from "./content";
+import fuels from "../static/rte-gen-by-unit-fuels";
+import useStyles from "./use-styles.js";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import { MenuItem } from "@material-ui/core";
 
 const RTEGenByUnitChartParams = {
   x: "start_time",
@@ -9,13 +15,9 @@ const RTEGenByUnitChartParams = {
   xFormat: "two-line",
 };
 
-function RTEGenByUnit(props) {
-  console.log("In RTE GenByUnit");
-  const { fuel } = props;
-  console.log("fuel=" + fuel);
+function RTEGenByUnit() {
+  const [fuel, setFuel] = useState("nuclear"); 
   const [units, setUnits] = useState({});
-  console.log("units: ");
-  console.log(units);
 
   useEffect(() => {
     (async () => {
@@ -25,6 +27,10 @@ function RTEGenByUnit(props) {
   }, []);
 
   console.log(units);
+  const classes = useStyles()
+  const handleChange = (event) => {
+    setFuel(event.target.value);
+  };
   if (units[fuel]) {
     const chartInputs = units[fuel].map((obj) => ({
       chartTitle: obj.generation_name,
@@ -32,14 +38,39 @@ function RTEGenByUnit(props) {
     }));
     return (
       <Content
-        title="RTE Generation by Fuel"
+        title="RTE Generation by Unit"
+        form={rteGenByUnitForm(classes, fuel, handleChange)}
         display={renderCharts(chartInputs)}
       />
     );
   } else {
+    console.log("no units found for " + fuel)
+    console.log(units)
     return null;
   }
 }
+
+
+function rteGenByUnitForm(classes, fuel, handleChange) {
+  return (
+    <FormControl className={classes.formControl}>
+      <InputLabel id="fuel-label">Fuel</InputLabel>
+      <Select
+        labelId="fuel-label"
+        id="fuel-select"
+        value={fuel}
+        onChange={handleChange}
+      >
+        {fuels.map((label) => (
+          <MenuItem value={label} key={label}>
+            {label.toUpperCase().replace(/_/g, " ")}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  );
+}
+
 
 async function getUnitsFromDB(fuel) {
   const apiQueryName = "RTEUnits";

@@ -8,18 +8,6 @@ import RTEGenByUnit from "./rte-gen-by-unit";
 import EntsoeGenByFuel from "./entsoe-gen-by-fuel";
 import Grid from "@material-ui/core/Grid";
 
-function RTEGenByUnitRoute(props) {
-  const { fuel } = props;
-  const fuelForDB = fuel.split("-").join("_");
-  const path = "/rte-gen-by-unit/" + fuel;
-  return (
-    <Route
-      exact
-      path={path}
-      render={(props) => <RTEGenByUnit {...props} fuel={fuelForDB} />}
-    />
-  );
-}
 export default function Routes() {
   return (
     <div className="box ">
@@ -27,13 +15,7 @@ export default function Routes() {
       <Route exact path="/prices" component={Prices} />
       <Route exact path="/spreads" component={Spreads} />
       <Route exact path="/rte-gen-by-fuel" component={RTEGenByFuel} />
-      <RTEGenByUnitRoute fuel="nuclear" />
-      <RTEGenByUnitRoute fuel="fossil-gas" />
-      <RTEGenByUnitRoute fuel="fossil-hard-coal" />
-      <RTEGenByUnitRoute fuel="hydro-water-reservoir" />
-      <RTEGenByUnitRoute fuel="hydro-run-of-river-and-poundage" />
-      <RTEGenByUnitRoute fuel="hydro-pumped-storage" />
-      <RTEGenByUnitRoute fuel="fossil-oil" />
+      <Route exact path="/rte-gen-by-unit" component={RTEGenByUnit} />
       <Route exact path="/entsoe-gen-by-fuel" component={EntsoeGenByFuel} />
     </div>
   );
