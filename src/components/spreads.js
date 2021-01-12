@@ -23,21 +23,18 @@ function Spreads() {
   const today = new Date()
   const start = new Date()
   start.setDate(today.getDate()-60)
-
   const [regionFrom, setRegionFrom] = useState("de");
   const [regionTo, setRegionTo] = useState("fr"); 
   const [maturityType, setMaturityType] = useState("month")
   const [contractStartDate, setContractStartDate] = useState("2021-01-01")
   const [startDate, setStartDate] = useState(DateToString(start))
   const [endDate, setEndDate] = useState(DateToString(today))
-
   const [stageRegionFrom, setStageRegionFrom] = useState(regionFrom)
   const [stageRegionTo, setStageRegionTo] = useState(regionTo)
   const [stageMaturityType, setStageMaturityType] = useState(maturityType)
   const [stageContractStartDate, setStageContractStartDate] = useState(contractStartDate)
   const [stageStartDate, setStageStartDate] = useState(startDate)
   const [stageEndDate, setStageEndDate] = useState(endDate)
-
   const handleChangeRegionFrom = (event) => {
     setStageRegionFrom(event.target.value);
   };
@@ -57,17 +54,14 @@ function Spreads() {
     setStageEndDate(event.target.value);
   };
   const handleRefresh = (event) => { 
-
     setRegionTo(stageRegionTo)
     setRegionFrom(stageRegionFrom)
     setMaturityType(stageMaturityType)
     setContractStartDate(stageContractStartDate)
     setStageStartDate(stageStartDate)
     setStageEndDate(stageEndDate)
-
   }; 
   const classes = useStyles();
-
   const [contractStartDates, setContractStartDates] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -147,6 +141,27 @@ function makeUrl(apiQueryName,searchParams) {
   return url;
 }
 
+function DropDown(props) {
+    const {values, name, visibleLabel, initialValue, changeHandler, styleClasses} = props
+    return (
+    <FormControl className={styleClasses.formControl}>
+      <InputLabel id={name+"-label"}>{visibleLabel}</InputLabel>
+      <Select
+        labelId={name+"label"}
+        id={name}
+        value={initialValue}
+        onChange={changeHandler}
+      >
+        {Object.keys(values).map((label) => (
+          <MenuItem value={label} key={label}>
+            {values[label]}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+    )
+}
+
 function spreadsForm(
   classes, 
   regionTo, 
@@ -165,51 +180,31 @@ function spreadsForm(
   contractStartDates,) {
   return (
     <div>
-    <FormControl className={classes.formControl}>
-      <InputLabel id="region-to-label">To Region</InputLabel>
-      <Select
-        labelId="region-to-label"
-        id="region-to"
-        value={regionTo}
-        onChange={handleChangeRegionTo}
-      >
-        {Object.keys(regions).map((label) => (
-          <MenuItem value={label} key={label}>
-            {regions[label].toUpperCase()}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-    <FormControl className={classes.formControl}>
-      <InputLabel id="region-from-label">From Region</InputLabel>
-      <Select
-        labelId="region-from-label"
-        id="region-from"
-        value={regionFrom}
-        onChange={handleChangeRegionFrom}
-      >
-        {Object.keys(regions).map((label) => (
-          <MenuItem value={label} key={label}>
-            {regions[label].toUpperCase()}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-    <FormControl className={classes.formControl}>
-      <InputLabel id="maturity-type">Maturity Type</InputLabel>
-      <Select
-        labelId="maturity-type-label"
-        id="maturity-type"
-        value={maturityType}
-        onChange={handleChangeMaturityType}
-      >
-        {Object.keys(maturityTypes).map((label) => (
-          <MenuItem value={label} key={label}>
-            {maturityTypes[label]}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <DropDown
+      values={regions}
+      name="region1" 
+      visibleLabel="Region 1"
+      initialValue={regionTo} 
+      changeHandler={handleChangeRegionTo} 
+      styleClasses={classes} 
+    ></DropDown>
+    <DropDown
+      values={regions}
+      name="region2" 
+      visibleLabel="Region 2"
+      initialValue={regionFrom} 
+      changeHandler={handleChangeRegionFrom} 
+      styleClasses={classes} 
+    ></DropDown>
+    <DropDown
+      values={maturityTypes}
+      name="maturity-type" 
+      visibleLabel="Maturity Type"
+      initialValue={maturityType} 
+      changeHandler={handleChangeMaturityType} 
+      styleClasses={classes} 
+    ></DropDown>
+
     <FormControl className={classes.formControl}>
       <InputLabel id="contract-start-date">Contract Start</InputLabel>
       <Select
