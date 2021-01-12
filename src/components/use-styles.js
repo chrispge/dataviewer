@@ -26,6 +26,10 @@ const useStyles = makeStyles((theme) => ({
       display: "none",
     },
   },
+  refreshButton: {
+    marginLeft: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
   drawer_: theme.mixins.drawer,

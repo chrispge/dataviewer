@@ -12,6 +12,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import DatePicker from "@material-ui/pickers"; 
 // import DateFnsUtils from "@date-io/date-fns"
+import Grid from "@material-ui/core/Grid"; 
 
 const eexChartParams = {
   x: "trade_date",
@@ -23,23 +24,23 @@ function Spreads() {
   const today = new Date()
   const start = new Date()
   start.setDate(today.getDate()-60)
-  const [regionFrom, setRegionFrom] = useState("de");
-  const [regionTo, setRegionTo] = useState("fr"); 
+  const [region2, setRegion2] = useState("de");
+  const [region1, setRegion1] = useState("fr"); 
   const [maturityType, setMaturityType] = useState("month")
   const [contractStartDate, setContractStartDate] = useState("2021-01-01")
   const [startDate, setStartDate] = useState(DateToString(start))
   const [endDate, setEndDate] = useState(DateToString(today))
-  const [stageRegionFrom, setStageRegionFrom] = useState(regionFrom)
-  const [stageRegionTo, setStageRegionTo] = useState(regionTo)
+  const [stageRegion2, setStageRegion2] = useState(region2)
+  const [stageRegion1, setStageRegion1] = useState(region1)
   const [stageMaturityType, setStageMaturityType] = useState(maturityType)
   const [stageContractStartDate, setStageContractStartDate] = useState(contractStartDate)
   const [stageStartDate, setStageStartDate] = useState(startDate)
   const [stageEndDate, setStageEndDate] = useState(endDate)
-  const handleChangeRegionFrom = (event) => {
-    setStageRegionFrom(event.target.value);
+  const handleChangeRegion2 = (event) => {
+    setStageRegion2(event.target.value);
   };
-  const handleChangeRegionTo = (event) => {
-    setStageRegionTo(event.target.value);
+  const handleChangeRegion1 = (event) => {
+    setStageRegion1(event.target.value);
   };
   const handleChangeMaturityType = (event) => {
     setStageMaturityType(event.target.value);
@@ -54,8 +55,8 @@ function Spreads() {
     setStageEndDate(event.target.value);
   };
   const handleRefresh = (event) => { 
-    setRegionTo(stageRegionTo)
-    setRegionFrom(stageRegionFrom)
+    setRegion1(stageRegion1)
+    setRegion2(stageRegion2)
     setMaturityType(stageMaturityType)
     setContractStartDate(stageContractStartDate)
     setStageStartDate(stageStartDate)
@@ -70,8 +71,8 @@ function Spreads() {
       (async () => {
         setIsLoading(true);
         const searchParams = {
-          "region1": stageRegionTo, 
-          "region2": stageRegionFrom, 
+          "region1": stageRegion1, 
+          "region2": stageRegion2, 
           "maturityType": stageMaturityType, 
           "from": stageStartDate, 
         }
@@ -83,7 +84,7 @@ function Spreads() {
     },
     // decalare dependent parameters
     // useEffect will only run when these change
-    [stageRegionTo, stageRegionFrom, stageMaturityType, stageStartDate]
+    [stageRegion1, stageRegion2, stageMaturityType, stageStartDate]
   );
 
 
@@ -93,14 +94,14 @@ function Spreads() {
       title="Location Spreads"
       form={spreadsForm(
         classes, 
-        stageRegionTo, 
-        stageRegionFrom, 
+        stageRegion1, 
+        stageRegion2, 
         stageMaturityType, 
         stageContractStartDate, 
         stageStartDate, 
         stageEndDate,  
-        handleChangeRegionTo, 
-        handleChangeRegionFrom, 
+        handleChangeRegion1, 
+        handleChangeRegion2, 
         handleChangeMaturityType,
         handleChangeContractStartDate,
         handleChangeStartDate, 
@@ -108,7 +109,7 @@ function Spreads() {
         handleRefresh, 
         contractStartDates, 
       )}
-      display={renderCharts(regionTo, regionFrom, maturityType, contractStartDate, startDate, endDate)}
+      display={renderCharts(region1, region2, maturityType, contractStartDate, startDate, endDate)}
     />
   );
 }
@@ -164,14 +165,14 @@ function DropDown(props) {
 
 function spreadsForm(
   classes, 
-  regionTo, 
-  regionFrom, 
+  region1, 
+  region2, 
   maturityType,
   contractStartDate,
   startDate, 
   endDate, 
-  handleChangeRegionTo, 
-  handleChangeRegionFrom, 
+  handleChangeRegion1, 
+  handleChangeRegion2, 
   handleChangeMaturityType,
   handleChangeContractStartDate,
   handleChangeStartDate, 
@@ -184,16 +185,16 @@ function spreadsForm(
       values={regions}
       name="region1" 
       visibleLabel="Region 1"
-      initialValue={regionTo} 
-      changeHandler={handleChangeRegionTo} 
+      initialValue={region1} 
+      changeHandler={handleChangeRegion1} 
       styleClasses={classes} 
     ></DropDown>
     <DropDown
       values={regions}
       name="region2" 
       visibleLabel="Region 2"
-      initialValue={regionFrom} 
-      changeHandler={handleChangeRegionFrom} 
+      initialValue={region2} 
+      changeHandler={handleChangeRegion2} 
       styleClasses={classes} 
     ></DropDown>
     <DropDown
@@ -250,19 +251,22 @@ function spreadsForm(
       >
       </TextField>
     </FormControl>
-    <Button variant="contained" 
-    onClick={handleRefresh}>Refresh</Button>
+
+    <Grid container>
+    <Button variant="contained" className={classes.refreshButton}
+    onClick={handleRefresh}>refresh</Button>
+    </Grid>
     </div>
   );
 }
 
 
-function renderCharts(regionTo, regionFrom, maturityType, contractStartDate, startDate, endDate) {
+function renderCharts(region1, region2, maturityType, contractStartDate, startDate, endDate) {
   const inputs = {
       maturityType: maturityType,
       startDate: contractStartDate,
-      regionTo: regionTo, 
-      regionFrom: regionFrom, 
+      region1: region1, 
+      region2: region2, 
       from: startDate, 
       to: endDate, 
     }
@@ -271,14 +275,14 @@ function renderCharts(regionTo, regionFrom, maturityType, contractStartDate, sta
   return renderChart(inputs);
 }
 function renderChart(inputs) {
-  const { maturityType, startDate, regionTo, regionFrom, from, to  } = inputs;
+  const { maturityType, startDate, region1, region2, from, to  } = inputs;
   return (
     <div key="SpreadsChart">
       <LineChart
         {...getEEXSpreadsProps(
           {
-            region1: regionTo, 
-            region2: regionFrom, 
+            region1: region1, 
+            region2: region2, 
             maturity_type: maturityType,
             start_date: startDate,
             shape: "base",
