@@ -10,6 +10,7 @@ import {
   VictoryTheme,
   VictoryVoronoiContainer,
   VictoryTooltip,
+  VictoryLegend,
 } from "victory";
 import getXFormatter from "./xformatters";
 import Grid from "@material-ui/core/Grid";
@@ -27,9 +28,15 @@ function LineChart(props) {
   useEffect(
     () => {
       (async () => {
+        console.log("in useEffect")
         setIsLoading(true);
+        console.log("fetching data")
         const fetchedData = await getData(props.urlParams);
-        setData(fetchedData);
+        console.log("fetched data")
+        console.log(fetchedData)
+        if (fetchedData.name !== "error") { 
+          setData(fetchedData);
+        }
         setIsLoading(false);
       })();
     },
@@ -50,8 +57,12 @@ function LineChart(props) {
   }
 }
 
+function legendParams(yConfig) { 
+  return {name: yConfig.name, symbol: {fill: yConfig.lineColor}} 
+} 
+
 function renderChart(data, chartParams, classes) {
-  const { x: xName, yConfigs, xFormat, chartTitle } = chartParams;
+  const { x: xName, yConfigs, xFormat, chartTitle, showLegend } = chartParams;
   const yUpperLim = getYUpperLim(data, yConfigs);
   const yLowerLim = getYLowerLim(data, yConfigs);
   const xFormatter = getXFormatter(xFormat);
@@ -70,6 +81,16 @@ function renderChart(data, chartParams, classes) {
           containerComponent={<VictoryVoronoiContainer />}
           padding={{ top: 10, bottom: 60, left: 60, right: 40 }}
         >
+    { showLegend && <VictoryLegend
+            x={100}
+            y={320}
+            data={yConfigs.map((yConfig) => legendParams(yConfig))}
+            gutter={{left: 10, right: 10}}
+            orientation="horizontal"
+            standalone={true}
+            />
+    }
+          
           <VictoryAxis
             tickCount={5}
             // tickValues={data.map((datum) => datum[xName])}

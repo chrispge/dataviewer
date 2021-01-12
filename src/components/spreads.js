@@ -18,6 +18,7 @@ const eexChartParams = {
   x: "trade_date",
   yUnits: "",
   xFormat: "dd-mmm",
+  showLegend: true,
 };
 
 function Spreads() {
