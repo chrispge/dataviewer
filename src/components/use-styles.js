@@ -61,6 +61,8 @@ const useStyles = makeStyles((theme) => ({
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
-}));
+}),
+  {index: 1} //ensure these styles take effect after MUI stylesheets
+);
 
 export default useStyles;
