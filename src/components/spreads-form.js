@@ -44,12 +44,10 @@ const SpreadsForm = ({region1, region2, maturityType, contractStartDate, startDa
   }
   
   const [contractStartDates, setContractStartDates] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(
     () => {
       (async () => {
-        setIsLoading(true);
         const searchParams = {
           "region1": stageRegion1, 
           "region2": stageRegion2, 
@@ -60,7 +58,6 @@ const SpreadsForm = ({region1, region2, maturityType, contractStartDate, startDa
         const fetchedData = await getContractStartDates(searchParams);
         const asStrings = fetchedData.map((item) => item.start_date.slice(0, 10))
         setContractStartDates(asStrings);
-        setIsLoading(false);
       })();
     },
     // decalare dependent parameters

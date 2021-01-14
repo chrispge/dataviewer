@@ -26,7 +26,6 @@ function RTEGenByUnit() {
     })();
   }, []);
 
-  console.log(units);
   const classes = useStyles()
   const handleChange = (event) => {
     setFuel(event.target.value);

@@ -1,16 +1,6 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import LineChart from "./line-chart";
 import ContentSingle from "./content-single-chart.js";
-import regions from "../static/prices-regions";
-import maturityTypes from "../static/maturity-types";
-import useStyles from "./use-styles";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import { MenuItem } from "@material-ui/core";
-import Select from "@material-ui/core/Select";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
-import Grid from "@material-ui/core/Grid"; 
 
 import SpreadsForm from "./spreads-form.js"
 
@@ -34,7 +24,6 @@ function Spreads() {
     setStartDate(stageStartDate)
     setEndDate(stageEndDate)
   }; 
-  const classes = useStyles();
 
   return (
     <ContentSingle

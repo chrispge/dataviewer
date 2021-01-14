@@ -9,7 +9,7 @@ const pricesRegions = {
   "ch": "CH", 
   "sl": "SL", 
   "bu": "BU", 
-  "jp-kansai": "Kansai", 
+  // "jp-kansai": "Kansai", 
   "deat": "DE/AT", 
   "no": "NO", 
   "hu": "HU", 
@@ -19,7 +19,7 @@ const pricesRegions = {
   "be": "BE", 
   "gr": "GR", 
   "at": "AT", 
-  "jp-tokyo": "Tokyo", 
+  // "jp-tokyo": "Tokyo", 
   "cz": "CZ", 
 };
 

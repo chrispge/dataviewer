@@ -28,12 +28,8 @@ function LineChart(props) {
   useEffect(
     () => {
       (async () => {
-        console.log("in useEffect")
         setIsLoading(true);
-        console.log("fetching data")
         const fetchedData = await getData(props.urlParams);
-        console.log("fetched data")
-        console.log(fetchedData)
         if (fetchedData.name !== "error") { 
           setData(fetchedData);
         }

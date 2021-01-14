@@ -5,13 +5,8 @@ import AppBar from "@material-ui/core/AppBar";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Collapse from "@material-ui/core/Collapse";
 import Hidden from "@material-ui/core/Hidden";
 import MenuIcon from "@material-ui/icons/Menu";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
 import {
   CssBaseline,
   IconButton,
@@ -29,15 +24,10 @@ function ResponsiveDrawer(props) {
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [listOpen, setListOpen] = React.useState(false);
   const [mobileOpen, setMobileOpen] = React.useState(true);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  };
-
-  const handleListClick = () => {
-    setListOpen(!listOpen);
   };
 
   const drawer = (
