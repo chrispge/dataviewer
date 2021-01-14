@@ -1,132 +1,86 @@
-import React, { useState } from "react";
+import React, {useState, useEffect} from "react";
 import LineChart from "./line-chart";
-import Content from "./content";
+import ContentSingle from "./content-single-chart.js";
 import regions from "../static/prices-regions";
+import maturityTypes from "../static/maturity-types";
 import useStyles from "./use-styles";
 import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import { MenuItem } from "@material-ui/core";
 import Select from "@material-ui/core/Select";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid"; 
 
-const eexChartParams = {
-  x: "trade_date",
-  yUnits: "",
-  xFormat: "dd-mmm",
-};
+import PricesForm from "./prices-form.js"
+
 
 function Prices() {
-  const [region, setRegion] = useState("de");
+  const today = new Date()
+  const start = new Date()
+  start.setDate(today.getDate()-60)
+  const [region, setRegion] = useState("de"); 
+  const [maturityType, setMaturityType] = useState("month")
+  const [contractStartDate, setContractStartDate] = useState("2021-01-01")
+  const [startDate, setStartDate] = useState(DateToString(start))
+  const [endDate, setEndDate] = useState(DateToString(today))
 
-  const handleChange = (event) => {
-    setRegion(event.target.value);
-  };
+  const handleRefresh = (stageRegion, stageMaturityType, stageContractStartDate, stageStartDate, stageEndDate) => { 
+    setRegion(stageRegion)
+    setMaturityType(stageMaturityType)
+    setContractStartDate(stageContractStartDate)
+    setStartDate(stageStartDate)
+    setEndDate(stageEndDate)
+  }; 
   const classes = useStyles();
+
   return (
-    <Content
+    <ContentSingle
       title="Prices"
-      form={pricesForm(classes, region, handleChange)}
-      display={renderCharts(region)}
+      form=<PricesForm {...{region, maturityType, contractStartDate, startDate, endDate, handleRefresh}}/>
+      display={renderChart({region, maturityType, contractStartDate, startDate, endDate})}
     />
   );
 }
 
-function pricesForm(classes, region, handleChange) {
-  return (
-    <FormControl className={classes.formControl}>
-      <InputLabel id="region-label">Region</InputLabel>
-      <Select
-        labelId="region-label"
-        id="region-select"
-        value={region}
-        onChange={handleChange}
-      >
-        {Object.keys(regions).map((label) => (
-          <MenuItem value={label} key={label}>
-            {regions[label].toUpperCase()}
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-  );
+function DateToString(date) { 
+  var dd = String(date.getDate()).padStart(2, '0'); 
+  var mm = String(date.getMonth() + 1).padStart(2, '0'); 
+  var yyyy = date.getFullYear()
+  return yyyy + "-" + mm + "-" + dd
 }
 
-function renderCharts(region) {
-  const pricesInputs = [
-    {
-      chartTitle: "Nov-20",
-      region: region,
-      maturityType: "month",
-      shape: "base",
-      startDate: "2020-11-01",
-    },
-    {
-      chartTitle: "Dec-20",
-      region: region,
-      maturityType: "month",
-      shape: "base",
-      startDate: "2020-12-01",
-    },
-    {
-      chartTitle: "Jan-21",
-      region: region,
-      maturityType: "month",
-      shape: "base",
-      startDate: "2021-01-01",
-    },
-    {
-      chartTitle: "Q1-21",
-      region: region,
-      maturityType: "quarter",
-      shape: "base",
-      startDate: "2021-01-01",
-    },
-    {
-      chartTitle: "Cal-21",
-      region: region,
-      maturityType: "year",
-      shape: "base",
-      startDate: "2021-01-01",
-    },
-  ];
 
-  return pricesInputs.map((inputs) => renderPrices(inputs));
-}
-
-function renderPrices(inputs) {
-  const { chartTitle, region, maturityType, startDate, shape } = inputs;
+function renderChart(inputs) {
+  const {region, maturityType, contractStartDate, startDate, endDate } = inputs;
   return (
-    <div key={chartTitle}>
-      <LineChart
-        {...getEEXPricesProps(
-          {
-            region: region,
-            maturity_type: maturityType,
-            start_date: startDate,
-            shape: shape,
-            from: "2020-07-01",
+    <div key="PricesChart">
+      <LineChart {
+        ...{
+          urlParams: {
+            apiQueryName: "EEXPrices",
+            searchParams: { 
+              region: region, 
+              maturity_type: maturityType,
+              start_date: contractStartDate,
+              shape: "base",
+              from: startDate, 
+              to: endDate, 
+            }
           },
-          chartTitle
-        )}
+          chartParams: { 
+            x: "trade_date",
+            yUnits: "",
+            xFormat: "dd-mmm",
+            showLegend: false,
+            yConfigs: [
+              { name: region, lineColor: "blue", units: "" },
+            ]
+          }, 
+        }}
       />
     </div>
   );
-}
-
-function getEEXPricesProps(searchParams, chartTitle) {
-  console.log("in getEEXPricesProps");
-  var chartParams = { ...eexChartParams };
-  chartParams.yConfigs = [
-    { name: searchParams.region, lineColor: "blue", units: "" },
-  ];
-  chartParams.chartTitle = chartTitle;
-  console.log(chartParams);
-  return {
-    urlParams: {
-      apiQueryName: "EEXPrices",
-      searchParams: searchParams,
-    },
-    chartParams: chartParams,
-  };
 }
 
 export default Prices;

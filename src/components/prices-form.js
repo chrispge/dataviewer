@@ -11,21 +11,17 @@ import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid"; 
 import DropDown from "./drop-down.js"
 
-const SpreadsForm = ({region1, region2, maturityType, contractStartDate, startDate, endDate, handleRefresh}) => { 
+const PricesForm = ({region, maturityType, contractStartDate, startDate, endDate, handleRefresh}) => { 
   const classes = useStyles()
   // state variables
-  const [stageRegion2, setStageRegion2] = useState(region2)
-  const [stageRegion1, setStageRegion1] = useState(region1)
+  const [stageRegion, setStageRegion] = useState(region)
   const [stageMaturityType, setStageMaturityType] = useState(maturityType)
   const [stageContractStartDate, setStageContractStartDate] = useState(contractStartDate)
   const [stageStartDate, setStageStartDate] = useState(startDate)
   const [stageEndDate, setStageEndDate] = useState(endDate)
   // event handlers
-  const handleChangeRegion1 = (event) => {
-    setStageRegion1(event.target.value);
-  };
-  const handleChangeRegion2 = (event) => {
-    setStageRegion2(event.target.value);
+  const handleChangeRegion = (event) => {
+    setStageRegion(event.target.value);
   };
   const handleChangeMaturityType = (event) => {
     setStageMaturityType(event.target.value);
@@ -40,7 +36,7 @@ const SpreadsForm = ({region1, region2, maturityType, contractStartDate, startDa
     setStageEndDate(event.target.value);
   };
   const handleRefreshChart = (event) => { 
-    handleRefresh(stageRegion1, stageRegion2, stageMaturityType, stageContractStartDate, stageStartDate, stageEndDate)
+    handleRefresh(stageRegion, stageMaturityType, stageContractStartDate, stageStartDate, stageEndDate)
   }
   
   const [contractStartDates, setContractStartDates] = useState([]);
@@ -51,8 +47,7 @@ const SpreadsForm = ({region1, region2, maturityType, contractStartDate, startDa
       (async () => {
         setIsLoading(true);
         const searchParams = {
-          "region1": stageRegion1, 
-          "region2": stageRegion2, 
+          "region": stageRegion, 
           "maturityType": stageMaturityType, 
           "from": stageStartDate, 
           "to": stageEndDate, 
@@ -65,25 +60,17 @@ const SpreadsForm = ({region1, region2, maturityType, contractStartDate, startDa
     },
     // decalare dependent parameters
     // useEffect will only run when these change
-    [stageRegion1, stageRegion2, stageMaturityType , stageStartDate, stageEndDate]
+    [stageRegion, stageMaturityType , stageStartDate, stageEndDate]
   );
 
   return (
     <div>
     <DropDown
       values={regions}
-      name="region1" 
-      visibleLabel="Region 1"
-      initialValue={stageRegion1} 
-      changeHandler={handleChangeRegion1} 
-      styleClasses={classes} 
-    ></DropDown>
-    <DropDown
-      values={regions}
-      name="region2" 
-      visibleLabel="Region 2"
-      initialValue={stageRegion2} 
-      changeHandler={handleChangeRegion2} 
+      name="region" 
+      visibleLabel="Region"
+      initialValue={stageRegion} 
+      changeHandler={handleChangeRegion} 
       styleClasses={classes} 
     ></DropDown>
     <DropDown
@@ -149,7 +136,7 @@ const SpreadsForm = ({region1, region2, maturityType, contractStartDate, startDa
 }
 
 async function getContractStartDates(searchParams) {
-  const apiQueryName="EEXSpreadContractStartDates"
+  const apiQueryName="EEXOutrightContractStartDates"
   const url = makeUrl(apiQueryName, searchParams)
   const response = await fetch(url)
   const data = await response.json();
@@ -169,5 +156,5 @@ function makeUrl(apiQueryName,searchParams) {
   return url;
 }
 
-export default SpreadsForm
+export default PricesForm
 

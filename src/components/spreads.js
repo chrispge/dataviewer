@@ -19,8 +19,8 @@ function Spreads() {
   const today = new Date()
   const start = new Date()
   start.setDate(today.getDate()-60)
-  const [region2, setRegion2] = useState("de");
   const [region1, setRegion1] = useState("fr"); 
+  const [region2, setRegion2] = useState("de");
   const [maturityType, setMaturityType] = useState("month")
   const [contractStartDate, setContractStartDate] = useState("2021-01-01")
   const [startDate, setStartDate] = useState(DateToString(start))
