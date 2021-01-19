@@ -4,6 +4,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { CssBaseline } from "@material-ui/core";
 import getTheme from "./components/theme";
 import ResponsiveDrawer from "./components/responsive-drawer";
+require("dotenv").config()
 
 function App() {
   return (

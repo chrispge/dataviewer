@@ -146,8 +146,7 @@ function makeUrl(apiQueryName,searchParams) {
     .join("&");
   const url = new URL(
     apiQueryName,
-    "https://sleepy-refuge-42158.herokuapp.com/"
-    // "http://localhost:3001/"
+    process.env.REACT_APP_DB_URL,
   );
   url.search = queryString;
   return url;

@@ -75,7 +75,7 @@ async function getUnitsFromDB(fuel) {
   const apiQueryName = "RTEUnits";
   const url = new URL(
     apiQueryName,
-    "https://sleepy-refuge-42158.herokuapp.com/"
+    process.env.REACT_APP_DB_URL,
   );
   url.search = "fuel=" + fuel;
   const response = await fetch(url);
