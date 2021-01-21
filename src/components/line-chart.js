@@ -26,6 +26,7 @@ function LineChart(props) {
   const classes = useStyles();
   console.log("in linechart")
   console.log(props)
+  console.log(process.env)
 
   useEffect(
     () => {
