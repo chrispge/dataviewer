@@ -24,6 +24,8 @@ function LineChart(props) {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const classes = useStyles();
+  console.log("in linechart")
+  console.log(props)
 
   useEffect(
     () => {
@@ -44,9 +46,6 @@ function LineChart(props) {
   if (data.length > 0) {
     return renderChart(data, props.chartParams, classes);
   } else if (isLoading) {
-    // experiment to see if adding a Loading place holder produces less jumpiness
-    // (it doesn't)
-    // return <div>Loading...</div>;
     return null;
   } else {
     return null;
@@ -58,7 +57,7 @@ function legendParams(yConfig) {
 } 
 
 function renderChart(data, chartParams, classes) {
-  const { x: xName, yConfigs, xFormat, chartTitle, showLegend } = chartParams;
+  const { x: xName, yConfigs, xFormat, chartTitle, legend, height, width, padding} = chartParams;
   const yUpperLim = getYUpperLim(data, yConfigs);
   const yLowerLim = getYLowerLim(data, yConfigs);
   const xFormatter = getXFormatter(xFormat);
@@ -75,18 +74,11 @@ function renderChart(data, chartParams, classes) {
           // theme={VictoryTheme.material}
           theme={chartTheme}
           containerComponent={<VictoryVoronoiContainer />}
-          padding={{ top: 10, bottom: 60, left: 60, right: 40 }}
+          padding={padding ? padding : { top: 10, bottom: 60, left: 60, right: 40 }}
+          height={height}
+          width={width}
         >
-    { showLegend && <VictoryLegend
-            x={100}
-            y={320}
-            data={yConfigs.map((yConfig) => legendParams(yConfig))}
-            gutter={{left: 10, right: 10}}
-            orientation="horizontal"
-            standalone={true}
-            />
-    }
-          
+    { legend ? legend : null }
           <VictoryAxis
             tickCount={5}
             // tickValues={data.map((datum) => datum[xName])}
