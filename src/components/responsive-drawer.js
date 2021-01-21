@@ -46,6 +46,10 @@ function ResponsiveDrawer(props) {
             to="/entsoe-gen-by-fuel/"
             primary="Entsoe Gen By Fuel"
           />
+          <ListItemLink
+            to="/entsoe-monthly-gen"
+            primary="Entsoe Gen By Fuel Monthly"
+          />
         </List>
       </List>
     </div>

@@ -7,6 +7,7 @@ import { MenuItem } from "@material-ui/core";
 
 function DropDown(props) {
     const {values, name, visibleLabel, initialValue, changeHandler, styleClasses} = props
+    console.log(props)
     return (
     <FormControl className={styleClasses.formControl}>
       <InputLabel id={name+"-label"}>{visibleLabel}</InputLabel>
