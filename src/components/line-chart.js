@@ -218,7 +218,7 @@ function addLine(data, xConfig, yConfig) {
         />
       }
       labels={({ datum }) =>
-        `${xFormatter(datum[xName])}\n${datum[yName]} ${yUnits}`
+        `${yName.toUpperCase()}\n${xFormatter(datum[xName])}\n${datum[yName]} ${yUnits}`
       }
       style={{
         data: { stroke: lineColor },
